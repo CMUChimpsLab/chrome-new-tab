@@ -1,0 +1,10 @@
+Searching 8 files for "scale" (regex)
+
+/Users/adrian/cmu_hci_lab/frameWorkExtension/blank_ntp/blank.html:
+   36  
+   37    body { 
+   38:     transform: scale(0.7);
+   39      transform-origin: 0 0;
+   40    } 
+
+1 match in 1 file

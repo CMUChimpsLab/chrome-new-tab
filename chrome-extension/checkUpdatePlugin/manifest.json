@@ -1,0 +1,14 @@
+{
+  "name": "Blank new tab page",
+  "description": "Test chrome runtime",
+  "version": "0.2",
+  "incognito": "split",
+  "chrome_url_overrides": {
+    "newtab": "blank.html"
+  },
+  "manifest_version": 2,
+  "web_accessible_resources": ["blank_ntp_est.html"],
+  "content_security_policy":
+    "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js; object-src 'self'",
+  "permissions": ["http://localhost/*"]
+}

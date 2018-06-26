@@ -1,0 +1,75 @@
+#leftColumn{
+	width: 29%;
+	border: 0px;
+	float: left;
+	padding-right: 1%;
+	overflow: hidden;
+}
+#rightColumn{
+	width: 29%;
+	border: 0px;
+	float: left;
+	padding-left: 1%;
+	overflow: hidden;
+}
+#midColumn{
+	width: 40%;
+	height: 100%;
+	border: 0px;
+	float: left;
+	overflow: hidden;
+}
+#buttonList{
+	position: relative;
+	top: 30%;
+}
+html{
+	overflow: hidden;
+}
+iframe{
+	width: 100%;
+	height: 48%;
+	overflow: hidden;
+	visibility: hidden;
+	box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+div#searchBar{
+	position: relative;
+	top: 25%;
+	text-align: center;
+	width: 100%;
+	height: 10%;
+	color: white;
+	float: left;
+}
+button{
+	background-color: #cccccc;
+	color: white;
+	width: 100%;
+	height: 7%;
+	box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    margin-top: 1px;
+}
+input[type=text] {
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
