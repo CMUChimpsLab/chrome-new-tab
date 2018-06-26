@@ -1,0 +1,10 @@
+type Resolution {
+  _id: ID!
+  name: String!
+  goals: [Resolution]
+}
+
+type Mutation {
+  createResolution(name: String!): Resolution
+  deleteResolution(_id: ID!): Resolution
+}
