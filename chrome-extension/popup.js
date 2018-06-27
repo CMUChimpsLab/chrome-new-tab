@@ -17,7 +17,37 @@ changeColor.onclick = function(element) {
 };
 
 button.onclick = () => {
-  console.log('ufnsd jnfjsdn fjsdn sf');
-};
+  const form = document.getElementById('form');
 
-console.log('OMG!');
+  const isValidElement = element => {
+    return element.name && element.value;
+  };
+
+  const formToJSON = elements =>
+    [].reduce.call(
+      elements,
+      (data, element) => {
+        if (isValidElement(element)) {
+          data[element.name] = element.value;
+        }
+        return data;
+      },
+      {},
+    );
+
+  const data = formToJSON(form.elements);
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    console.log(this.readyState + ' ' + this.status);
+    if (this.readyState == 4 && this.status === 201) {
+      alert('Thanks for sharing this email!');
+    }
+  };
+
+  xhttp.open('POST', 'http://localhost:3000/api/v1/resolutions', true);
+  xhttp.setRequestHeader('Content-Type', 'application/json');
+  xhttp.send(JSON.stringify(data));
+
+  form.reset();
+};

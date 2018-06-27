@@ -28,11 +28,82 @@ chrome.runtime.onInstalled.addListener(function() {
     type: 'normal',
     contexts: ['selection'],
   });
+});
 
-  chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    console.log(info);
-    console.log(tab);
-    console.log('POST');
-    alert('POST the server and wait for response...');
-  });
+chrome.runtime.onMessage.addListener(function(request, sender, callback) {
+  if (request.action == 'xhttp') {
+    var xhttp = new XMLHttpRequest();
+    var method = request.method ? request.method.toUpperCase() : 'GET';
+
+    xhttp.onload = function() {
+      callback(xhttp.responseText);
+    };
+
+    xhttp.onerror = function() {
+      // Do whatever you want on error. Don't forget to invoke the
+      // callback to clean up the communication port.
+      callback();
+    };
+
+    xhttp.open(method, request.url, true);
+    if (method == 'POST') {
+      xhttp.setRequestHeader(
+        'Content-Type',
+        'application/x-www-form-urlencoded',
+      );
+    }
+    xhttp.send(request.data);
+    return true; // prevents the callback from being called too early on return
+  }
+  // if (request.action == 'xhttp') {
+  // var xhttp = new XMLHttpRequest();
+  // var method = request.method ? request.method.toUpperCase() : 'GET';
+
+  // xhttp.onload = function() {
+  //   callback(xhttp.responseText);
+  // };
+
+  // xhttp.onerror = function() {
+  //   // Do whatever you want on error. Don't forget to invoke the
+  //   // callback to clean up the communication port.
+  //   callback('YEah!');
+  // };
+
+  // xhttp.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 201) {
+  //     callback('success!');
+  //   }
+  // };
+
+  // xhttp.open(method, request.url, true);
+
+  // if (method == 'POST') {
+  //   xhttp.setRequestHeader('Content-Type', 'application/json');
+  // }
+
+  // xhttp.send(request.data);
+  // callback('hey');
+  // return true; // prevents the callback from being called too early on return
+  //}
+});
+
+chrome.contextMenus.onClicked.addListener(function(info, tab) {
+  alert('heyy!');
+  const data = {
+    text: info.selectionText,
+    createdAt: new Date(),
+  };
+
+  chrome.runtime.sendMessage(
+    {
+      method: 'POST',
+      action: 'xhttp',
+      url: 'http://localhost:3000/api/v1/test',
+      data: 'hi there',
+    },
+    function(response) {
+      alert(response);
+      console.log('lolol!');
+    },
+  );
 });
