@@ -1,0 +1,10 @@
+type Option {
+  _id: ID!
+  title: String!
+  count: Int!
+}
+
+extend type Mutation {
+  createOption(title: String!, questionId: ID!): Option
+  incrementCount(_id: ID!): Option
+}

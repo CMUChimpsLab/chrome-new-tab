@@ -1,11 +1,14 @@
-type Option {
-  _id: ID!
-  option_title: String!
-  count: Int!
-}
-
 type Question {
   _id: ID!
-  question_title: String!
-  # options: [Option]
+  title: String!
+  options: [Option]
+}
+
+extend type Mutation {
+  createQuestion(title: String!, options: [String]): Question
+  deleteQuestion(_id: ID!): Question
+}
+
+extend type Query {
+  questions: [Question]
 }

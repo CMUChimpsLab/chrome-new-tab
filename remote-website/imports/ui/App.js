@@ -34,7 +34,7 @@ App.propTypes = {
 };
 
 const resolutionsQuery = gql`
-  query Resolutions {
+  query {
     resolutions {
       _id
       name
@@ -43,7 +43,7 @@ const resolutionsQuery = gql`
 `;
 
 const questionsQuery = gql`
-  query Questions {
+  query {
     questions {
       _id
       question_title

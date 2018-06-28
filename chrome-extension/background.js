@@ -27,7 +27,7 @@ function guid() {
 }
 
 // chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
-// chrome.browserAction.setBadgeText({ text: '4' });
+// chrome.browserAction.setBadgeText({ text: 'Hey!' });
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({ color: '#3aa757', guid: guid() }, function() {
