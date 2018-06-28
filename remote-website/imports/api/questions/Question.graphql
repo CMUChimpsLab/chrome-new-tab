@@ -1,0 +1,11 @@
+type Option {
+  _id: ID!
+  option_title: String!
+  count: Int!
+}
+
+type Question {
+  _id: ID!
+  question_title: String!
+  # options: [Option]
+}

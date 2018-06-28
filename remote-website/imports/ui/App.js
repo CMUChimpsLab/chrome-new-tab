@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import PropTypes from 'prop-types';
 import ResolutionForm from './ResolutionForm';
 import Todo from './Todo';
@@ -42,6 +42,20 @@ const resolutionsQuery = gql`
   }
 `;
 
-export default graphql(resolutionsQuery, {
-  props: ({ data }) => ({ ...data }),
-})(App);
+const questionsQuery = gql`
+  query Questions {
+    questions {
+      _id
+      question_title
+    }
+  }
+`;
+
+export default compose(
+  graphql(questionsQuery, {
+    name: 'getQuestions',
+  }),
+  graphql(resolutionsQuery, {
+    props: ({ data }) => ({ ...data }),
+  }),
+)(App);
