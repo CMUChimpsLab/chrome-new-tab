@@ -5,6 +5,7 @@
 'use strict';
 
 let page = document.getElementById('buttonDiv');
+let guid = document.getElementById('guid');
 const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
 function constructOptions(kButtonColors) {
   for (let item of kButtonColors) {
@@ -19,3 +20,7 @@ function constructOptions(kButtonColors) {
   }
 }
 constructOptions(kButtonColors);
+
+chrome.storage.sync.get('guid', function(data) {
+  guid.innerText = 'your guid is ' + JSON.stringify(data.guid);
+});

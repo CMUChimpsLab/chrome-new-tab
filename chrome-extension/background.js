@@ -4,9 +4,35 @@
 
 'use strict';
 
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return (
+    s4() +
+    s4() +
+    '-' +
+    s4() +
+    '-' +
+    s4() +
+    '-' +
+    s4() +
+    '-' +
+    s4() +
+    s4() +
+    s4()
+  );
+}
+
+// chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
+// chrome.browserAction.setBadgeText({ text: '4' });
+
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({ color: '#3aa757' }, function() {
+  chrome.storage.sync.set({ color: '#3aa757', guid: guid() }, function() {
     console.log('The color is green.');
+    console.log('guid created.');
   });
 
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {

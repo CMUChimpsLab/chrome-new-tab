@@ -14,7 +14,8 @@ div.classList.add('gb_R');
 div.classList.add('gb_T');
 var button = document.createElement('button');
 button.onclick = test;
-button.innerText = 'Click me';
+button.innerText = 'Report email';
+button.style.backgroundColor = 'chartreuse';
 div.appendChild(button);
 var gb = null;
 
@@ -64,3 +65,24 @@ function checkHash() {
 }
 window.addEventListener('hashchange', checkHash);
 checkHash();
+
+// window.setInterval(function() {
+//   chrome.pageAction.setIcon({ imageData: draw(10, 0), tabId: tabId });
+// }, 1000);
+
+// function draw(starty, startx) {
+//   var canvas = document.getElementById('canvas');
+//   var context = canvas.getContext('2d');
+//   var img = new Image();
+//   img.src = './images/get_started16.png';
+//   img.onload = function() {
+//     context.drawImage(img, 0, 2);
+//   };
+//   //context.clearRect(0, 0, canvas.width, canvas.height);
+//   context.fillStyle = 'rgba(255,0,0,1)';
+//   context.fillRect(startx % 19, starty % 19, 10, 10);
+//   context.fillStyle = 'white';
+//   context.font = '11px Arial';
+//   context.fillText('3', 0, 19);
+//   return context.getImageData(0, 0, 19, 19);
+// }

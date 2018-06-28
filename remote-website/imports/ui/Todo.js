@@ -19,7 +19,20 @@ class Todo extends Component {
     return (
       <div>
         <li>{this.props.name}</li>
-        <button onClick={() => this.handleDelete(this.props._id)}>X</button>
+        <button
+          style={{ backgroundColor: 'chocolate' }}
+          onClick={() => this.handleDelete(this.props._id)}
+        >
+          Looks phishy!
+        </button>
+        <button
+          style={{ backgroundColor: 'greenyellow' }}
+          onClick={() => this.handleDelete(this.props._id)}
+        >
+          Not phishy
+        </button>
+        <br />
+        <br />
       </div>
     );
   }

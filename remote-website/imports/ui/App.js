@@ -6,10 +6,12 @@ import ResolutionForm from './ResolutionForm';
 import Todo from './Todo';
 
 const App = ({ loading, resolutions }) => {
-  if (loading) {return null;}
+  if (loading) {
+    return null;
+  }
   return (
     <div>
-      <ResolutionForm />
+      {/* <ResolutionForm /> */}
       <ul>
         {resolutions.map(res => (
           <Todo key={res._id} name={res.name} _id={res._id} />
