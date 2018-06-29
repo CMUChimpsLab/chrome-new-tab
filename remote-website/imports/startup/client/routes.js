@@ -1,12 +1,12 @@
-import React from "react";
-import { Router, Route, Switch } from "react-router";
-import createBrowserHistory from "history/createBrowserHistory";
+import React from 'react';
+import { Router, Route, Switch } from 'react-router';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 // route components
-import App from "../../ui/App";
-import { PageNotFound } from "../../ui/PageNotFound/PageNotFound";
-import { EmailApp } from "../../ui/EmailApp/EmailApp";
-import { FacebookApp } from "../../ui/FacebookApp/FacebookApp";
+import App from '../../ui/App';
+import PageNotFound from '../../ui/PageNotFound/PageNotFound';
+import EmailApp from '../../ui/EmailApp/EmailApp';
+import FacebookApp from '../../ui/FacebookApp/FacebookApp';
 
 const browserHistory = createBrowserHistory();
 
