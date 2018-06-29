@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import Emails from './emails';
 import Users from '../users/users';
 
