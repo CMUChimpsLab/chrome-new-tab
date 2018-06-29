@@ -12,11 +12,25 @@ import QuestionResolvers from '../../api/questions/resolvers';
 import OptionSchema from '../../api/options/Option.graphql';
 import OptionResolvers from '../../api/options/resolvers';
 
-// dsfdsfsdfssdgkcnfdhjxzdadsahfddsdsajjffkkksd
+import UserSchema from '../../api/users/User.graphql';
+import UserResolvers from '../../api/users/resolvers';
 
-const typeDefs = [OptionSchema, ResolutionSchema, QuestionSchema];
+import EmailSchema from '../../api/emails/Email.graphql';
+import EmailResolvers from '../../api/emails/resolvers';
+
+// dsfdsfsdfssjghhfddgkcnfdhdsjxzdadsahfddsdsajjffkkksd
+
+const typeDefs = [
+  UserSchema,
+  EmailSchema,
+  OptionSchema,
+  ResolutionSchema,
+  QuestionSchema,
+];
 
 const resolvers = merge(
+  UserResolvers,
+  EmailResolvers,
   OptionResolvers,
   ResolutionResolvers,
   QuestionResolvers,

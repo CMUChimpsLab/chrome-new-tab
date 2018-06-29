@@ -1,0 +1,17 @@
+type Email {
+  _id: ID!
+  subject: String!
+  body: String!
+  user: User
+  isPhishing: Int!
+  notPhishing: Int!
+}
+
+extend type Mutation {
+  createEmail(subject: String!, body: String!, userGuid: String!): Email
+  deleteEmail(_id: ID!): Email
+}
+
+extend type Query {
+  emails: [Email]
+}

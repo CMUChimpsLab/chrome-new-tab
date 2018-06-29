@@ -2,7 +2,7 @@ import Options from './options';
 
 export default {
   Mutation: {
-    createOption(obj, { title, questionId }) {
+    createOption(_, { title, questionId }) {
       const optId = Options.insert({
         title,
         count: 0,
@@ -10,7 +10,8 @@ export default {
       });
       return Options.findOne(optId);
     },
-    incrementCount(obj, { _id }) {
+
+    incrementCount(_, { _id }) {
       Options.update(_id, {
         $inc: {
           count: 1,
