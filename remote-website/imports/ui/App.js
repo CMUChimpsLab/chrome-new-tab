@@ -11,7 +11,7 @@ const App = ({ loading, resolutions }) => {
   }
   return (
     <div>
-      {/* <ResolutionForm /> */}
+      <ResolutionForm />
       <ul>
         {resolutions.map(res => (
           <Todo key={res._id} name={res.name} _id={res._id} />
@@ -34,7 +34,7 @@ App.propTypes = {
 };
 
 const resolutionsQuery = gql`
-  query {
+  query Resolutions {
     resolutions {
       _id
       name
@@ -46,7 +46,7 @@ const questionsQuery = gql`
   query {
     questions {
       _id
-      question_title
+      title
     }
   }
 `;
