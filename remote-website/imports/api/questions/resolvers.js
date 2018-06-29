@@ -1,24 +1,24 @@
-import Questions from './questions';
-import Options from '../options/options';
+import Questions from "./questions";
+import Options from "../options/options";
 
 export default {
   Query: {
     questions() {
       return Questions.find({}).fetch();
-    },
+    }
   },
 
   Question: {
     options: question =>
       Options.find({
-        questionId: question._id,
-      }).fetch(),
+        questionId: question._id
+      }).fetch()
   },
 
   Mutation: {
     createQuestion(_, { title, options = [] }) {
       const questionId = Questions.insert({
-        title,
+        title
       });
 
       // if options are provided...
@@ -26,7 +26,7 @@ export default {
         Options.insert({
           title: option,
           questionId,
-          count: 0,
+          count: 0
         });
       }
 
@@ -36,6 +36,6 @@ export default {
       const removed = Questions.findOne(_id);
       Questions.remove(_id);
       return removed;
-    },
-  },
+    }
+  }
 };
