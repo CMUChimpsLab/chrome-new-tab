@@ -1,5 +1,6 @@
 let changeColor = document.getElementById('changeColor');
 let button = document.getElementById('submit');
+let path = './images/icons/16/icon2-2-16.png';
 
 // chrome.browserAction.setBadgeText({ text: '' });
 
@@ -13,12 +14,26 @@ chrome.storage.sync.get('guid', function(data) {
   console.log('your guid is: ' + JSON.stringify(data.guid));
 });
 
+function changeIcon(tabId) {
+  console.log(tabId);
+  if (path === './images/icons/16/icon2-2-16.png') {
+    path = './images/icons/16/icon2-16.png';
+  } else {
+    path = './images/icons/16/icon2-2-16.png';
+  }
+  chrome.pageAction.setIcon({
+    tabId,
+    path,
+  });
+}
+
 changeColor.onclick = function(element) {
   let color = element.target.value;
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     chrome.tabs.executeScript(tabs[0].id, {
       code: 'document.body.style.backgroundColor = "' + color + '";',
     });
+    changeIcon(tabs[0].id);
   });
 };
 
@@ -60,10 +75,6 @@ button.onclick = () => {
     form.reset();
   });
 };
-
-// window.setInterval(function() {
-chrome.pageAction.setIcon({ imageData: draw(10, 0), tabId: tabId });
-// }, 1000);
 
 function draw(starty, startx) {
   var canvas = document.getElementById('canvas');
