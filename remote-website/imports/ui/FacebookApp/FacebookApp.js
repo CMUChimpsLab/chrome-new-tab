@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
+import React, { Component } from "react";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
 
 export class FacebookApp extends Component {
   renderQs = questionsQuery => {
     if (questionsQuery.loading) {
-      return '';
+      return "";
     }
     return questionsQuery.questions.map(q => <div key={q._id}>{q.title}</div>);
   };
@@ -25,13 +25,17 @@ const questionsQuery = gql`
     questions {
       _id
       title
+      options {
+        title
+        count
+      }
     }
   }
 `;
 
 export default graphql(questionsQuery, {
-  name: 'questionsQuery',
+  name: "questionsQuery",
   options: {
-    refetchQueries: ['questions'],
-  },
+    refetchQueries: ["questions"]
+  }
 })(FacebookApp);
