@@ -12,7 +12,7 @@ import QuestionResolvers from '../../api/questions/resolvers';
 import OptionSchema from '../../api/options/Option.graphql';
 import OptionResolvers from '../../api/options/resolvers';
 
-// dsfdsfsdfsdgkcnfdhjxzdadsahfddsdsajjffkkksd
+// dsfdsfsdfssdgkcnfdhjxzdadsahfddsdsajjffkkksd
 
 const typeDefs = [OptionSchema, ResolutionSchema, QuestionSchema];
 

@@ -4,6 +4,7 @@ import { Restivus } from 'meteor/nimble:restivus';
 import './register-api';
 
 import Resolutions from '../../api/resolutions/resolutions';
+import Questions from '../../api/questions/questions';
 
 const Test = new Mongo.Collection('test');
 
@@ -22,5 +23,6 @@ if (Meteor.isServer) {
     // for Test collection (works on any Mongo collection)
     Api.addCollection(Test);
     Api.addCollection(Resolutions);
+    Api.addCollection(Questions);
   });
 }
