@@ -31,8 +31,24 @@ function guid() {
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({ color: '#3aa757', guid: guid() }, function() {
-    console.log('The color is green.');
-    console.log('guid created.');
+    chrome.storage.sync.get('guid', function(store) {
+      let user = {
+        guid: store.guid,
+        emails: [],
+      };
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        console.log(this.readyState + ' ' + this.status);
+        if (this.status >= 200 && this.status < 300 && this.readyState === 4) {
+          console.log('Thanks for sharing this email!');
+        }
+      };
+
+      xhttp.open('POST', 'http://localhost:3000/api/v1/chrome-users', true);
+      xhttp.setRequestHeader('Content-Type', 'application/json');
+      xhttp.send(JSON.stringify(user));
+    });
   });
 
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {

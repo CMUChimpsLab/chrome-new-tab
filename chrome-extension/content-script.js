@@ -86,3 +86,34 @@ checkHash();
 //   context.fillText('3', 0, 19);
 //   return context.getImageData(0, 0, 19, 19);
 // }
+
+function makeXhrRequest(method, url) {
+  chrome.storage.sync.get('guid', function(data) {
+    guid.innerText = 'your guid is ' + JSON.stringify(data.guid);
+
+    let xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+
+    xhr.onload = function() {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        return xhr.response;
+      } else {
+        reject(
+          Error({
+            status: xhr.status,
+            statusTextInElse: xhr.statusText,
+          }),
+        );
+      }
+    };
+    xhr.onerror = function() {
+      reject(
+        Error({
+          status: xhr.status,
+          statusText: xhr.statusText,
+        }),
+      );
+    };
+    xhr.send();
+  });
+}
