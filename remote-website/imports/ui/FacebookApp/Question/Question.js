@@ -6,20 +6,9 @@ import Option from "../Option/Option";
 export class Question extends Component {
   // maybe move this inside the Option component?
   // then you would have to move the mutation too
-  handleUpvote = _id => {
-    this.props
-      .incOptionCount({
-        variables: {
-          _id
-        }
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
 
   handleChange = e => {
-    const optid = e.target._id;
+    const optid = e.target.value;
     this.props
       .incOptionCount({
         variables: {
@@ -42,11 +31,10 @@ export class Question extends Component {
               _id={opt._id}
               title={opt.title}
               count={opt.count}
-              // handleUpvote={this.handleUpvote}
             />
           ))}
         </ul>
-        <button onClick={e => this.handleChange(e)}> Submit</button>
+        <button onClick={e => this.handleChange(e)}>Submit</button>
       </div>
     );
   }
