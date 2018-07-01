@@ -5,7 +5,7 @@ export class Option extends Component {
     return (
       <li>
         <input type="radio" value="todo" name="option" />
-        {this.title} with {this.count} votes
+        {this.props.title} with {this.props.count} count
         <br />
       </li>
     );
