@@ -59,7 +59,9 @@ button.onclick = () => {
   const data = formToJSON(form.elements);
 
   chrome.storage.sync.get('guid', function(store) {
-    data.guid = store.guid;
+    data.userGuid = store.guid;
+    data.isPhishing = 0;
+    data.notPhishing = 0;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       console.log(this.readyState + ' ' + this.status);
@@ -68,7 +70,7 @@ button.onclick = () => {
       }
     };
 
-    xhttp.open('POST', 'http://localhost:3000/api/v1/resolutions', true);
+    xhttp.open('POST', 'http://localhost:3000/api/v1/emails', true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(data));
 
