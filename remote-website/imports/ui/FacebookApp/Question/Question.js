@@ -18,6 +18,19 @@ export class Question extends Component {
       });
   };
 
+  handleChange = e => {
+    const optid = e.target._id;
+    this.props
+      .incOptionCount({
+        variables: {
+          _id: optid
+        }
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -29,11 +42,11 @@ export class Question extends Component {
               _id={opt._id}
               title={opt.title}
               count={opt.count}
-              handleUpvote={this.handleUpvote}
+              // handleUpvote={this.handleUpvote}
             />
           ))}
         </ul>
-        <button onClick={e => this.handleClick(e)}> Submit</button>
+        <button onClick={e => this.handleChange(e)}> Submit</button>
       </div>
     );
   }
