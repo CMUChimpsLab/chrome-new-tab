@@ -19,7 +19,6 @@ export class FacebookApp extends Component {
       <div>
         <h1>FacebookApp</h1>
         {this.renderQs(this.props.questionsQuery)}
-        {Flipcard}
       </div>
     );
   }
