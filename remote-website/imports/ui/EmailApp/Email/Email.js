@@ -5,8 +5,16 @@ export class Email extends Component {
   render() {
     return (
       <div className="email">
-        <div className="subject">Subject: {this.props.subject}</div>
-        <div className="body">Body: {this.props.body}</div>
+        <div className="subject">
+          <strong>Subject</strong>: {this.props.subject}
+        </div>
+        <div className="body">
+          <strong>Body</strong>: {this.props.body}
+        </div>
+        {/* to be removed */}
+        <div>
+          <strong>...by</strong>: {this.props.userGuid}
+        </div>
       </div>
     );
   }
