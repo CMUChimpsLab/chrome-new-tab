@@ -4,11 +4,21 @@ import { graphql } from "react-apollo";
 import Option from "../Option/Option";
 
 export class Question extends Component {
-  // maybe move this inside the Option component?
-  // then you would have to move the mutation too
+  constructor(props) {
+    super(props);
+    this.state = { value: "no selection yet" };
 
-  handleChange = e => {
-    const optid = e.target.value;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
+  handleSubmit(event) {
+    const optid = this.state.value;
+    // alert("option id is: " + optid);
     this.props
       .incOptionCount({
         variables: {
@@ -18,23 +28,38 @@ export class Question extends Component {
       .catch(error => {
         console.error(error);
       });
-  };
+    event.preventDefault();
+  }
 
   render() {
     return (
       <div>
         <h3>{this.props.title}</h3>
-        <ul>
-          {this.props.options.map(opt => (
-            <Option
-              key={opt._id}
-              _id={opt._id}
-              title={opt.title}
-              count={opt.count}
-            />
-          ))}
-        </ul>
-        <button onClick={e => this.handleChange(e)}>Submit</button>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            pick an option:
+            <br />
+            <select
+              value={this.state.value}
+              onChange={this.handleChange}
+              size={this.props.options.length}
+            >
+              {this.props.options.map(opt => (
+                // <option key={opt._id} value={opt._id}>
+                //   {opt.title} with {opt.count} votes
+                // </option>
+                <Option
+                  key={opt._id}
+                  _id={opt._id}
+                  title={opt.title}
+                  count={opt.count}
+                />
+              ))}
+            </select>
+          </label>
+          <br />
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }

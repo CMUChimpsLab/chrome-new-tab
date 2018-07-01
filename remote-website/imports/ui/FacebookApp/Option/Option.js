@@ -3,11 +3,15 @@ import React, { Component } from "react";
 export class Option extends Component {
   render() {
     return (
-      <li>
-        <input type="radio" value={this.props._id} name="option" />
-        {this.props.title} with {this.props.count} count
-        <br />
-      </li>
+      <option key={this.props._id} value={this.props._id}>
+        {this.props.title} with {this.props.count} votes
+      </option>
+      // <li>
+
+      //   <input type="radio" value={this.props._id} name="option" />
+      //   {this.props.title} with {this.props.count} count
+      //   <br />
+      // </li>
     );
   }
 }
