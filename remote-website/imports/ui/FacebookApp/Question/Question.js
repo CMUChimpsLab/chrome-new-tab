@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import Option from '../Option/Option';
+import React, { Component } from "react";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
+import Option from "../Option/Option";
 
 export class Question extends Component {
   // maybe move this inside the Option component?
@@ -10,8 +10,8 @@ export class Question extends Component {
     this.props
       .incOptionCount({
         variables: {
-          _id,
-        },
+          _id
+        }
       })
       .catch(error => {
         console.error(error);
@@ -33,6 +33,7 @@ export class Question extends Component {
             />
           ))}
         </ul>
+        <button onClick={e => this.handleClick(e)}> Submit</button>
       </div>
     );
   }
@@ -48,12 +49,12 @@ const incOptionCount = gql`
 `;
 
 export default graphql(incOptionCount, {
-  name: 'incOptionCount',
+  name: "incOptionCount",
   options: {
     // I gave a name to the query up there
     // so every time you execute this mutation,
     // it will automatically run the query
     // named "Questions" again :)
-    refetchQueries: ['Questions'],
-  },
+    refetchQueries: ["Questions"]
+  }
 })(Question);
