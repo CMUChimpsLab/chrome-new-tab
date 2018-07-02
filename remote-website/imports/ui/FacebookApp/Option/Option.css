@@ -1,3 +1,15 @@
-.hehe {
+.fb-option {
   color: black;
+  margin-top: 10px;
+  background-color: #59abe3;
+  border: 1.5px #e4f1fe solid;
+  border-radius: 10px;
+  color: white;
+  width: 150px !important;
+  font-size: 13px;
+  padding: 10px;
+}
+
+.fb-option:hover {
+  border: 1.5px #feff51 solid;
 }

@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
-import Option from '../Option/Option';
+import React, { Component } from "react";
+import Option from "../Option/Option";
+//css
+import "./Question.css";
+import "../../assets/font.css";
 
 export class Question extends Component {
   constructor(props) {
@@ -7,36 +10,40 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: false,
-      userOpt: '',
+      userOpt: ""
     };
   }
 
   handleVoted = title => {
     this.setState({
       voteSubmitted: true,
-      userOpt: title,
+      userOpt: title
     });
   };
 
   renderUnvoted() {
     return (
-      <ul>
-        {this.props.options.map(opt => (
-          <Option
-            key={opt._id}
-            _id={opt._id}
-            title={opt.title}
-            count={opt.count}
-            handleVoted={this.handleVoted}
-          />
-        ))}
-      </ul>
+      <div class="fb-opt-list">
+        <ul>
+          {this.props.options.map(opt => (
+            <li>
+              <Option
+                key={opt._id}
+                _id={opt._id}
+                title={opt.title}
+                count={opt.count}
+                handleVoted={this.handleVoted}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 
   getMaxVote = () => {
     var max = 0;
-    var maxTitle = '';
+    var maxTitle = "";
     var sum = 0;
     for (var i in this.props.options) {
       var op = this.props.options[i];
@@ -58,8 +65,8 @@ export class Question extends Component {
 
   render() {
     return (
-      <div>
-        <h3>{this.props.title}</h3>
+      <div class="fb-question">
+        <div class="fb-title">{this.props.title}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
       </div>
     );

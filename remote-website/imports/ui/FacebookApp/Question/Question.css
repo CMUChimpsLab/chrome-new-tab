@@ -1,0 +1,24 @@
+.fb-question {
+  border: 2px #67809f solid;
+  background-color: #e4f1fe;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 25px;
+
+  width: 300px;
+  color: #34495e;
+}
+
+.fb-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.fb-opt-list {
+  margin: auto;
+  width: 80%;
+}
+
+.fb-opt-list ul {
+  list-style-type: none;
+}
