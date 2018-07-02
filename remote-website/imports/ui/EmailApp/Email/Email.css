@@ -1,6 +1,35 @@
 .email {
   margin: 10px;
   padding: 10px;
-  background-color: aquamarine;
+  border: 2px black solid;
+  border-radius: 5px;
   width: 330px;
+}
+
+.body {
+  margin: 10px;
+}
+
+.buttons {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+}
+
+button {
+  background-color: white;
+  border: 2px black solid;
+  border-radius: 5px;
+  width: 130px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.phishing {
+  background-color: #f53c3c;
+}
+
+.not-phishing {
+  background-color: rgb(97, 255, 111);
 }
