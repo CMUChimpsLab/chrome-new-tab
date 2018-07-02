@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { graphql } from "react-apollo";
+import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 
-import gql from "graphql-tag";
-import Email from "./Email/Email";
-import "../assets/font.css";
-import "./EmailApp.css";
+import gql from 'graphql-tag';
+import Email from './Email/Email';
+import '../assets/font.css';
+import './EmailApp.css';
 
 export class EmailApp extends Component {
   render() {
     if (this.props.loading) {
-      return "";
+      return '';
     }
-    document.title = "Email App";
+    document.title = 'Email App';
     return this.props.emails.map(email => (
       <Email
         key={email._id}
@@ -37,5 +37,5 @@ const emailsQuery = gql`
 `;
 
 export default graphql(emailsQuery, {
-  props: ({ data }) => ({ ...data })
+  props: ({ data }) => ({ ...data }),
 })(EmailApp);
