@@ -1,10 +1,101 @@
-button {
-  height: 30px;
-  width: 30px;
-  outline: none;
-}
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 
 body {
+  font-family: "Open Sans", sans-serif;
   height: 500px;
   width: 500px;
+  background-color: #f5f5f5;
+}
+
+.p-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+#submit,
+#save,
+#deidentify {
+  background-color: white;
+  border-radius: 10px;
+  width: 110px;
+  padding: 7px 10px;
+  font-size: 14px;
+  color: white;
+  box-shadow: 6px 6px 6px -6px #95a5a6;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#submit {
+  background-color: #4ecdc4;
+  border: 1.5px #e4f1fe solid;
+}
+
+#save {
+  background-color: #68c3a3;
+  border: 1.5px #e4f1fe solid;
+}
+
+#deidentify {
+  background-color: #95a5a6;
+  border: 1.5px #e4f1fe solid;
+}
+
+#body {
+  height: 200px;
+}
+
+input,
+textarea {
+  display: block;
+  outline: 0;
+  border: 0;
+}
+
+input:focus,
+textarea:focus {
+  transition: 0.2s;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 0.625em;
+}
+.form__label--hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.form__input {
+  width: 90%;
+  margin: auto;
+  font-size: 1em;
+  padding: 0.8em;
+  margin-bottom: 1.2em;
+  border-bottom: 6px solid #d6d7d9;
+  border-radius: 0.4em;
+  background: #ebecec;
+  color: black;
+  font-weight: 300;
+}
+
+.form__input:focus {
+  border-color: #05bcaf;
+}
+
+#form {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.p-buttons {
+  width: 90%;
+  text-align: center;
 }
