@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .email {
@@ -43,7 +43,7 @@ button {
 
 .phishing:hover,
 .not-phishing:hover {
-  border: 1.5px #f7ca18 solid;
+  border: 1.5px #feff51 solid;
 }
 
 .from,

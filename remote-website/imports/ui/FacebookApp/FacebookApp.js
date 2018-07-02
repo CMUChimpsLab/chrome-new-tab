@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import Question from "./Question/Question";
+import "../assets/font.css";
 
 // import "../assets/font.css";
 
@@ -16,12 +17,7 @@ export class FacebookApp extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <h1>FacebookApp</h1>
-        {this.renderQs(this.props.questionsQuery)}
-      </div>
-    );
+    return <div>{this.renderQs(this.props.questionsQuery)}</div>;
   }
 }
 

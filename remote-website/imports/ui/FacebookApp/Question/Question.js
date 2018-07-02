@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import Option from "../Option/Option";
+//css
+import "./Question.css";
+import "../../assets/font.css";
 
 export class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
       voteSubmitted: false,
       userOpt: ""
     };
@@ -20,17 +22,21 @@ export class Question extends Component {
 
   renderUnvoted() {
     return (
-      <ul>
-        {this.props.options.map(opt => (
-          <Option
-            key={opt._id}
-            _id={opt._id}
-            title={opt.title}
-            count={opt.count}
-            handleVoted={this.handleVoted}
-          />
-        ))}
-      </ul>
+      <div class="fb-opt-list">
+        <ul>
+          {this.props.options.map(opt => (
+            <li>
+              <Option
+                key={opt._id}
+                _id={opt._id}
+                title={opt.title}
+                count={opt.count}
+                handleVoted={this.handleVoted}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 
@@ -58,8 +64,8 @@ export class Question extends Component {
 
   render() {
     return (
-      <div>
-        <h3>{this.props.title}</h3>
+      <div class="fb-question">
+        <div class="fb-title">{this.props.title}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
       </div>
     );
