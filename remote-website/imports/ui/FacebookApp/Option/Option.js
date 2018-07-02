@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 //css
 import "./Option.css";
 import "../../assets/font.css";
+=======
+import React, { Component } from 'react';
+// import "../assets/font.css";;
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import './Option.css';
+>>>>>>> 6fa9170038c35c9a54dcb71037b28c54afd06a45
 
 export class Option extends Component {
   constructor(props) {
@@ -12,12 +20,12 @@ export class Option extends Component {
   }
 
   handleOption = (optid, opttitle) => {
-    console.log("title is" + opttitle);
+    console.log('title is' + opttitle);
     this.props
       .incOptionCount({
         variables: {
-          _id: optid
-        }
+          _id: optid,
+        },
       })
       .catch(error => {
         console.error(error);
@@ -49,13 +57,13 @@ const incOptionCount = gql`
 `;
 
 export default graphql(incOptionCount, {
-  name: "incOptionCount",
+  name: 'incOptionCount',
   options: {
     // I gave a name to the query up there
     // so every time you execute this mutation,
     // it will automatically run the query
     // named "Questions" again :)
-    refetchQueries: ["Questions"]
-  }
+    refetchQueries: ['Questions'],
+  },
 })(Option);
 // export default Option;
