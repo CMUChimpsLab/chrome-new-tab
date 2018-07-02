@@ -16,9 +16,7 @@ export default {
   },
 
   Mutation: {
-    createEmail(_, {
- subject, body, from, userGuid 
-}) {
+    createEmail(_, { subject, body, from, userGuid }) {
       const emailId = Emails.insert({
         subject,
         body,

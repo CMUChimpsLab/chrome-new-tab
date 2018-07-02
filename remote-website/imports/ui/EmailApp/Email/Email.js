@@ -118,8 +118,14 @@ const voteNotPhishy = gql`
 export default compose(
   graphql(votePhishy, {
     name: 'votePhishy',
+    options: {
+      refetchQueries: ['Emails'],
+    },
   }),
   graphql(voteNotPhishy, {
     name: 'voteNotPhishy',
+    options: {
+      refetchQueries: ['Emails'],
+    },
   }),
 )(Email);

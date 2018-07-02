@@ -1,7 +1,8 @@
+import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
+// import Emails from '../../api/emails/emails';
 
-import gql from 'graphql-tag';
 import Email from './Email/Email';
 import Wrapper from '../Wrapper/Wrapper';
 
@@ -48,3 +49,11 @@ const emailsQuery = gql`
 export default graphql(emailsQuery, {
   props: ({ data }) => ({ ...data }),
 })(EmailApp);
+// export default compose(
+//   graphql(emailsQuery, {
+//     props: ({ data }) => ({ ...data }),
+//   }),
+//   withTracker(() => {
+//     return { emails2: Emails.find({}).fetch() };
+//   }),
+// )(EmailApp);
