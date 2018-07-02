@@ -16,10 +16,13 @@ export default {
   },
 
   Mutation: {
-    createEmail(_, { subject, body, userGuid }) {
+    createEmail(_, {
+ subject, body, from, userGuid 
+}) {
       const emailId = Emails.insert({
         subject,
         body,
+        from,
         userGuid,
         isPhishing: 0,
         notPhishing: 0,

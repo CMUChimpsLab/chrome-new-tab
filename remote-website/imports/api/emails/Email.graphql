@@ -2,13 +2,19 @@ type Email {
   _id: ID!
   subject: String!
   body: String!
+  from: String!
   user: User
   isPhishing: Int!
   notPhishing: Int!
 }
 
 extend type Mutation {
-  createEmail(subject: String!, body: String!, userGuid: String!): Email
+  createEmail(
+    subject: String!
+    body: String!
+    from: String!
+    userGuid: String!
+  ): Email
   deleteEmail(_id: ID!): Email
   votePhishy(_id: ID!): Email
   voteNotPhishy(_id: ID!): Email

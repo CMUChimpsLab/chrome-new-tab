@@ -22,6 +22,7 @@ export class EmailApp extends Component {
             _id={email._id}
             subject={email.subject}
             body={email.body}
+            from={email.from}
             userGuid={email.user.guid}
           />
         ))}
@@ -36,6 +37,7 @@ const emailsQuery = gql`
       _id
       subject
       body
+      from
       user {
         guid
       }

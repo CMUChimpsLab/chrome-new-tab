@@ -58,7 +58,7 @@ export class Email extends Component {
     return (
       <div className="email">
         <div className="from">
-          <strong>From</strong>: {this.props.userGuid}
+          <strong>From</strong>: {this.props.from}
         </div>
 
         <div className="subject">
