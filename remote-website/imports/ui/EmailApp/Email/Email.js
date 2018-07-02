@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './Email.css';
+import React, { Component } from "react";
+import "./Email.css";
 
 export class Email extends Component {
   handleVote = () => {};
@@ -15,7 +15,7 @@ export class Email extends Component {
           <strong>Subject</strong>: {this.props.subject}
         </div>
 
-        <div className="body">{this.props.body}</div>
+        <div className="emailbody">{this.props.body}</div>
 
         <div className="buttons">
           <button type="submit" className="phishing">
