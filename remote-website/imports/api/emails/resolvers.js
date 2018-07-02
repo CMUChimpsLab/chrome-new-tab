@@ -42,5 +42,21 @@ export default {
       Emails.remove(_id);
       return removed;
     },
+    votePhishy(_, { _id }) {
+      Emails.update(_id, {
+        $inc: {
+          isPhishing: 1,
+        },
+      });
+      return Emails.findOne(_id);
+    },
+    voteNotPhishy(_, { _id }) {
+      Emails.update(_id, {
+        $inc: {
+          notPhishing: 1,
+        },
+      });
+      return Emails.findOne(_id);
+    },
   },
 };

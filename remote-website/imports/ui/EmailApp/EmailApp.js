@@ -15,6 +15,7 @@ export class EmailApp extends Component {
     return this.props.emails.map(email => (
       <Email
         key={email._id}
+        _id={email._id}
         subject={email.subject}
         body={email.body}
         userGuid={email.user.guid}

@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
+import { graphql, compose } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import Wrapper from '../../Wrapper/Wrapper';
 import './Email.css';
 
 export class Email extends Component {
-  handleVote = () => {};
+  handleVote = (phishy, _id) => {
+    if (phishy) {
+      this.props
+        .votePhishy({
+          variables: {
+            _id,
+          },
+        })
+        .then(({ data }) => {
+          this.phishyButton.innerHTML = data.votePhishy.isPhishing;
+          this.notPhishyButton.innerHTML = data.votePhishy.notPhishing;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  };
 
   render() {
     return (
@@ -20,10 +39,24 @@ export class Email extends Component {
           <div className="emailbody">{this.props.body}</div>
 
           <div className="buttons">
-            <button type="submit" className="phishing">
+            <button
+              ref={input => {
+                this.phishyButton = input;
+              }}
+              onClick={() => this.handleVote(true, this.props._id)}
+              type="submit"
+              className="phishing"
+            >
               Phishy!
             </button>
-            <button type="submit" className="not-phishing">
+            <button
+              ref={input => {
+                this.notPhishyButton = input;
+              }}
+              onClick={() => this.handleVote(false, this.props._id)}
+              type="submit"
+              className="not-phishing"
+            >
               Not Phishy!
             </button>
           </div>
@@ -33,4 +66,31 @@ export class Email extends Component {
   }
 }
 
-export default Email;
+const votePhishy = gql`
+  mutation votePhishy($_id: ID!) {
+    votePhishy(_id: $_id) {
+      _id
+      isPhishing
+      notPhishing
+    }
+  }
+`;
+
+const voteNotPhishy = gql`
+  mutation voteNotPhishy($_id: ID!) {
+    voteNotPhishy(_id: $_id) {
+      _id
+      isPhishing
+      notPhishing
+    }
+  }
+`;
+
+export default compose(
+  graphql(votePhishy, {
+    name: 'votePhishy',
+  }),
+  graphql(voteNotPhishy, {
+    name: 'voteNotPhishy',
+  }),
+)(Email);
