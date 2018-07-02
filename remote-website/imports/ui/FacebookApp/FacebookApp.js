@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
@@ -6,17 +5,11 @@ import Question from "./Question/Question";
 import "../assets/font.css";
 
 // import "../assets/font.css";
-=======
-import React, { Component } from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import Question from './Question/Question';
->>>>>>> 6fa9170038c35c9a54dcb71037b28c54afd06a45
 
 export class FacebookApp extends Component {
   renderQs = questionsQuery => {
     if (questionsQuery.loading) {
-      return '';
+      return "";
     }
     return questionsQuery.questions.map(q => (
       <Question key={q._id} _id={q.id} title={q.title} options={q.options} />
@@ -44,5 +37,5 @@ const questionsQuery = gql`
 
 // pass all your queries here
 export default graphql(questionsQuery, {
-  name: 'questionsQuery',
+  name: "questionsQuery"
 })(FacebookApp);

@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import Option from "../Option/Option";
 //css
 import "./Question.css";
 import "../../assets/font.css";
-=======
-import React, { Component } from 'react';
-import Option from '../Option/Option';
->>>>>>> 6fa9170038c35c9a54dcb71037b28c54afd06a45
 
 export class Question extends Component {
   constructor(props) {
@@ -15,14 +10,14 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: false,
-      userOpt: '',
+      userOpt: ""
     };
   }
 
   handleVoted = title => {
     this.setState({
       voteSubmitted: true,
-      userOpt: title,
+      userOpt: title
     });
   };
 
@@ -48,7 +43,7 @@ export class Question extends Component {
 
   getMaxVote = () => {
     var max = 0;
-    var maxTitle = '';
+    var maxTitle = "";
     var sum = 0;
     for (var i in this.props.options) {
       var op = this.props.options[i];
