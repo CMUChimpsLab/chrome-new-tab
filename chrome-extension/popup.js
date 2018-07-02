@@ -1,5 +1,7 @@
 let changeColor = document.getElementById('changeColor');
 let button = document.getElementById('submit');
+let saveButton = document.getElementById('save');
+
 let path = './images/icons/16/icon2-2-16.png';
 
 // chrome.browserAction.setBadgeText({ text: '' });
@@ -37,6 +39,28 @@ changeColor.onclick = function(element) {
   });
 };
 
+chrome.storage.sync.get(['subject', 'body', 'from'], function(data) {
+  document.getElementById('subject').value = data.subject;
+  document.getElementById('body').value = data.body;
+  document.getElementById('from').value = data.from;
+  console.log('Yay!');
+});
+// chrome.storage.sync.get('body', function(data) {
+//   document.getElementById('body').value = data.body;
+// });
+// chrome.storage.sync.get('from', function(data) {
+//   document.getElementById('from').value = data.from;
+// });
+
+saveButton.onclick = () => {
+  const subject = document.getElementById('subject').value;
+  const body = document.getElementById('body').value;
+  const from = document.getElementById('from').value;
+  chrome.storage.sync.set({ from, subject, body }, function() {
+    console.log('Saved!');
+  });
+};
+
 button.onclick = () => {
   const form = document.getElementById('form');
 
@@ -67,6 +91,12 @@ button.onclick = () => {
       console.log(this.readyState + ' ' + this.status);
       if (this.readyState == 4 && this.status === 201) {
         alert('Thanks for sharing this email!');
+        chrome.storage.sync.set(
+          { from: '', subject: '', body: '' },
+          function() {
+            console.log('Clear!');
+          },
+        );
       }
     };
 

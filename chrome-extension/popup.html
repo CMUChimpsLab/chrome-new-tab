@@ -2,34 +2,26 @@
 <html>
 
 <head>
-  <style>
-    button {
-      height: 30px;
-      width: 30px;
-      outline: none;
-    }
-
-    body {
-      height: 300px;
-      width: 300px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="popup.css" />
 </head>
 
 <body>
-  <div>
+  <!-- <div>
     Hi there!
   </div>
-  <button id="changeColor"></button>
+  <button id="changeColor"></button> -->
   <form id="form">
-    Email subject:
-    <input type="text" name="subject">
-    <br> Email body:
-    <input type="text" name="body">
+    From:
+    <input type="text" id="from" name="from">
+    <br/>Subject:
+    <input type="text" id="subject" name="subject">
+    <br/> Email body:
+    <input type="text" id="body" name="body">
     <!-- <textarea name='body' rows='10'></textarea> -->
     <br>
     <br>
     <input type="button" id="submit" value="Submit email">
+    <input type="button" id="save" value="Save draft">
     <input type="button" id="deidentify" value="De-identify">
   </form>
   <canvas id='canvas'></canvas>

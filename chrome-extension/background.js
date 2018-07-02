@@ -51,6 +51,10 @@ chrome.runtime.onInstalled.addListener(function() {
     });
   });
 
+  chrome.storage.sync.set({ from: '', subject: '', body: '' }, function() {
+    console.log('Clear!');
+  });
+
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
     chrome.declarativeContent.onPageChanged.addRules([
       {
