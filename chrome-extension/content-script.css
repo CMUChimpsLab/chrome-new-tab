@@ -1,0 +1,14 @@
+.test {
+  border-radius: 5px;
+  background-color: #4ecdc4;
+  border: 1.5px #e4f1fe solid;
+  width: 100px;
+  padding: 5px;
+  font-size: 14px;
+  color: white;
+  box-shadow: 6px 6px 6px -6px #95a5a6;
+}
+
+.test:hover {
+  border: 1.5px #f7ca18 solid;
+}

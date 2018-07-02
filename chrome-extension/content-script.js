@@ -14,8 +14,8 @@ div.classList.add('gb_R');
 div.classList.add('gb_T');
 var button = document.createElement('button');
 button.onclick = test;
-button.innerText = 'Report email';
-button.style.backgroundColor = 'chartreuse';
+button.classList.add('test');
+button.innerText = 'Unphish email';
 div.appendChild(button);
 var gb = null;
 
