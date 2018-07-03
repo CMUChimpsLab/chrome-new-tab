@@ -1,24 +1,44 @@
 .fb-question {
-  border: 2px #67809f solid;
+  border: 2px #81cfe0 solid;
   background-color: #e4f1fe;
-  border-radius: 10px;
+  margin: 30px auto;
   padding: 10px;
-  margin: 25px;
-
-  width: 300px;
+  width: 350px;
   color: #34495e;
+  -webkit-border-radius: 3px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
+  border-radius: 10px;
+}
+
+.fb-question:hover {
+  box-shadow: 4px 4px 10px rgba(30, 139, 195, 0.4);
 }
 
 .fb-title {
   font-size: 16px;
+  color: #5c97bf;
   font-weight: 600;
 }
 
-.fb-opt-list {
-  margin: auto;
-  width: 80%;
+.fb-opt-list li {
+  display: inline;
 }
 
-.fb-opt-list ul {
-  list-style-type: none;
+.ans {
+  background-color: white;
+  width: 90%;
+  margin: 10px auto;
+  font-size: 14px;
+  padding: 10px;
+  align-items: baseline;
+  box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
+}
+
+.ans-important {
+  font-size: 25px;
+  font-weight: 700;
+  color: rgb(82, 179, 217);
 }
