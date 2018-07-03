@@ -52,16 +52,24 @@ export class Question extends Component {
         maxTitle = op.title;
       }
     }
-    const percentage = ((max / sum) * 100).toFixed(2);
+    const percentage = ((max / sum) * 100).toFixed(0);
     return (
-      <div>
-        <p>
-          your choice is: <span id="ans-user">{this.state.userOpt}</span>
-          <br />
-          <span id="ans-percent">{percentage}</span>% of people think
-          <span id="ans-crowd">{maxTitle}</span> is the best option
-        </p>
-      </div>
+      <p className="ans">
+        Your have selected{" "}
+        <span className="ans-important" id="ans-user">
+          {this.state.userOpt}
+        </span>
+        <br />
+        <span className="ans-important" id="ans-percent">
+          {percentage}&#37;
+        </span>{" "}
+        of people think
+        <span className="ans-important" id="ans-crowd">
+          {" "}
+          {maxTitle}
+        </span>{" "}
+        is the best option
+      </p>
     );
   };
 
