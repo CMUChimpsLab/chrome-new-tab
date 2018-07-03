@@ -1,15 +1,20 @@
 .fb-option {
-  color: black;
-  margin-top: 10px;
+  width: 80px !important;
+  height: 80px;
+  font-size: 13x;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 15px;
   background-color: #59abe3;
-  border: 1.5px #e4f1fe solid;
-  border-radius: 10px;
-  color: white;
-  width: 150px !important;
-  font-size: 13px;
-  padding: 10px;
+  color: #ffffff;
+  -webkit-border-radius: 3px;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .fb-option:hover {
-  border: 1.5px #feff51 solid;
+  background-color: #19b5fe;
+  border: 1.5px #f5d76e solid;
 }

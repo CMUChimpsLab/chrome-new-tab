@@ -1,24 +1,21 @@
 .fb-question {
-  border: 2px #67809f solid;
+  border: 2px #81cfe0 solid;
   background-color: #e4f1fe;
   border-radius: 10px;
+  margin: 30px auto;
   padding: 10px;
-  margin: 25px;
+  width: 350px;
 
-  width: 300px;
-  color: #34495e;
+  color: #6c7a89;
+  box-shadow: 4px 4px 10px rgba(30, 139, 195, 0.4);
 }
 
 .fb-title {
   font-size: 16px;
+  color: #5c97bf;
   font-weight: 600;
 }
 
-.fb-opt-list {
-  margin: auto;
-  width: 80%;
-}
-
-.fb-opt-list ul {
-  list-style-type: none;
+.fb-opt-list li {
+  display: inline;
 }

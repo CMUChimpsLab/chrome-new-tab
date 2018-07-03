@@ -23,12 +23,11 @@ export class Question extends Component {
 
   renderUnvoted() {
     return (
-      <div class="fb-opt-list">
+      <div className="fb-opt-list">
         <ul>
           {this.props.options.map(opt => (
-            <li>
+            <li key={opt._id}>
               <Option
-                key={opt._id}
                 _id={opt._id}
                 title={opt.title}
                 count={opt.count}
@@ -55,18 +54,21 @@ export class Question extends Component {
     }
     const percentage = ((max / sum) * 100).toFixed(2);
     return (
-      <p>
-        your choice is: {this.state.userOpt}
-        <br />
-        {percentage} % of people think {maxTitle} is the best option
-      </p>
+      <div>
+        <p>
+          your choice is: <span id="ans-user">{this.state.userOpt}</span>
+          <br />
+          <span id="ans-percent">{percentage}</span>% of people think
+          <span id="ans-crowd">{maxTitle}</span> is the best option
+        </p>
+      </div>
     );
   };
 
   render() {
     return (
-      <div class="fb-question">
-        <div class="fb-title">{this.props.title}</div>
+      <div className="fb-question">
+        <div className="fb-title">{this.props.title}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
       </div>
     );
