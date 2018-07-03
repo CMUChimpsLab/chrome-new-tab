@@ -100,7 +100,11 @@ button.onclick = () => {
       }
     };
 
-    xhttp.open('POST', 'http://localhost:3000/api/v1/emails', true);
+    xhttp.open(
+      'POST',
+      'https://chrome-new-tab.herokuapp.com/api/v1/emails',
+      true,
+    );
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(data));
 

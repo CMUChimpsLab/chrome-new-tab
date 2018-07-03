@@ -45,7 +45,11 @@ chrome.runtime.onInstalled.addListener(function() {
         }
       };
 
-      xhttp.open('POST', 'http://localhost:3000/api/v1/chrome-users', true);
+      xhttp.open(
+        'POST',
+        'https://chrome-new-tab.herokuapp.com/api/v1/chrome-users',
+        true,
+      );
       xhttp.setRequestHeader('Content-Type', 'application/json');
       xhttp.send(JSON.stringify(user));
     });

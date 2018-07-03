@@ -11,9 +11,10 @@ function showIframe(iframeElement) {
 
 chrome.storage.sync.get('guid', function(data) {
   console.log('your guid is: ' + JSON.stringify(data.guid));
-  document.getElementById('iframe3').src =
-    'http://localhost:3000/emailapp/' + data.guid;
-  document.getElementById('iframe3').contentWindow.location.reload(true);
+  document.getElementById('gus').innerHTML =
+    '<iframe style="visibility: initial" id="iframe3" src="https://chrome-new-tab.herokuapp.com/emailapp/' +
+    data.guid +
+    '"></iframe>';
 });
 
 function allButtonToggleListener() {
