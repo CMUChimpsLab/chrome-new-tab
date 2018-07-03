@@ -1,7 +1,10 @@
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
-// import Emails from '../../api/emails/emails';
+import { graphql, compose } from 'react-apollo';
+
+import { withTracker } from 'react-meteor-data-with-tracker';
+
+import Emails from '../../api/emails/emails';
 
 import Email from './Email/Email';
 import Wrapper from '../Wrapper/Wrapper';
@@ -15,6 +18,7 @@ export class EmailApp extends Component {
       return '';
     }
     document.title = 'Email App';
+    console.log('received guid: ' + this.props.match.params.guid);
     return (
       <Wrapper>
         {this.props.emails.map(email => (
@@ -46,14 +50,15 @@ const emailsQuery = gql`
   }
 `;
 
-export default graphql(emailsQuery, {
-  props: ({ data }) => ({ ...data }),
-})(EmailApp);
-// export default compose(
-//   graphql(emailsQuery, {
-//     props: ({ data }) => ({ ...data }),
-//   }),
-//   withTracker(() => {
-//     return { emails2: Emails.find({}).fetch() };
-//   }),
-// )(EmailApp);
+// export default graphql(emailsQuery, {
+//   props: ({ data }) => ({ ...data }),
+// })(EmailApp);
+export default graphql(
+  emailsQuery,
+  {
+    props: ({ data }) => ({ ...data }),
+  },
+  // withTracker(() => {
+  //   return { emails: Emails.find({}).fetch(),
+  //  };
+)(EmailApp);
