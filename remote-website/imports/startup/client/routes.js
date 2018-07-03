@@ -16,6 +16,7 @@ export const renderRoutes = () => (
       <Route exact path="/" component={App} />
       {/* <Route exact path="/lists/:id" component={ListPageContainer} />
       <Route exact path="/signin" component={AuthPageSignIn} /> */}
+      <Route exact path="/emailapp/:guid" component={EmailApp} />
       <Route exact path="/emailapp" component={EmailApp} />
       <Route exact path="/facebookapp" component={FacebookApp} />
       <Route component={PageNotFound} />
