@@ -1,11 +1,15 @@
-// import Users from './users';
 import Emails from '../emails/emails';
 import Users from '../users/users';
+import Options from '../options/options';
+import Questions from '../questions/questions';
 
 export default {
   Query: {
     users() {
       return Users.find({}).fetch();
+    },
+    user(_, { guid }) {
+      return Users.findOne({ guid });
     },
   },
 
@@ -16,14 +20,41 @@ export default {
       }).fetch(),
   },
 
+  Response: {
+    question: resp => Questions.findOne(resp.questionId),
+    option: resp => Options.findOne(resp.optionId),
+  },
+
   Mutation: {
     createUser(_, { guid, name }) {
       const userId = Users.insert({
         guid,
         name,
         emails: [],
+        responses: [],
       });
       return Users.findOne(userId);
+    },
+
+    aswerQuestion(_, { guid, questionId, optionId }) {
+      // insert responses ids to user object
+      Users.update(
+        { guid },
+        {
+          $push: {
+            responses: { questionId, optionId },
+          },
+        },
+      );
+
+      // increment option count
+      Options.update(optionId, {
+        $inc: {
+          count: 1,
+        },
+      });
+
+      return Users.findOne({ guid });
     },
 
     deleteUser(_, { _id }) {

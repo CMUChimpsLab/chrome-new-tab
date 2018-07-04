@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Option from "../Option/Option";
+import React, { Component } from 'react';
+import Option from '../Option/Option';
 //css
-import "./Question.css";
-import "../../assets/font.css";
+import './Question.css';
+import '../../assets/font.css';
 
 export class Question extends Component {
   constructor(props) {
@@ -10,14 +10,14 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: false,
-      userOpt: ""
+      userOpt: '',
     };
   }
 
   handleVoted = title => {
     this.setState({
       voteSubmitted: true,
-      userOpt: title
+      userOpt: title,
     });
   };
 
@@ -29,6 +29,8 @@ export class Question extends Component {
             <li key={opt._id}>
               <Option
                 _id={opt._id}
+                userGuid={this.props.userGuid}
+                questionId={this.props._id}
                 title={opt.title}
                 count={opt.count}
                 handleVoted={this.handleVoted}
@@ -42,7 +44,7 @@ export class Question extends Component {
 
   getMaxVote = () => {
     var max = 0;
-    var maxTitle = "";
+    var maxTitle = '';
     var sum = 0;
     for (var i in this.props.options) {
       var op = this.props.options[i];
@@ -55,19 +57,19 @@ export class Question extends Component {
     const percentage = ((max / sum) * 100).toFixed(0);
     return (
       <p className="ans">
-        Your have selected{" "}
+        Your have selected{' '}
         <span className="ans-important" id="ans-user">
           {this.state.userOpt}
         </span>
         <br />
         <span className="ans-important" id="ans-percent">
           {percentage}&#37;
-        </span>{" "}
+        </span>{' '}
         of people think
         <span className="ans-important" id="ans-crowd">
-          {" "}
+          {' '}
           {maxTitle}
-        </span>{" "}
+        </span>{' '}
         is the best option
       </p>
     );
