@@ -56,22 +56,26 @@ export class Question extends Component {
     }
     const percentage = ((max / sum) * 100).toFixed(0);
     return (
-      <p className="ans">
-        Your have selected{' '}
-        <span className="ans-important" id="ans-user">
-          {this.state.userOpt}
-        </span>
-        <br />
-        <span className="ans-important" id="ans-percent">
-          {percentage}&#37;
-        </span>{' '}
-        of people think
-        <span className="ans-important" id="ans-crowd">
-          {' '}
-          {maxTitle}
-        </span>{' '}
-        is the best option
-      </p>
+      <div>
+        <p className="ans">
+          Your have selected{' '}
+          <span className="ans-important" id="ans-user">
+            {this.state.userOpt}
+          </span>
+          <br />
+          <span className="ans-important" id="ans-percent">
+            {percentage}&#37;
+          </span>{' '}
+          of people think
+          <span className="ans-important" id="ans-crowd">
+            {' '}
+            {maxTitle}
+          </span>{' '}
+          is the best option
+        </p>
+        {/* halp */}
+        <button onClick={() => this.props.loadNext()}>Next</button>
+      </div>
     );
   };
 

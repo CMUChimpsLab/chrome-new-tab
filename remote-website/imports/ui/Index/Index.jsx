@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Wrapper from '../Wrapper/Wrapper';
 
-import './Index.css';
+import './Index.scss';
 
 export class Index extends Component {
   route = path => {
@@ -14,7 +14,7 @@ export class Index extends Component {
         <div>
           <button
             className="facebook-button index-button"
-            onClick={() => this.route('/facebookapp')}
+            onClick={() => this.route('/facebookapp/all')}
           >
             Go to FacebookApp!
           </button>

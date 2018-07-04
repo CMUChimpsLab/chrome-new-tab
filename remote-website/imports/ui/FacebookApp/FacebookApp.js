@@ -8,6 +8,10 @@ import Wrapper from '../Wrapper/Wrapper';
 // import "../assets/font.css";
 
 export class FacebookApp extends Component {
+  loadNext = () => {
+    this.props.refetch();
+  };
+
   renderQs = ({ loading, questions }) => {
     if (loading) {
       return '';
@@ -37,15 +41,21 @@ export class FacebookApp extends Component {
       unansweredQuestions = questions.filter(q => !contains(q._id));
     }
 
-    return unansweredQuestions.map(q => (
-      <Question
-        key={q._id}
-        _id={q._id}
-        userGuid={userGuid}
-        title={q.title}
-        options={q.options}
-      />
-    ));
+    if (unansweredQuestions.length > 0) {
+      const q = unansweredQuestions[0];
+      return (
+        <Question
+          loadNext={this.loadNext}
+          key={q._id}
+          _id={q._id}
+          userGuid={userGuid}
+          title={q.title}
+          options={q.options}
+        />
+      );
+    }
+
+    return 'Thanks for participating!';
   };
 
   render() {
