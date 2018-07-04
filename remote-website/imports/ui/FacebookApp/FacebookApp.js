@@ -29,7 +29,9 @@ export class FacebookApp extends Component {
 
     if (userGuid !== 'all') {
       // ids of questions answered
-      const answeredIds = this.props.user.responses.map(res => res.question._id,);
+      const answeredIds = this.props.user.responses.map(res => {
+        return res.question._id;
+      });
       const contains = _id => answeredIds.indexOf(_id) > -1;
 
       unansweredQuestions = questions.filter(q => !contains(q._id));
