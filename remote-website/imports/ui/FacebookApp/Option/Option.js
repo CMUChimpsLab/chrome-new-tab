@@ -1,35 +1,33 @@
-import React, { Component } from "react";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import React, { Component } from 'react';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 //css
-import "./Option.css";
-import "../../assets/font.css";
+import './Option.css';
+import '../../assets/font.css';
 
 export class Option extends Component {
-  constructor(props) {
-    super(props);
-    this.handleOption = this.handleOption.bind(this);
-  }
-
-  handleOption = (optid, opttitle) => {
-    console.log("title is" + opttitle);
+  handleOption = ({ _id, questionId, userGuid, title }) => {
     this.props
-      .incOptionCount({
+      .aswerQuestion({
         variables: {
-          _id: optid
-        }
+          guid: userGuid,
+          questionId,
+          optionId: _id,
+        },
+      })
+      .then(() => {
+        this.props.handleVoted(title);
       })
       .catch(error => {
         console.error(error);
       });
-    this.props.handleVoted(opttitle);
   };
 
   render() {
     return (
       <button
         key={this.props._id}
-        onClick={() => this.handleOption(this.props._id, this.props.title)}
+        onClick={() => this.handleOption(this.props)}
         type="submit"
         className="fb-option"
       >
@@ -40,22 +38,32 @@ export class Option extends Component {
 }
 
 // you forgot to pass this as props (down there)
-const incOptionCount = gql`
-  mutation incrementCount($_id: ID!) {
-    incrementCount(_id: $_id) {
-      _id
+const aswerQuestion = gql`
+  mutation answerQuestion($guid: String!, $questionId: ID!, $optionId: ID!) {
+    aswerQuestion(guid: $guid, questionId: $questionId, optionId: $optionId) {
+      responses {
+        question {
+          title
+          _id
+        }
+        option {
+          title
+          _id
+          count
+        }
+      }
     }
   }
 `;
 
-export default graphql(incOptionCount, {
-  name: "incOptionCount",
+export default graphql(aswerQuestion, {
+  name: 'aswerQuestion',
   options: {
     // I gave a name to the query up there
     // so every time you execute this mutation,
     // it will automatically run the query
     // named "Questions" again :)
-    refetchQueries: ["Questions"]
-  }
+    //refetchQueries: ['Questions'],
+  },
 })(Option);
 // export default Option;

@@ -1,0 +1,21 @@
+.index-button {
+  border-radius: 5px;
+  width: 300px;
+  padding: 5px;
+  font-size: 24px;
+  color: white;
+  box-shadow: 6px 6px 6px -6px #95a5a6;
+  margin: 20px 0 20px 0;
+}
+
+.facebook-button {
+  background-color: rgb(82, 179, 217);
+}
+
+.email-button {
+  background-color: #07e98b;
+}
+
+.index-button:hover {
+  border: 1.5px #feff51 solid;
+}

@@ -1,16 +1,24 @@
+type Response {
+  question: Question
+  option: Option
+}
+
 type User {
   _id: ID!
   guid: String!
   name: String
   emails: [Email]
+  responses: [Response]
 }
 
 extend type Mutation {
   createUser(guid: String!, name: String): User
   setName(guid: String!, name: String!): User
   deleteUser(_id: ID!): User
+  aswerQuestion(guid: String!, questionId: ID!, optionId: ID!): User
 }
 
 extend type Query {
   users: [User]
+  user(guid: String): User
 }
