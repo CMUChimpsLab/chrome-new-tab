@@ -16,9 +16,10 @@ export default {
   },
 
   Mutation: {
-    createQuestion(_, { title, options = [] }) {
+    createQuestion(_, { title, description, options = [] }) {
       const questionId = Questions.insert({
         title,
+        description,
       });
 
       // if options are provided...
