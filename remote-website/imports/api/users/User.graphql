@@ -11,14 +11,14 @@ type User {
   responses: [Response]
 }
 
-extend type Mutation {
+type Mutation {
   createUser(guid: String!, name: String): User
   setName(guid: String!, name: String!): User
   deleteUser(_id: ID!): User
   aswerQuestion(guid: String!, questionId: ID!, optionId: ID!): User
 }
 
-extend type Query {
+type Query {
   users: [User]
   user(guid: String): User
 }

@@ -3,9 +3,6 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import merge from 'lodash/merge';
 
-import ResolutionSchema from '../../api/resolutions/Resolution.graphql';
-import ResolutionResolvers from '../../api/resolutions/resolvers';
-
 import QuestionSchema from '../../api/questions/Question.graphql';
 import QuestionResolvers from '../../api/questions/resolvers';
 
@@ -18,21 +15,14 @@ import UserResolvers from '../../api/users/resolvers';
 import EmailSchema from '../../api/emails/Email.graphql';
 import EmailResolvers from '../../api/emails/resolvers';
 
-// dsfdsfdasfhgjhfkdasffddasdaeqwfdsdaskksd
+// dsa
 
-const typeDefs = [
-  UserSchema,
-  EmailSchema,
-  OptionSchema,
-  ResolutionSchema,
-  QuestionSchema,
-];
+const typeDefs = [UserSchema, EmailSchema, OptionSchema, QuestionSchema];
 
 const resolvers = merge(
   UserResolvers,
   EmailResolvers,
   OptionResolvers,
-  ResolutionResolvers,
   QuestionResolvers,
 );
 
