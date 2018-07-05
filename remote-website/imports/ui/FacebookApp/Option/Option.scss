@@ -15,10 +15,10 @@
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   text-shadow: 2px 2px 3px rgba(52, 73, 94, 0.5);
-  box-shadow: -3px 3px 0px rgba(70, 150, 180, 0.9);
-}
+  box-shadow: 3px 3px 0px rgba(70, 150, 180, 0.9);
 
-.fb-option:hover {
-  background-color: $opt-highlight;
-  box-shadow: -3px 3px 0px rgba(250, 233, 53, 0.9);
+  &:hover {
+    background-color: $opt-highlight;
+    box-shadow: 3px 3px 0px $yellow-highlight;
+  }
 }

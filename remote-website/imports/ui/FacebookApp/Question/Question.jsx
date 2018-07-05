@@ -69,13 +69,16 @@ export class Question extends Component {
           of people think
           <span className="ans-important" id="ans-crowd">
             {" "}
-            {maxTitle}
-          </span>{" "}
+            {maxTitle}{" "}
+          </span>
           is the best option
         </p>
         <div className="action-buttons">
-          <button onClick={() => this.props.loadNext()}>Next Question</button>
-          <button>Change my setting on Facebook</button>
+          <button id="action-next" onClick={() => this.props.loadNext()}>
+            Next Question
+          </button>
+          {/* <br /> */}
+          <button id="action-fb">Change my setting on Facebook</button>
         </div>
       </div>
     );

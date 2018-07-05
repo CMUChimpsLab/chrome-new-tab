@@ -1,5 +1,8 @@
 @import "../../assets/main";
 
+$green: #1ecd97;
+$gray: #bbbbbb;
+
 .fb-question {
   border: 2px $font-important solid;
   background-color: #e4f1fe;
@@ -27,14 +30,6 @@
   margin-right: 20px;
 }
 
-.action-buttons {
-  text-align: right;
-}
-
-.action-buttons button {
-  display: inline;
-}
-
 .ans {
   background-color: white;
   font-size: 14px;
@@ -47,4 +42,43 @@
   font-size: 25px;
   font-weight: 700;
   color: rgb(82, 179, 217);
+}
+
+.action-buttons {
+  text-align: right;
+}
+
+.action-buttons button {
+  height: 30px;
+  border-radius: 10px;
+  background: #fff;
+  text-shadow: 0;
+  font: {
+    size: 13px;
+  }
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+  // &:hover {
+  //   box-shadow: 2px 2px 0px yellow;
+  // }
+}
+
+#action-next {
+  border: 2px solid $opt-highlight;
+  color: $opt-highlight;
+  &:hover {
+    color: white;
+    background: $opt-highlight;
+  }
+}
+
+#action-fb {
+  border: 2px solid $fb-second;
+  color: $fb-second;
+  &:hover {
+    color: white;
+    background: $fb-second;
+  }
 }
