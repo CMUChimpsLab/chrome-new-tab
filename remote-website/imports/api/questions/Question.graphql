@@ -1,11 +1,16 @@
 type Question {
   _id: ID!
   title: String!
+  description: String
   options: [Option]
 }
 
 extend type Mutation {
-  createQuestion(title: String!, options: [String]): Question
+  createQuestion(
+    title: String!
+    description: String
+    options: [String]
+  ): Question
   deleteQuestion(_id: ID!): Question
 }
 

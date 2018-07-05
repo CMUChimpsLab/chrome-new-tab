@@ -85,6 +85,7 @@ export class Question extends Component {
     return (
       <div className="fb-question">
         <div className="fb-title">{this.props.title}</div>
+        <div className="fb-description">{this.props.description}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
       </div>
     );

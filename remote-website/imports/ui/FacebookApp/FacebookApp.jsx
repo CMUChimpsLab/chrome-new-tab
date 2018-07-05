@@ -5,8 +5,6 @@ import Question from './Question/Question';
 import '../assets/font.css';
 import Wrapper from '../Wrapper/Wrapper';
 
-// import "../assets/font.css";
-
 export class FacebookApp extends Component {
   loadNext = () => {
     this.props.refetch();
@@ -50,6 +48,7 @@ export class FacebookApp extends Component {
           _id={q._id}
           userGuid={userGuid}
           title={q.title}
+          description={q.description}
           options={q.options}
         />
       );
@@ -76,6 +75,7 @@ const userQuery = gql`
     questions {
       _id
       title
+      description
       options {
         _id
         title
