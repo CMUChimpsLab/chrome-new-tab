@@ -42,19 +42,5 @@
     "eslint-plugin-meteor": "^5.0.0",
     "eslint-plugin-react": "^7.9.1",
     "eslint-plugin-relay": "0.0.21"
-  },
-  "eslintConfig": {
-    "rules": {
-      "react/prop-types": [
-        0
-      ],
-      "no-return-assign": [
-        0
-      ]
-    },
-    "extends": [
-      "fbjs",
-      "@meteorjs/eslint-config-meteor"
-    ]
   }
 }
