@@ -1,0 +1,50 @@
+{
+  "name": "ChromeGuard",
+  "description": "Test chrome runtime",
+  "version": "0.3",
+  "incognito": "split",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "manifest_version": 3,
+  "web_accessible_resources": ["blank_ntp_est.html"],
+  "content_security_policy":
+    "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js; object-src 'self'",
+  "permissions": [
+    "http://localhost/*",
+    "http://localhost:3000/*",
+    "file://*",
+    "storage",
+    "declarativeContent",
+    "contextMenus",
+    "activeTab"
+  ],
+  "options_page": "options.html",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://mail.google.com/*"],
+      "css": ["content-script.css"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "page_action": {
+    "default_title": "Check you email!",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/icons/16/icon2-16.png",
+      "32": "images/icons/32/icon2-32.png",
+      "48": "images/icons/48/icon2-48.png",
+      "128": "images/icons/128/icon2-128.png"
+    }
+  },
+  "icons": {
+    "16": "images/icons/16/icon2-16.png",
+    "32": "images/icons/32/icon2-32.png",
+    "48": "images/icons/48/icon2-48.png",
+    "128": "images/icons/128/icon2-128.png"
+  }
+}
