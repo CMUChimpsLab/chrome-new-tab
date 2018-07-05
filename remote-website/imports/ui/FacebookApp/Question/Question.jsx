@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Option from '../Option/Option';
 //css
-import './Question.css';
+import './Question.scss';
 import '../../assets/font.css';
 
 export class Question extends Component {

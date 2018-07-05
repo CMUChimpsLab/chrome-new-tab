@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 //css
-import './Option.css';
+import './Option.scss';
 import '../../assets/font.css';
 
 export class Option extends Component {

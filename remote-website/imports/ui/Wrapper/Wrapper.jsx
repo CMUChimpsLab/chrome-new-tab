@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Wrapper.css';
+import './Wrapper.scss';
 
 export class Wrapper extends Component {
   render() {
