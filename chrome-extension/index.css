@@ -10,10 +10,9 @@ iframe {
   display: block;
   margin: auto;
   width: 100%;
-  height: 70%;
+  height: 50%;
   box-sizing: border-box;
   border: 0px solid #ccc;
-  /* border-radius: 4px; */
 }
 
 #iframe {
@@ -24,12 +23,11 @@ iframe {
 .banner {
   align-items: center;
   width: 100vw;
-  /* background-image: linear-gradient(to top, #accbee 0%, #e7f0fd 100%); */
   background-color: #89c4f4;
   display: flex;
   color: #fff;
   flex-flow: column nowrap;
-  height: 50vh;
+  height: 45vh;
   justify-content: center;
 }
 
@@ -48,9 +46,9 @@ iframe {
   justify-content: space-between;
   margin: 0.5em 0;
   padding: 0.5em 0.5em 0.5em 0.5em;
-  font: 24px "Lato", arial, sans-serif;
+  font: 20px "Lato", arial, sans-serif;
   transition: all 0.5s;
-  width: 500px;
+  width: 450px;
 }
 
 #search form {
