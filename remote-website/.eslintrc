@@ -1,0 +1,42 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreUrls": true
+      }
+    ],
+    "react/prop-types": [
+      0
+    ],
+    "no-return-assign": [
+      0
+    ],
+    "import/prefer-default-export": [
+      0
+    ],
+    "import/no-named-as-default": [
+      0
+    ],
+    "object-curly-newline": [
+      0
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": true,
+        "singleQuote": true
+      }
+    ],
+    "no-console": 0
+  },
+  "plugins": [
+    "react",
+    "prettier"
+  ]
+}

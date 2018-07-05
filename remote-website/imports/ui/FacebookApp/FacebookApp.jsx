@@ -4,6 +4,8 @@ import { graphql } from 'react-apollo';
 import Question from './Question/Question';
 import '../assets/font.css';
 import Wrapper from '../Wrapper/Wrapper';
+import { withTracker } from 'meteor/react-meteor-data';
+import Users from '../../api/users/users';
 
 export class FacebookApp extends Component {
   loadNext = () => {
@@ -90,4 +92,12 @@ export default graphql(userQuery, {
     return { variables: { guid: props.match.params.guid } };
   },
   props: ({ data }) => ({ ...data }),
-})(FacebookApp);
+})(
+  withTracker(() => {
+    console.log('withTracker');
+    return {
+      hello: 'hello',
+      users: Users.find({}).fetch(),
+    };
+  })(FacebookApp),
+);
