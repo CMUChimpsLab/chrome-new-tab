@@ -1,8 +1,5 @@
 @import "../../assets/main";
 
-$green: #1ecd97;
-$gray: #bbbbbb;
-
 .fb-question {
   border: 2px $font-important solid;
   background-color: #e4f1fe;
@@ -60,9 +57,6 @@ $gray: #bbbbbb;
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
-  // &:hover {
-  //   box-shadow: 2px 2px 0px yellow;
-  // }
 }
 
 #action-next {

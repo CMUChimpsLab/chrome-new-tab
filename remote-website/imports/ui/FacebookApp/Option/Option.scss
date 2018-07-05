@@ -1,9 +1,9 @@
 @import "../../assets/main";
 
 .fb-option {
-  width: 100px;
-  height: 45px;
-  font-size: 14px;
+  width: $opt-width;
+  height: $opt-height;
+  font-size: 15px;
   vertical-align: top;
   margin-right: 15px;
   background-color: $opt-color;
@@ -19,6 +19,6 @@
 
   &:hover {
     background-color: $opt-highlight;
-    box-shadow: 3px 3px 0px $yellow-highlight;
+    box-shadow: 3px 3px 0px yellow;
   }
 }
