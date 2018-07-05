@@ -1,22 +1,24 @@
+@import "../../assets/main";
+
 .fb-option {
-  width: 80px !important;
-  height: 80px;
-  font-size: 13x;
-  display: inline-block;
+  width: 100px;
+  height: 45px;
+  font-size: 14px;
   vertical-align: top;
   margin-right: 15px;
-  /* background-color: rgb(92, 151, 191); */
-  background-color: rgb(82, 179, 217);
+  background-color: $opt-color;
   color: #ffffff;
-  -webkit-border-radius: 3px;
-  border-radius: 5px;
+  border-radius: 10px;
+  border: 0px;
+  -webkit-border-radius: 10px;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   text-shadow: 2px 2px 3px rgba(52, 73, 94, 0.5);
+  box-shadow: -3px 3px 0px rgba(70, 150, 180, 0.9);
 }
 
 .fb-option:hover {
   background-color: #19b5fe;
-  border: 1.5px #f5d76e solid;
+  box-shadow: -3px 3px 0px rgba(250, 233, 53, 0.9);
 }
