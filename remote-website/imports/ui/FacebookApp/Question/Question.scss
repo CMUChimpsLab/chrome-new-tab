@@ -5,8 +5,8 @@
   background-color: #e4f1fe;
   box-sizing: border-box;
   margin: 30px auto;
-  padding: 10px;
-  width: 450px;
+  padding: 15px;
+  width: $q-width;
   color: #34495e;
   box-shadow: -5px 5px 0px rgba(206, 223, 239, 0.9);
 }
@@ -27,10 +27,16 @@
   margin-right: 20px;
 }
 
+.action-buttons {
+  text-align: right;
+}
+
+.action-buttons button {
+  display: inline;
+}
+
 .ans {
   background-color: white;
-  width: 90%;
-  margin: 10px auto;
   font-size: 14px;
   padding: 10px;
   align-items: baseline;

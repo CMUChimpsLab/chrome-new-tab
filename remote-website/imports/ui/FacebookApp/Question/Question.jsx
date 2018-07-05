@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Option from '../Option/Option';
+import React, { Component } from "react";
+import Option from "../Option/Option";
 //css
-import './Question.scss';
-import '../../assets/font.css';
+import "./Question.scss";
+import "../../assets/font.css";
 
 export class Question extends Component {
   constructor(props) {
@@ -10,14 +10,14 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: false,
-      userOpt: '',
+      userOpt: ""
     };
   }
 
   handleVoted = title => {
     this.setState({
       voteSubmitted: true,
-      userOpt: title,
+      userOpt: title
     });
   };
 
@@ -44,7 +44,7 @@ export class Question extends Component {
 
   getMaxVote = () => {
     var max = 0;
-    var maxTitle = '';
+    var maxTitle = "";
     var sum = 0;
     for (var i in this.props.options) {
       var op = this.props.options[i];
@@ -58,23 +58,25 @@ export class Question extends Component {
     return (
       <div>
         <p className="ans">
-          Your have selected{' '}
+          Your have selected{" "}
           <span className="ans-important" id="ans-user">
             {this.state.userOpt}
           </span>
           <br />
           <span className="ans-important" id="ans-percent">
             {percentage}&#37;
-          </span>{' '}
+          </span>{" "}
           of people think
           <span className="ans-important" id="ans-crowd">
-            {' '}
+            {" "}
             {maxTitle}
-          </span>{' '}
+          </span>{" "}
           is the best option
         </p>
-        {/* halp */}
-        <button onClick={() => this.props.loadNext()}>Next</button>
+        <div className="action-buttons">
+          <button onClick={() => this.props.loadNext()}>Next Question</button>
+          <button>Change my setting on Facebook</button>
+        </div>
       </div>
     );
   };
