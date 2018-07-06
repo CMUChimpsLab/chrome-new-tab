@@ -29,12 +29,12 @@
             "template": [
                 "File: <<filename>>",
                 "Project: <<project>>",
-                "File Created: <<filecreated('dddd, MMMM D YYYY, h:mm a')>>",
+                "File Created: <<filecreated('dddd, Do MMMM YYYY h:mm:ss a')>>",
                 "Description:",
                 "Authors: <<rosie>>",
                 "         <<gus>>",
                 "-----",
-                "Last Modified: <<dateformat('dddd, MMMM D YYYY, h:mm a')>>",
+                "Last Modified: <<dateformat('dddd, Do MMMM YYYY h:mm:ss a')>>",
                 "-----",
                 "Copyright (c) <<projectCreationYear>> - <<year>> <<team>>, <<company>>"
             ]
