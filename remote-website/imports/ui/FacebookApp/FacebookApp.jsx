@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, July 6 2018, 11:02 am
+ * Last Modified: Friday, July 6 2018, 1:52 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -25,6 +25,9 @@ import Users from '../../api/users/users';
 
 export class FacebookApp extends Component {
   static propTypes = {
+    history: PropTypes.shape({
+      go: PropTypes.func.isRequired
+    }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({
         guid: PropTypes.string
@@ -57,6 +60,10 @@ export class FacebookApp extends Component {
       .catch(error => {
         console.error(error);
       });
+  };
+
+  redirect = path => {
+    window.location = path;
   };
 
   renderQs = ({ loading, questions }) => {
@@ -94,6 +101,7 @@ export class FacebookApp extends Component {
           question={q}
           userGuid={this.userGuid}
           answered={false}
+          redirect={this.redirect}
         />
       );
     }

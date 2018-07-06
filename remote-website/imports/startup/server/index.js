@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Restivus } from 'meteor/nimble:restivus';
-import './register-api';
+import { ServiceConfiguration } from 'meteor/service-configuration';
 
+import './register-api';
 import Questions from '../../api/questions/questions';
 import Users from '../../api/users/users';
 import Emails from '../../api/emails/emails';
@@ -21,6 +22,16 @@ if (Meteor.isServer) {
       version: 'v1',
       useDefaultAuth: true,
       prettyJson: true
+    });
+
+    ServiceConfiguration.configurations.remove({
+      service: 'facebook'
+    });
+
+    ServiceConfiguration.configurations.insert({
+      service: 'facebook',
+      appId: '254983351900362',
+      secret: 'fcd1f0919887d644608bb36edcec038e'
     });
 
     // Generates: GET/POST on /api/v1/test, and GET/PUT/DELETE

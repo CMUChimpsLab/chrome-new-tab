@@ -19,3 +19,5 @@ apollo
 nimble:restivus
 react-meteor-data
 fourseven:scss
+accounts-facebook
+service-configuration
