@@ -58,9 +58,11 @@ export class Question extends Component {
           is the best option
         </p>
         <div className="action-buttons">
-          <button id="action-next" onClick={() => this.props.loadNext()}>
-            Next Question
-          </button>
+          {!this.props.answered && (
+            <button id="action-next" onClick={() => this.props.loadNext()}>
+              Next Question
+            </button>
+          )}
           {/* <br /> */}
           <button id="action-fb">Change my setting on Facebook</button>
         </div>

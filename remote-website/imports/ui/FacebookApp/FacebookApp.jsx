@@ -18,7 +18,11 @@ export class FacebookApp extends Component {
     refetch: PropTypes.func.isRequired,
     user: PropTypes.shape({
       responses: PropTypes.array.isRequired
-    }).isRequired
+    })
+  };
+
+  static defaultProps = {
+    user: { responses: [] }
   };
 
   loadNext = () => {
@@ -68,11 +72,9 @@ export class FacebookApp extends Component {
       <Question
         loadNext={this.loadNext}
         key={q._id}
-        _id={q._id}
+        question={q}
         userGuid={userGuid}
-        title={q.title}
-        description={q.description}
-        options={q.options}
+        answered
       />
     ));
   };
