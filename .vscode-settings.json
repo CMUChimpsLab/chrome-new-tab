@@ -1,0 +1,31 @@
+{
+    "editor.formatOnSave": false,
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "emmet.triggerExpansionOnTab": true,
+    "editor.quickSuggestions": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "editor.snippetSuggestions": "top",
+    "eslint.options": {
+        "configFile": "remote-website/.eslintrc"
+    },
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html",
+        "plaintext": "jade"
+    },
+    "emmet.syntaxProfiles": {
+        "html": {
+            "attr_quotes": "single"
+        },
+        "jsx": {
+            "self_closing_tag": true
+        }
+    },
+    "explorer.confirmDelete": false,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "workbench.iconTheme": "vscode-icons",
+    "javascript.updateImportsOnFileMove.enabled": "always"
+}
