@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Wrapper from '../Wrapper/Wrapper';
 
 import './Index.scss';
 
 export class Index extends Component {
+  static propTypes = {
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired
+  };
+
   route = path => {
     this.props.history.push(path);
   };

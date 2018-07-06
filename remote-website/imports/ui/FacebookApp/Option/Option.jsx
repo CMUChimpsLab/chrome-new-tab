@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
-//css
+// css
 import './Option.scss';
 import '../../assets/font.css';
 
 export class Option extends Component {
-  handleOption = ({ _id, questionId, userGuid, title }) => {
+  static propTypes = {
+    aswerQuestion: PropTypes.func.isRequired,
+    handleVoted: PropTypes.func.isRequired,
+    questionId: PropTypes.string.isRequired,
+    userGuid: PropTypes.string.isRequired,
+    option: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired
+    }).isRequired
+  };
+
+  handleOption = ({ option, questionId, userGuid }) => {
     this.props
       .aswerQuestion({
         variables: {
           guid: userGuid,
           questionId,
-          optionId: _id,
-        },
+          optionId: option._id
+        }
       })
       .then(() => {
-        this.props.handleVoted(title);
+        this.props.handleVoted(option.title);
       })
       .catch(error => {
         console.error(error);
@@ -26,18 +39,17 @@ export class Option extends Component {
   render() {
     return (
       <button
-        key={this.props._id}
+        key={this.props.option._id}
         onClick={() => this.handleOption(this.props)}
         type="submit"
         className="fb-option"
       >
-        {this.props.title}: {this.props.count}
+        {this.props.option.title}: {this.props.option.count}
       </button>
     );
   }
 }
 
-// you forgot to pass this as props (down there)
 const aswerQuestion = gql`
   mutation answerQuestion($guid: String!, $questionId: ID!, $optionId: ID!) {
     aswerQuestion(guid: $guid, questionId: $questionId, optionId: $optionId) {
@@ -57,13 +69,5 @@ const aswerQuestion = gql`
 `;
 
 export default graphql(aswerQuestion, {
-  name: 'aswerQuestion',
-  options: {
-    // I gave a name to the query up there
-    // so every time you execute this mutation,
-    // it will automatically run the query
-    // named "Questions" again :)
-    //refetchQueries: ['Questions'],
-  },
+  name: 'aswerQuestion'
 })(Option);
-// export default Option;

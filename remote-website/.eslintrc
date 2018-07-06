@@ -1,9 +1,29 @@
 {
   "extends": [
     "airbnb",
-    "prettier"
+    "prettier",
+    "plugin:meteor/recommended",
+    "@meteorjs/eslint-config-meteor"
   ],
+  "settings": {
+    "import/resolver": {
+      "meteor": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
   "rules": {
+    "react/no-unused-prop-types": 0,
+    "arrow-parens": ["error", "as-needed"],
+    "import/no-named-as-default": 0,
+    "comma-dangle": ["error", {
+      "arrays": "never",
+      "objects": "never",
+      "imports": "never",
+      "exports": "never",
+      "functions": "ignore"
+    }],
+    "function-paren-newline": 0,
     "max-len": [
       "error",
       {
@@ -11,32 +31,15 @@
         "ignoreUrls": true
       }
     ],
-    "react/prop-types": [
-      0
-    ],
-    "no-return-assign": [
-      0
-    ],
-    "import/prefer-default-export": [
-      0
-    ],
-    "import/no-named-as-default": [
-      0
-    ],
-    "object-curly-newline": [
-      0
-    ],
     "prettier/prettier": [
       "error",
       {
-        "trailingComma": true,
-        "singleQuote": true
+        "trailingComma": "none",
+        "singleQuote": true,
+        "arrowParens": "avoid"
       }
     ],
     "no-console": 0
   },
-  "plugins": [
-    "react",
-    "prettier"
-  ]
+  "plugins": ["react", "meteor", "prettier"]
 }

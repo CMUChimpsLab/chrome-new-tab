@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
-import gql from 'graphql-tag';
+import { withTracker } from 'meteor/react-meteor-data';
 import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import Question from './Question/Question';
 import '../assets/font.css';
 import Wrapper from '../Wrapper/Wrapper';
-import { withTracker } from 'meteor/react-meteor-data';
 import Users from '../../api/users/users';
 
 export class FacebookApp extends Component {
+  static propTypes = {
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        guid: PropTypes.string
+      }).isRequired
+    }).isRequired,
+    refetch: PropTypes.func.isRequired,
+    user: PropTypes.shape({
+      responses: PropTypes.array.isRequired
+    }).isRequired
+  };
+
   loadNext = () => {
     this.props.refetch();
   };
@@ -24,39 +37,44 @@ export class FacebookApp extends Component {
     }
 
     // check if user exists
-    // 'all' shows all questions
-    if (this.props.user === null && userGuid !== 'all') {
+    if (this.props.user === null) {
       return 'User does not exist!';
     }
 
-    let unansweredQuestions = questions;
+    // ids of questions answered
+    const answeredIds = this.props.user.responses.map(res => res.question._id);
 
-    if (userGuid !== 'all') {
-      // ids of questions answered
-      const answeredIds = this.props.user.responses.map(res => {
-        return res.question._id;
-      });
-      const contains = _id => answeredIds.indexOf(_id) > -1;
+    // function to use in filter
+    const contains = _id => answeredIds.indexOf(_id) > -1;
 
-      unansweredQuestions = questions.filter(q => !contains(q._id));
-    }
+    const unansweredQuestions = questions.filter(q => !contains(q._id));
 
+    // there are questions to answer, display the first
     if (unansweredQuestions.length > 0) {
       const q = unansweredQuestions[0];
       return (
         <Question
           loadNext={this.loadNext}
           key={q._id}
-          _id={q._id}
+          question={q}
           userGuid={userGuid}
-          title={q.title}
-          description={q.description}
-          options={q.options}
+          answered={false}
         />
       );
     }
 
-    return 'Thanks for participating!';
+    // all questions were answered, render all
+    return questions.map(q => (
+      <Question
+        loadNext={this.loadNext}
+        key={q._id}
+        _id={q._id}
+        userGuid={userGuid}
+        title={q.title}
+        description={q.description}
+        options={q.options}
+      />
+    ));
   };
 
   render() {
@@ -88,16 +106,14 @@ const userQuery = gql`
 `;
 
 export default graphql(userQuery, {
-  options: props => {
-    return { variables: { guid: props.match.params.guid } };
-  },
-  props: ({ data }) => ({ ...data }),
+  options: props => ({ variables: { guid: props.match.params.guid } }),
+  props: ({ data }) => ({ ...data })
 })(
   withTracker(() => {
     console.log('withTracker');
     return {
       hello: 'hello',
-      users: Users.find({}).fetch(),
+      users: Users.find({}).fetch()
     };
-  })(FacebookApp),
+  })(FacebookApp)
 );
