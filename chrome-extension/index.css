@@ -55,21 +55,21 @@ iframe {
 }
 
 #search {
-  justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   border-radius: 10px;
   border: 2px white solid;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   margin: 5px auto 0 auto;
   padding: 0.5em;
   font: 20px "Lato", arial, sans-serif;
   transition: all 0.5s;
-  width: 450px;
+  width: 400px;
 }
 
 #search form {
   margin: 0;
+  
 }
 
 #search:hover,
@@ -108,7 +108,6 @@ iframe {
   color: #fff;
 }
 
-
-#search-icon {
-  float:right;
+#search-button {
+  float: right;
 }
