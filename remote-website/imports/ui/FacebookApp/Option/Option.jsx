@@ -1,73 +1,44 @@
-import React, { Component } from 'react';
-import gql from 'graphql-tag';
+/*
+ * File: Option.jsx
+ * Project: Chrome New Tab
+ * File Created: Friday, July 6 2018, 10:34 am
+ * Description: Option functional component
+ * Authors: Rosie Sun (rosieswj@gmail.com)
+ *          Gustavo Umbelino (gumbelin@gmail.com)
+ * -----
+ * Last Modified: Friday, July 6 2018, 11:09 am
+ * -----
+ * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ */
+
+import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'react-apollo';
+
 // css
 import './Option.scss';
 import '../../assets/font.css';
 
-export class Option extends Component {
-  static propTypes = {
-    aswerQuestion: PropTypes.func.isRequired,
-    handleVoted: PropTypes.func.isRequired,
-    questionId: PropTypes.string.isRequired,
-    userGuid: PropTypes.string.isRequired,
-    option: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired
-    }).isRequired
-  };
+// saves vote when user selects an option
+// IMPORTANT: vote is not sent to the database until
+// next question is selected
+const Option = props => (
+  <button
+    key={props.option._id}
+    onClick={() => props.handleVoted(props.option)}
+    type="submit"
+    className="fb-option"
+  >
+    {props.option.title}: {props.option.count}
+  </button>
+);
 
-  handleOption = ({ option, questionId, userGuid }) => {
-    this.props
-      .aswerQuestion({
-        variables: {
-          guid: userGuid,
-          questionId,
-          optionId: option._id
-        }
-      })
-      .then(() => {
-        this.props.handleVoted(option.title);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+Option.propTypes = {
+  handleVoted: PropTypes.func.isRequired,
+  option: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    count: PropTypes.number.isRequired
+  }).isRequired
+};
 
-  render() {
-    return (
-      <button
-        key={this.props.option._id}
-        onClick={() => this.handleOption(this.props)}
-        type="submit"
-        className="fb-option"
-      >
-        {this.props.option.title}: {this.props.option.count}
-      </button>
-    );
-  }
-}
-
-const aswerQuestion = gql`
-  mutation answerQuestion($guid: String!, $questionId: ID!, $optionId: ID!) {
-    aswerQuestion(guid: $guid, questionId: $questionId, optionId: $optionId) {
-      responses {
-        question {
-          title
-          _id
-        }
-        option {
-          title
-          _id
-          count
-        }
-      }
-    }
-  }
-`;
-
-export default graphql(aswerQuestion, {
-  name: 'aswerQuestion'
-})(Option);
+export default Option;

@@ -1,3 +1,16 @@
+/*
+ * File: Question.jsx
+ * Project: Chrome New Tab
+ * File Created: Friday, July 6 2018, 11:01 am
+ * Description: Question component, uses state
+ * Authors: Rosie Sun (rosieswj@gmail.com)
+ *          Gustavo Umbelino (gumbelin@gmail.com)
+ * -----
+ * Last Modified: Friday, July 6 2018, 11:12 am
+ * -----
+ * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Option from '../Option/Option';
@@ -14,7 +27,7 @@ export class Question extends Component {
       description: PropTypes.string,
       options: PropTypes.array.isRequired
     }).isRequired,
-    loadNext: PropTypes.func.isRequired,
+    submitVote: PropTypes.func.isRequired,
     userGuid: PropTypes.string.isRequired
   };
 
@@ -23,7 +36,7 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: props.answered,
-      userOpt: ''
+      votedOption: null
     };
   }
 
@@ -44,7 +57,7 @@ export class Question extends Component {
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
-            {this.state.userOpt}
+            {this.state.votedOption.title}
           </span>
           <br />
           <span className="ans-important" id="ans-percent">
@@ -58,11 +71,14 @@ export class Question extends Component {
           is the best option
         </p>
         <div className="action-buttons">
-          {!this.props.answered && (
-            <button id="action-next" onClick={() => this.props.loadNext()}>
-              Next Question
-            </button>
-          )}
+          <button
+            id="action-next"
+            onClick={() =>
+              this.props.submitVote(this.props.question, this.state.votedOption)
+            }
+          >
+            Next Question
+          </button>
           {/* <br /> */}
           <button id="action-fb">Change my setting on Facebook</button>
         </div>
@@ -70,25 +86,22 @@ export class Question extends Component {
     );
   };
 
-  handleVoted = title => {
+  // called when user selects an option
+  handleVoted = option => {
     this.setState({
       voteSubmitted: true,
-      userOpt: title
+      votedOption: option
     });
   };
 
+  // renders each option
   renderUnvoted() {
     return (
       <div className="fb-opt-list">
         <ul>
           {this.props.question.options.map(opt => (
             <li key={opt._id}>
-              <Option
-                userGuid={this.props.userGuid}
-                questionId={this.props.question._id}
-                option={opt}
-                handleVoted={this.handleVoted}
-              />
+              <Option option={opt} handleVoted={this.handleVoted} />
             </li>
           ))}
         </ul>

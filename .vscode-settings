@@ -1,3 +1,36 @@
+#### User Settings
+{
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "emmet.triggerExpansionOnTab": true,
+    "editor.quickSuggestions": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "editor.snippetSuggestions": "top",
+    "eslint.options": {
+        "configFile": "remote-website/.eslintrc"
+    },
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "vue-html": "html",
+        "plaintext": "jade"
+    },
+    "emmet.syntaxProfiles": {
+        "html": {
+            "attr_quotes": "single"
+        },
+        "jsx": {
+            "self_closing_tag": true
+        }
+    },
+    "explorer.confirmDelete": false,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "workbench.iconTheme": "vscode-icons",
+    "javascript.updateImportsOnFileMove.enabled": "always"
+}
+
+#### Workspace Settings
 {
     "psi-header.config": {
         "forceToTop": true,
@@ -29,12 +62,12 @@
             "template": [
                 "File: <<filename>>",
                 "Project: <<project>>",
-                "File Created: <<filecreated('dddd, MMMM D YYYY, h:mm a')>>",
+                "File Created: <<filecreated('dddd, Do MMMM YYYY h:mm:ss a')>>",
                 "Description:",
                 "Authors: <<rosie>>",
                 "         <<gus>>",
                 "-----",
-                "Last Modified: <<dateformat('dddd, MMMM D YYYY, h:mm a')>>",
+                "Last Modified: <<dateformat('dddd, Do MMMM YYYY h:mm:ss a')>>",
                 "-----",
                 "Copyright (c) <<projectCreationYear>> - <<year>> <<team>>, <<company>>"
             ]
