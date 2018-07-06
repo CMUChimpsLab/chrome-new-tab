@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
-import './Email.css';
+import './Email.scss';
 
 export class Email extends Component {
+  static propTypes = {
+    email: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      subject: PropTypes.string.isRequired,
+      from: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired
+    }).isRequired,
+    votePhishy: PropTypes.func.isRequired,
+    voteNotPhishy: PropTypes.func.isRequired
+  };
+
   state = {
-    voted: false,
+    voted: false
   };
 
   handleVote = (phishy, _id) => {
@@ -19,14 +31,14 @@ export class Email extends Component {
       this.props
         .votePhishy({
           variables: {
-            _id,
-          },
+            _id
+          }
         })
         .then(({ data }) => {
           this.phishyButton.innerHTML = data.votePhishy.isPhishing;
           this.notPhishyButton.innerHTML = data.votePhishy.notPhishing;
           this.setState({
-            voted: true,
+            voted: true
           });
         })
         .catch(error => {
@@ -38,14 +50,14 @@ export class Email extends Component {
       this.props
         .voteNotPhishy({
           variables: {
-            _id,
-          },
+            _id
+          }
         })
         .then(({ data }) => {
           this.phishyButton.innerHTML = data.voteNotPhishy.isPhishing;
           this.notPhishyButton.innerHTML = data.voteNotPhishy.notPhishing;
           this.setState({
-            voted: true,
+            voted: true
           });
         })
         .catch(error => {
@@ -58,21 +70,21 @@ export class Email extends Component {
     return (
       <div className="email">
         <div className="from">
-          <strong>From</strong>: {this.props.from}
+          <strong>From</strong>: {this.props.email.from}
         </div>
 
         <div className="subject">
-          <strong>Subject</strong>: {this.props.subject}
+          <strong>Subject</strong>: {this.props.email.subject}
         </div>
 
-        <div className="emailbody">{this.props.body}</div>
+        <div className="emailbody">{this.props.email.body}</div>
 
         <div className="buttons">
           <button
             ref={input => {
               this.phishyButton = input;
             }}
-            onClick={() => this.handleVote(true, this.props._id)}
+            onClick={() => this.handleVote(true, this.props.email._id)}
             type="submit"
             className="phishing"
           >
@@ -83,7 +95,7 @@ export class Email extends Component {
             ref={input => {
               this.notPhishyButton = input;
             }}
-            onClick={() => this.handleVote(false, this.props._id)}
+            onClick={() => this.handleVote(false, this.props.email._id)}
             type="submit"
             className="not-phishing"
           >
@@ -119,13 +131,13 @@ export default compose(
   graphql(votePhishy, {
     name: 'votePhishy',
     options: {
-      refetchQueries: ['Emails'],
-    },
+      refetchQueries: ['Emails']
+    }
   }),
   graphql(voteNotPhishy, {
     name: 'voteNotPhishy',
     options: {
-      refetchQueries: ['Emails'],
-    },
-  }),
+      refetchQueries: ['Emails']
+    }
+  })
 )(Email);
