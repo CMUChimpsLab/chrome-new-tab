@@ -17,11 +17,17 @@
 			<h1>Chrome NewTab</h1>
 		</div>
 		<div id="search" class="col-sm-6">
-			<form action="https://www.google.com/search">
-				<input id="input" placeholder="Search on Google..." />
-				<button id="button"></button>
+			<!-- <form>
+				<input type="text" id="input" placeholder="Search on Google..." />
 			</form>
-			<i class="fa fa-search"></i>
+			<i class="fa fa-search"><button id="search-button"></button></i> -->
+			<form method="get" action="http://google.com/search">
+				<input type="text" placeholder="Search on Google..." name="q" required autofocus>
+				<!-- <input type="submit" value=""> -->
+				<button type="submit" value="" id="search-icon">
+					<i class="fa fa-search"></i>
+			  	</button>
+			</form>
 		</div>
 	</div>
 	<div id="app" class="fb-row">
@@ -40,6 +46,25 @@
 
 </body>
 <script type="text/javascript " src="index.js "></script>
+<script>
+	var searchtxt = document.getElementById('input').value;
+	// var searchtext = "haha";
+	document.getElementById('search-button').onclick = function() {
+		// window.open('http://google.com/search?q='+searchtxt);
+		alert("hello!");
+	};
+
+	// Execute a function when the user releases a key on the keyboard
+	searchtxt.addEventListener("keyup", function(event) {
+	// Cancel the default action, if needed
+	event.preventDefault();
+	// Number 13 is the "Enter" key on the keyboard
+	if (event.keyCode === 13) {
+		// Trigger the button element with a click
+		document.getElementById("search-button").click();
+	}
+	});
+</script>
 
 </html>
 
