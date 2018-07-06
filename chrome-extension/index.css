@@ -27,7 +27,7 @@ iframe {
   display: flex;
   color: #fff;
   flex-flow: column nowrap;
-  height: 35vh;
+  height: 200px;
   justify-content: center;
 }
 
