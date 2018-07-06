@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, July 6 2018, 1:53 pm
+ * Last Modified: Friday, July 6 2018, 2:04 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -97,8 +97,10 @@ export class Question extends Component {
         if (err) {
           console.log('Handle errors here: ', err);
         } else {
-          window.location =
-            'https://www.facebook.com/settings?tab=privacy&section=composer&view';
+          window.open(
+            'https://www.facebook.com/settings?tab=privacy&section=composer&view',
+            '_blank'
+          );
         }
       }
     );
