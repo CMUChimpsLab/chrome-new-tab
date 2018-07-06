@@ -6,13 +6,14 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, July 6 2018, 11:12 am
+ * Last Modified: Friday, July 6 2018, 1:53 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import Option from '../Option/Option';
 // css
 import './Question.scss';
@@ -28,7 +29,8 @@ export class Question extends Component {
       options: PropTypes.array.isRequired
     }).isRequired,
     submitVote: PropTypes.func.isRequired,
-    userGuid: PropTypes.string.isRequired
+    userGuid: PropTypes.string.isRequired,
+    redirect: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -80,9 +82,25 @@ export class Question extends Component {
             Next Question
           </button>
           {/* <br /> */}
-          <button id="action-fb">Change my setting on Facebook</button>
+          <button onClick={() => this.login(this.props)} id="action-fb">
+            Change my setting on Facebook
+          </button>
         </div>
       </div>
+    );
+  };
+
+  login = () => {
+    Meteor.loginWithFacebook(
+      { requestPermissions: ['public_profile', 'email'] },
+      function(err) {
+        if (err) {
+          console.log('Handle errors here: ', err);
+        } else {
+          window.location =
+            'https://www.facebook.com/settings?tab=privacy&section=composer&view';
+        }
+      }
     );
   };
 
