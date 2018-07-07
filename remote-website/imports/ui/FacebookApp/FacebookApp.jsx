@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 6th July 2018 2:18:35 pm
+ * Last Modified: Saturday, 7th July 2018 9:52:47 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -20,7 +20,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import Question from './Question/Question';
 import '../assets/font.css';
-import Wrapper from '../Wrapper/Wrapper';
+import Wrapper from '../Components/Wrapper/Wrapper';
 import Users from '../../api/users/users';
 
 export class FacebookApp extends Component {
@@ -37,11 +37,14 @@ export class FacebookApp extends Component {
     user: PropTypes.shape({
       responses: PropTypes.array.isRequired
     }),
-    aswerQuestion: PropTypes.func.isRequired
+    loading: PropTypes.bool.isRequired,
+    aswerQuestion: PropTypes.func.isRequired,
+    questions: PropTypes.instanceOf(Array)
   };
 
   static defaultProps = {
-    user: null
+    user: null,
+    questions: []
   };
 
   // called when user advances to the next question
@@ -98,7 +101,6 @@ export class FacebookApp extends Component {
           question={q}
           userGuid={this.userGuid}
           answered={false}
-          redirect={this.redirect}
         />
       );
     }
@@ -132,12 +134,14 @@ const aswerQuestion = gql`
 `;
 
 // query used to fetch questions from database
-const userQuery = gql`
+const questionsQuery = gql`
   query Questions {
     questions {
       _id
       title
+      category
       description
+      url
       options {
         _id
         title
@@ -149,7 +153,7 @@ const userQuery = gql`
 
 // pre-populate props using graphql and withTracker
 export default compose(
-  graphql(userQuery, {
+  graphql(questionsQuery, {
     options: props => ({ variables: { guid: props.match.params.guid } }),
     props: ({ data }) => ({ ...data })
   }),

@@ -5,31 +5,30 @@ export default {
   Query: {
     questions() {
       return Questions.find({}).fetch();
-    },
+    }
   },
 
   Question: {
-    options: question =>
-      Options.find({
-        questionId: question._id,
-      }).fetch(),
+    options: question => Options.find({ questionId: question._id }).fetch()
   },
 
   Mutation: {
-    createQuestion(_, { title, description, options = [] }) {
+    createQuestion(_, { title, category, description, url, options = [] }) {
       const questionId = Questions.insert({
         title,
+        category,
         description,
+        url
       });
 
       // if options are provided...
-      for (var option of options) {
+      options.forEach(option => {
         Options.insert({
           title: option,
           questionId,
-          count: 0,
+          count: 0
         });
-      }
+      });
 
       return Questions.findOne(questionId);
     },
@@ -37,6 +36,6 @@ export default {
       const removed = Questions.findOne(_id);
       Questions.remove(_id);
       return removed;
-    },
-  },
+    }
+  }
 };

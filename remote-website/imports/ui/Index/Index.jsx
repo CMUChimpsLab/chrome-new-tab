@@ -6,14 +6,14 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, July 6 2018, 11:32 am
+ * Last Modified: Saturday, 7th July 2018 8:06:14 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Wrapper from '../Wrapper/Wrapper';
+import Wrapper from '../Components/Wrapper/Wrapper';
 
 import './Index.scss';
 

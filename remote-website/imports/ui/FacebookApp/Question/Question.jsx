@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 6th July 2018 2:19:58 pm
+ * Last Modified: Saturday, 7th July 2018 10:00:08 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -25,12 +25,13 @@ export class Question extends Component {
     question: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      category: PropTypes.string,
       description: PropTypes.string,
+      url: PropTypes.string,
       options: PropTypes.array.isRequired
     }).isRequired,
     submitVote: PropTypes.func.isRequired,
-    userGuid: PropTypes.string.isRequired,
-    redirect: PropTypes.func.isRequired
+    userGuid: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -53,7 +54,9 @@ export class Question extends Component {
         maxTitle = op.title;
       }
     });
-    const percentage = ((max / sum) * 100).toFixed(0);
+
+    // FIXME: wrong results when first person votes
+    const percentage = sum > 0 ? ((max / sum) * 100).toFixed(0) : 0;
     return (
       <div>
         <p className="ans">
@@ -82,7 +85,10 @@ export class Question extends Component {
             Next Question
           </button>
           {/* <br /> */}
-          <button onClick={() => this.login(this.props)} id="action-fb">
+          <button
+            onClick={() => this.loginAndRedirect(this.props.question.url)}
+            id="action-fb"
+          >
             Change my setting on Facebook
           </button>
         </div>
@@ -90,17 +96,14 @@ export class Question extends Component {
     );
   };
 
-  login = () => {
+  loginAndRedirect = url => {
     Meteor.loginWithFacebook(
       { requestPermissions: ['public_profile', 'email'] },
       function(err) {
         if (err) {
           console.log('Handle errors here: ', err);
         } else {
-          window.open(
-            'https://www.facebook.com/settings?tab=privacy&section=composer&view',
-            '_blank'
-          );
+          window.open(url, '_blank');
         }
       }
     );

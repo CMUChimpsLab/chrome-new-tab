@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, July 6 2018, 11:09 am
+ * Last Modified: Saturday, 7th July 2018 10:02:05 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -28,7 +28,7 @@ const Option = props => (
     type="submit"
     className="fb-option"
   >
-    {props.option.title}: {props.option.count}
+    {props.option.title}
   </button>
 );
 

@@ -23,12 +23,12 @@ const resolvers = merge(
   UserResolvers,
   EmailResolvers,
   OptionResolvers,
-  QuestionResolvers,
+  QuestionResolvers
 );
 
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 createApolloServer({ schema });

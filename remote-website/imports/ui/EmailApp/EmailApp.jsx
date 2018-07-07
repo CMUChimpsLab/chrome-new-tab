@@ -4,7 +4,7 @@ import { graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import Email from './Email/Email';
-import Wrapper from '../Wrapper/Wrapper';
+import Wrapper from '../Components/Wrapper/Wrapper';
 
 import '../assets/font.css';
 import './EmailApp.scss';

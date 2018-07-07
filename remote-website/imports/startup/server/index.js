@@ -6,6 +6,7 @@ import './register-api';
 import Questions from '../../api/questions/questions';
 import Users from '../../api/users/users';
 import Emails from '../../api/emails/emails';
+import populate from './populate-db';
 
 // set up REST API
 if (Meteor.isServer) {
@@ -17,6 +18,9 @@ if (Meteor.isServer) {
   });
 
   Meteor.startup(() => {
+    // populate db with questions
+    populate();
+
     // Global configuration
     const Api = new Restivus({
       version: 'v1',
