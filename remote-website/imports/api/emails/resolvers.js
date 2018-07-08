@@ -5,14 +5,14 @@ export default {
   Query: {
     emails() {
       return Emails.find({}).fetch();
-    },
+    }
   },
 
   Email: {
     user: email =>
       Users.findOne({
-        guid: email.userGuid,
-      }),
+        guid: email.userGuid
+      })
   },
 
   Mutation: {
@@ -23,7 +23,7 @@ export default {
         from,
         userGuid,
         isPhishing: 0,
-        notPhishing: 0,
+        notPhishing: 0
       });
 
       // add email to user collection
@@ -31,9 +31,9 @@ export default {
         { guid: userGuid },
         {
           $push: {
-            emails: emailId,
-          },
-        },
+            emails: emailId
+          }
+        }
       );
 
       return Emails.findOne(emailId);
@@ -46,18 +46,18 @@ export default {
     votePhishy(_, { _id }) {
       Emails.update(_id, {
         $inc: {
-          isPhishing: 1,
-        },
+          isPhishing: 1
+        }
       });
       return Emails.findOne(_id);
     },
     voteNotPhishy(_, { _id }) {
       Emails.update(_id, {
         $inc: {
-          notPhishing: 1,
-        },
+          notPhishing: 1
+        }
       });
       return Emails.findOne(_id);
-    },
-  },
+    }
+  }
 };

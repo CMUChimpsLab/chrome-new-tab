@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Saturday, 7th July 2018 10:00:08 am
+ * Last Modified: Sunday, 8th July 2018 1:52:10 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -55,7 +55,7 @@ export class Question extends Component {
       }
     });
 
-    // FIXME: wrong results when first person votes
+    // FIXME: diplay something else when first person votes
     const percentage = sum > 0 ? ((max / sum) * 100).toFixed(0) : 0;
     return (
       <div>
@@ -65,15 +65,20 @@ export class Question extends Component {
             {this.state.votedOption.title}
           </span>
           <br />
-          <span className="ans-important" id="ans-percent">
-            {percentage}&#37;
-          </span>{' '}
-          of people think
-          <span className="ans-important" id="ans-crowd">
-            {' '}
-            {maxTitle}{' '}
-          </span>
-          is the best option
+          {/* in case there are no votes for this question */}
+          {percentage > 0 && (
+            <div>
+              <span className="ans-important" id="ans-percent">
+                {percentage}&#37;
+              </span>{' '}
+              of people think
+              <span className="ans-important" id="ans-crowd">
+                {' '}
+                {maxTitle}{' '}
+              </span>
+              is the best option
+            </div>
+          )}
         </p>
         <div className="action-buttons">
           <button
@@ -96,17 +101,15 @@ export class Question extends Component {
     );
   };
 
+  // login to Facebook, don't require info
   loginAndRedirect = url => {
-    Meteor.loginWithFacebook(
-      { requestPermissions: ['public_profile', 'email'] },
-      function(err) {
-        if (err) {
-          console.log('Handle errors here: ', err);
-        } else {
-          window.open(url, '_blank');
-        }
+    Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
+      if (err) {
+        console.error(err);
+      } else {
+        window.open(url, '_blank');
       }
-    );
+    });
   };
 
   // called when user selects an option

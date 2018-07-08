@@ -14,6 +14,7 @@ export default {
 
   Mutation: {
     createQuestion(_, { title, category, description, url, options = [] }) {
+      // create question
       const questionId = Questions.insert({
         title,
         category,
@@ -21,10 +22,10 @@ export default {
         url
       });
 
-      // if options are provided...
-      options.forEach(option => {
+      // If options are provided...
+      options.forEach(optionTitle => {
         Options.insert({
-          title: option,
+          title: optionTitle,
           questionId,
           count: 0
         });

@@ -10,19 +10,19 @@ export default {
     },
     user(_, { guid }) {
       return Users.findOne({ guid });
-    },
+    }
   },
 
   User: {
     emails: user =>
       Emails.find({
-        _id: { $in: user.emails },
-      }).fetch(),
+        _id: { $in: user.emails }
+      }).fetch()
   },
 
   Response: {
     question: resp => Questions.findOne(resp.questionId),
-    option: resp => Options.findOne(resp.optionId),
+    option: resp => Options.findOne(resp.optionId)
   },
 
   Mutation: {
@@ -31,7 +31,7 @@ export default {
         guid,
         name,
         emails: [],
-        responses: [],
+        responses: []
       });
       return Users.findOne(userId);
     },
@@ -42,16 +42,16 @@ export default {
         { guid },
         {
           $push: {
-            responses: { questionId, optionId },
-          },
-        },
+            responses: { questionId, optionId }
+          }
+        }
       );
 
       // increment option count
       Options.update(optionId, {
         $inc: {
-          count: 1,
-        },
+          count: 1
+        }
       });
 
       return Users.findOne({ guid });
@@ -68,11 +68,11 @@ export default {
         { guid },
         {
           $set: {
-            name,
-          },
-        },
+            name
+          }
+        }
       );
       return Users.findOne({ guid });
-    },
-  },
+    }
+  }
 };
