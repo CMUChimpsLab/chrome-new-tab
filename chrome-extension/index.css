@@ -43,21 +43,21 @@ iframe {
 .footer {
   width: 100%;
   position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 100px;
-    width: 100%;
-    overflow: hidden;
- 
+  left: 0;
+  bottom: 0;
+  height: 90px;
+  width: 100%;
+  overflow: hidden;
   background-color: #75c0f2;
 }
 
 .footer p {
   display: block;
-  padding-top: 30px;
+  padding-top: 20px;
   width: 100%;
   text-align: center;
   color: white;
+  font-size: 13px;
 }
 
 #search {
@@ -72,7 +72,6 @@ iframe {
 
 #search form {
   margin: 0;
-  
 }
 
 #search:hover,
