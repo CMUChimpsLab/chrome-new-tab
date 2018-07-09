@@ -10,7 +10,7 @@ import Index from '../../ui/Index/Index.jsx';
 
 const browserHistory = createBrowserHistory();
 
-export const renderRoutes = () => (
+const renderRoutes = () => (
   <Router history={browserHistory}>
     <Switch>
       <Route exact path="/" component={Index} />
@@ -22,3 +22,5 @@ export const renderRoutes = () => (
     </Switch>
   </Router>
 );
+
+export default renderRoutes;

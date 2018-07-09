@@ -6,17 +6,17 @@ import { ApolloProvider } from 'react-apollo';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import { renderRoutes } from './routes.js';
+import renderRoutes from './routes.js';
 
 const httpLink = new HttpLink({
-  uri: Meteor.absoluteUrl('graphql'),
+  uri: Meteor.absoluteUrl('graphql')
 });
 
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
   link: httpLink,
-  cache,
+  cache
 });
 
 const ApolloApp = () => (

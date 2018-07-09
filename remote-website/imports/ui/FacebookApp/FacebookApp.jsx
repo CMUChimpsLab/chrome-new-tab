@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 10:41:59 am
+ * Last Modified: Monday, 9th July 2018 1:10:34 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -49,8 +49,14 @@ export class FacebookApp extends Component {
     questions: []
   };
 
-  shouldComponentUpdate(nextProps) {
+  constructor(props) {
+    super(props);
+    this.state = { categoryFilter: null };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
     if (this.props.user === null) return true;
+    if (this.state.categoryFilter !== nextState.categoryFilter) return true;
     if (this.props.user.responses.length === nextProps.user.responses.length) {
       return false;
     }
@@ -72,6 +78,11 @@ export class FacebookApp extends Component {
       .catch(error => {
         console.error(error);
       });
+  };
+
+  filterByCategory = category => {
+    console.log(category);
+    this.setState({ categoryFilter: category });
   };
 
   renderQuestion = q => {
@@ -97,13 +108,23 @@ export class FacebookApp extends Component {
     // ids of questions answered
     const answeredIds = this.props.user.responses.map(res => res.questionId);
 
-    // function to use in filter
+    // functions to filter questions
     const contains = _id => answeredIds.indexOf(_id) > -1;
+    const catFilter = (q, cat) => (cat ? q.category === cat : true);
+
+    const categories = this.props.questions
+      .map(q => q.category)
+      .filter(function(item, i, ar) {
+        return ar.indexOf(item) === i;
+      });
+
+    // get questions that belong to selected category
+    const filteredQuestions = this.props.questions.filter(q =>
+      catFilter(q, this.state.categoryFilter)
+    );
 
     // get questions that have NOT been answered
-    const unansweredQuestions = this.props.questions.filter(
-      q => !contains(q._id)
-    );
+    const unansweredQuestions = filteredQuestions.filter(q => !contains(q._id));
 
     // get userGuid from URL
     this.userGuid = this.props.match.params.guid;
@@ -119,7 +140,13 @@ export class FacebookApp extends Component {
     return (
       <Wrapper>
         {this.renderQuestion(questionToRender)}
-        {!!questionToRender && <Menu />}
+        {!!questionToRender && (
+          <Menu
+            selectedCategory={this.state.categoryFilter}
+            filter={this.filterByCategory}
+            categories={categories}
+          />
+        )}
       </Wrapper>
     );
   }
