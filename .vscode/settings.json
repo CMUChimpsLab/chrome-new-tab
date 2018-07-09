@@ -1,4 +1,7 @@
 {
+    "eslint.options": {
+        "configFile": "remote-website/.eslintrc"
+    },
     "psi-header.config": {
         "forceToTop": true,
         "blankLinesAfter": 1,
