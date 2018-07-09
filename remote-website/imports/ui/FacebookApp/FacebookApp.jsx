@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 10:13:56 am
+ * Last Modified: Monday, 9th July 2018 10:38:21 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -45,20 +45,17 @@ export class FacebookApp extends Component {
   };
 
   static defaultProps = {
-    user: { responses: [] },
+    user: null,
     questions: []
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { allAnswered: false };
+  shouldComponentUpdate(nextProps) {
+    if (this.props.user === null) return true;
+    if (this.props.user.responses.length === nextProps.user.responses.length) {
+      return false;
+    }
+    return true;
   }
-
-  componentDidMount = () => {
-    // if (this.props.loading || !this.props.userExists) {
-    //   return;
-    // }
-  };
 
   getRandomQuestion = max => Math.floor(Math.random() * max);
 
@@ -73,7 +70,8 @@ export class FacebookApp extends Component {
         }
       })
       .then(() => {
-        this.props.refetch(); // check for new questions
+        // sthis.props.refetch(); // check for new questions
+        console.log('Aswered question!');
       })
       .catch(error => {
         console.error(error);
@@ -100,6 +98,8 @@ export class FacebookApp extends Component {
       return '';
     }
 
+    console.log('RENDER!');
+
     // ids of questions answered
     const answeredIds = this.props.user.responses.map(res => res.questionId);
 
@@ -124,8 +124,8 @@ export class FacebookApp extends Component {
 
     return (
       <Wrapper>
-        {!this.state.allAnswered && this.renderQuestion(questionToRender)}
-        <Menu />
+        {this.renderQuestion(questionToRender)}
+        {!!questionToRender && <Menu />}
       </Wrapper>
     );
   }
