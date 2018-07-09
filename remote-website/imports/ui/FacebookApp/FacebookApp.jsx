@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 1:10:34 pm
+ * Last Modified: Monday, 9th July 2018 1:12:42 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -112,6 +112,7 @@ export class FacebookApp extends Component {
     const contains = _id => answeredIds.indexOf(_id) > -1;
     const catFilter = (q, cat) => (cat ? q.category === cat : true);
 
+    // get unique categories from questions
     const categories = this.props.questions
       .map(q => q.category)
       .filter(function(item, i, ar) {
