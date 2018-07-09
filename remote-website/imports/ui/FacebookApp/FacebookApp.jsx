@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 10:38:21 am
+ * Last Modified: Monday, 9th July 2018 10:41:59 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -69,10 +69,6 @@ export class FacebookApp extends Component {
           optionId: option._id
         }
       })
-      .then(() => {
-        // sthis.props.refetch(); // check for new questions
-        console.log('Aswered question!');
-      })
       .catch(error => {
         console.error(error);
       });
@@ -97,8 +93,6 @@ export class FacebookApp extends Component {
     if (this.props.loading || !this.props.userExists) {
       return '';
     }
-
-    console.log('RENDER!');
 
     // ids of questions answered
     const answeredIds = this.props.user.responses.map(res => res.questionId);

@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="index.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 	 crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 		</div>
 		<div id="search" class="col-sm-6">
 			<form method="get" action="http://google.com/search">
-				<input type="text" placeholder="Search on Google..." name="q" required autofocus>
+				<input type="text" id="input" placeholder="Search on Google..." name="q" required autofocus>
 				<button type="submit" value="" id="search-button">
 					<i class="fa fa-search"></i>
 			  	</button>
@@ -38,25 +39,7 @@
 
 </body>
 <script type="text/javascript " src="index.js "></script>
-<script>
-	var searchtxt = document.getElementById('input').value;
-	// var searchtext = "haha";
-	document.getElementById('search-button').onclick = function() {
-		// window.open('http://google.com/search?q='+searchtxt);
-		alert("hello!");
-	};
 
-	// Execute a function when the user releases a key on the keyboard
-	searchtxt.addEventListener("keyup", function(event) {
-	// Cancel the default action, if needed
-	event.preventDefault();
-	// Number 13 is the "Enter" key on the keyboard
-	if (event.keyCode === 13) {
-		// Trigger the button element with a click
-		document.getElementById("search-button").click();
-	}
-	});
-</script>
 
 </html>
 
