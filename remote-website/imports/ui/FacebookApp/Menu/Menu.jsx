@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 1:11:31 pm
+ * Last Modified: Monday, 9th July 2018 1:40:00 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -18,7 +18,13 @@ export class Menu extends Component {
   static propTypes = {
     filter: PropTypes.func.isRequired,
     selectedCategory: PropTypes.string,
-    categories: PropTypes.instanceOf(Array).isRequired
+    categories: PropTypes.instanceOf(Array).isRequired,
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired,
+      location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired
+      }).isRequired
+    }).isRequired
   };
 
   static defaultProps = {
@@ -26,6 +32,10 @@ export class Menu extends Component {
   };
 
   handleShuffle = () => {};
+
+  handleViewAll = () => {
+    window.open(`${this.props.history.location.pathname}/summary`, '_blank');
+  };
 
   render() {
     return (
@@ -46,8 +56,8 @@ export class Menu extends Component {
             {this.props.selectedCategory ? this.props.selectedCategory : 'None'}
           </li>
           <li>Skip button</li>
-          <li>View all button</li>
         </ul>
+        <button onClick={() => this.handleViewAll()}>View all</button>
       </div>
     );
   }

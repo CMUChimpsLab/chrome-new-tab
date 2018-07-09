@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 1:12:42 pm
+ * Last Modified: Monday, 9th July 2018 1:27:10 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -146,6 +146,7 @@ export class FacebookApp extends Component {
             selectedCategory={this.state.categoryFilter}
             filter={this.filterByCategory}
             categories={categories}
+            history={this.props.history}
           />
         )}
       </Wrapper>
@@ -193,7 +194,6 @@ const questionsQuery = gql`
 // pre-populate props using graphql and withTracker
 export default compose(
   graphql(questionsQuery, {
-    options: props => ({ variables: { guid: props.match.params.guid } }),
     props: ({ data }) => ({ ...data })
   }),
   graphql(aswerQuestion, {
