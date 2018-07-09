@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Sunday, 8th July 2018 1:52:10 pm
+ * Last Modified: Monday, 9th July 2018 10:10:23 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -67,7 +67,7 @@ export class Question extends Component {
           <br />
           {/* in case there are no votes for this question */}
           {percentage > 0 && (
-            <div>
+            <span>
               <span className="ans-important" id="ans-percent">
                 {percentage}&#37;
               </span>{' '}
@@ -77,7 +77,7 @@ export class Question extends Component {
                 {maxTitle}{' '}
               </span>
               is the best option
-            </div>
+            </span>
           )}
         </p>
         <div className="action-buttons">

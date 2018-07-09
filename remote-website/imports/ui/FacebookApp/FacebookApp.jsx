@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Sunday, 8th July 2018 1:54:36 pm
+ * Last Modified: Monday, 9th July 2018 10:13:56 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -22,6 +22,7 @@ import Question from './Question/Question';
 import '../assets/font.css';
 import Wrapper from '../Components/Wrapper/Wrapper';
 import Users from '../../api/users/users';
+import Menu from './Menu/Menu';
 
 export class FacebookApp extends Component {
   static propTypes = {
@@ -39,13 +40,27 @@ export class FacebookApp extends Component {
     }),
     loading: PropTypes.bool.isRequired,
     aswerQuestion: PropTypes.func.isRequired,
-    questions: PropTypes.instanceOf(Array)
+    questions: PropTypes.instanceOf(Array),
+    userExists: PropTypes.bool.isRequired
   };
 
   static defaultProps = {
-    user: null,
+    user: { responses: [] },
     questions: []
   };
+
+  constructor(props) {
+    super(props);
+    this.state = { allAnswered: false };
+  }
+
+  componentDidMount = () => {
+    // if (this.props.loading || !this.props.userExists) {
+    //   return;
+    // }
+  };
+
+  getRandomQuestion = max => Math.floor(Math.random() * max);
 
   // called when user advances to the next question
   submitVote = (question, option) => {
@@ -65,35 +80,8 @@ export class FacebookApp extends Component {
       });
   };
 
-  renderQuestion = ({ loading, questions }) => {
-    if (loading) {
-      return '';
-    }
-
-    // get userGuid from URL
-    this.userGuid = this.props.match.params.guid;
-    if (this.userGuid === undefined) {
-      return 'Please use the Chrome Extension!';
-    }
-
-    // check if user exists
-    if (this.props.user === null) {
-      return 'User does not exist!';
-    }
-
-    // ids of questions answered
-    const answeredIds = this.props.user.responses.map(res => res.questionId);
-
-    // function to use in filter
-    const contains = _id => answeredIds.indexOf(_id) > -1;
-
-    // get questions that have NOT been answered
-    const unansweredQuestions = questions.filter(q => !contains(q._id));
-
-    // there are questions to answer, display the first
-    // TODO: randomize this
-    if (unansweredQuestions.length > 0) {
-      const q = unansweredQuestions[0];
+  renderQuestion = q => {
+    if (q) {
       return (
         <Question
           submitVote={this.submitVote}
@@ -104,22 +92,40 @@ export class FacebookApp extends Component {
         />
       );
     }
-
-    // all questions were answered
-    return 'Thank you for participating';
+    return 'Thanks for participating!';
   };
 
   render() {
+    if (this.props.loading || !this.props.userExists) {
+      return '';
+    }
+
+    // ids of questions answered
+    const answeredIds = this.props.user.responses.map(res => res.questionId);
+
+    // function to use in filter
+    const contains = _id => answeredIds.indexOf(_id) > -1;
+
+    // get questions that have NOT been answered
+    const unansweredQuestions = this.props.questions.filter(
+      q => !contains(q._id)
+    );
+
+    // get userGuid from URL
+    this.userGuid = this.props.match.params.guid;
+    if (this.userGuid === undefined) {
+      return 'Please use the Chrome Extension!';
+    }
+
+    // there are questions to answer, display a random one
+    const numQuestions = unansweredQuestions.length;
+    const questionToRender =
+      unansweredQuestions[this.getRandomQuestion(numQuestions)];
+
     return (
       <Wrapper>
-        {this.renderQuestion(this.props)}
-        <center>[TODO: Add little menu here]</center>
-        <ul>
-          <li>Shuffle button</li>
-          <li>Filter by category button</li>
-          <li>Skip button</li>
-          <li>View all button</li>
-        </ul>
+        {!this.state.allAnswered && this.renderQuestion(questionToRender)}
+        <Menu />
       </Wrapper>
     );
   }
