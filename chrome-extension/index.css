@@ -17,7 +17,7 @@ iframe {
 
 #iframe {
   width: 70%;
-  margin: 20px auto 20px auto;
+  margin: 0px auto 20px auto;
 }
 
 .banner {
@@ -32,7 +32,7 @@ iframe {
 }
 
 .banner h1 {
-  font: 38px "Open Sans", arial, sans-serif;
+  font: 35px "Open Sans", arial, sans-serif;
   font-weight: 400;
 }
 
@@ -48,9 +48,7 @@ iframe {
     height: 100px;
     width: 100%;
     overflow: hidden;
-  /* margin-top: 80vh;
-  height: 20vh;
-  height: 130px; */
+ 
   background-color: #75c0f2;
 }
 
@@ -63,12 +61,9 @@ iframe {
 }
 
 #search {
-  /* align-items: center; */
   border-radius: 10px;
   border: 2px white solid;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  margin: 5px auto 0 auto;
+  margin: 0 auto 0 auto;
   padding: 0.5em;
   font: 20px "Lato", arial, sans-serif;
   transition: all 0.5s;
