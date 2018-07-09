@@ -9,7 +9,23 @@ export default {
   },
 
   Question: {
-    options: question => Options.find({ questionId: question._id }).fetch()
+    options: question => Options.find({ questionId: question._id }).fetch(),
+    totalVotes: question => 0,
+    // Options.aggregate([
+    //   {
+    //     $match: {
+    //       questionId: question._id
+    //     }
+    //   },
+    //   {
+    //     $group: {
+    //       _id: 0,
+    //       totalCount: { $sum: '$count' }
+    //     }
+    //   }
+    // ]).totalCount,
+    topOption: question =>
+      Options.findOne({ questionId: question._id }, { $orderby: { count: -1 } })
   },
 
   Mutation: {

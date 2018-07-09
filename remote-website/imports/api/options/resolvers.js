@@ -6,7 +6,7 @@ export default {
       const optId = Options.insert({
         title,
         count: 0,
-        questionId,
+        questionId
       });
       return Options.findOne(optId);
     },
@@ -14,10 +14,10 @@ export default {
     incrementCount(_, { _id }) {
       Options.update(_id, {
         $inc: {
-          count: 1,
-        },
+          count: 1
+        }
       });
       return Options.findOne(_id);
-    },
-  },
+    }
+  }
 };
