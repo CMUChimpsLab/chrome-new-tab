@@ -6,13 +6,14 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 1:40:00 pm
+ * Last Modified: Monday, 9th July 2018 5:57:40 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Menu.scss';
 
 export class Menu extends Component {
   static propTypes = {
@@ -39,25 +40,21 @@ export class Menu extends Component {
 
   render() {
     return (
-      <div>
-        <center>[TODO: Add little menu here]</center>
-        <ul>
-          <li>Shuffle button?</li>
-          <li>
-            Filter by category button:{' '}
+      <div className="sidebar">
+
+        <div className="filter">
+            <span id="filter-title">Filter</span>
             {this.props.categories.map(category => (
               <button
                 key={category}
+                className="category"
                 onClick={() => this.props.filter(category)}
-              >
-                {category}
+              >{category}
               </button>
             ))}
-            {this.props.selectedCategory ? this.props.selectedCategory : 'None'}
-          </li>
-          <li>Skip button</li>
-        </ul>
-        <button onClick={() => this.handleViewAll()}>View all</button>
+            {/* {this.props.selectedCategory ? this.props.selectedCategory : 'None'} */}
+        </div>
+        <div id="view-all"><button  onClick={() => this.handleViewAll()}>View all questions</button></div>
       </div>
     );
   }

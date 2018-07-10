@@ -10,8 +10,8 @@ function showIframe(iframeElement) {
 }
 
 chrome.storage.sync.get('guid', function(data) {
-  document.getElementById('app').innerHTML =
-    '<div id="iframe"><iframe style="visibility: initial " iframeBorder="0" src="http://localhost:3000/facebookapp/' +
+  document.getElementById('facebook-app').innerHTML =
+    '<div class="section-iframe"><iframe style="visibility: initial " iframeBorder="0" src="http://localhost:3000/facebookapp/' +
     data.guid +
     '"></iframe></div>';
 });

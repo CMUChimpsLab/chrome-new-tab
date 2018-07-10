@@ -1,0 +1,21 @@
+
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-areas:"sidebar content";
+   
+}
+
+
+.grid-content {
+    grid-area: content;
+}
+
+.grid-sidebar {
+    grid-area: sidebar;
+}
+
+
+
+
+

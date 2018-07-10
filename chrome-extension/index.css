@@ -6,18 +6,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-iframe {
-  display: block;
-  margin: auto;
+
+.section-iframe {
   width: 100%;
-  height: 50%;
-  box-sizing: border-box;
-  border: 0px solid #ccc;
+  margin: auto;
+  
 }
 
-#iframe {
-  width: 70%;
-  margin: 0px auto 20px auto;
+.section-iframe iframe {
+  box-sizing: border-box;
+  border: 0px solid #ccc;
+  height: 50%;
+  width: 100%;
 }
 
 .banner {
@@ -36,8 +36,22 @@ iframe {
   font-weight: 400;
 }
 
-.fb-row {
+.section-row {
   width: 100%;
+  margin-top: 2%;
+}
+
+.section-text {
+  font-size: 22px;
+  font-weight: 500;
+  padding: 0.5%;
+  color: #6C7A89;  
+}
+
+.section-title {
+  width: 60%;
+  text-align: left;
+  margin: auto;
 }
 
 .footer {
