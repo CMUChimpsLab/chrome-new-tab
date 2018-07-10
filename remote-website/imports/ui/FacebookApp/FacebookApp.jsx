@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 7:39:08 pm
+ * Last Modified: Monday, 9th July 2018 7:40:37 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -20,6 +20,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import Question from './Question/Question';
 import '../assets/font.css';
+import './FacebookApp.scss';
 import Wrapper from '../Components/Wrapper/Wrapper';
 import Users from '../../api/users/users';
 import Menu from './Menu/Menu';
@@ -146,15 +147,21 @@ export class FacebookApp extends Component {
 
     return (
       <Wrapper>
-        {this.renderQuestion(questionToRender)}
-        {!!questionToRender && (
-          <Menu
-            selectedCategory={this.state.categoryFilter}
-            filter={this.filterByCategory}
-            categories={categories}
-            history={this.props.history}
-          />
-        )}
+        <div className="grid-wrapper">
+          <div className="grid-sidebar">
+            {!!questionToRender && (
+              <Menu
+                selectedCategory={this.state.categoryFilter}
+                filter={this.filterByCategory}
+                categories={categories}
+                history={this.props.history}
+              />
+            )}
+          </div>
+          <div className="grid-content">
+            {this.renderQuestion(questionToRender)}
+          </div>
+        </div>
       </Wrapper>
     );
   }
