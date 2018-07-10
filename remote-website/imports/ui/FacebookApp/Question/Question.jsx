@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 2:15:03 pm
+ * Last Modified: Monday, 9th July 2018 7:31:39 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -30,12 +30,8 @@ export class Question extends Component {
       url: PropTypes.string,
       options: PropTypes.array.isRequired
     }).isRequired,
-    submitVote: PropTypes.func,
+    submitVote: PropTypes.func.isRequired,
     userGuid: PropTypes.string.isRequired
-  };
-
-  static defaultProps = {
-    submitVote: x => x
   };
 
   constructor(props) {

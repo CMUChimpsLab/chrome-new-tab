@@ -10,20 +10,33 @@ export default {
 
   Question: {
     options: question => Options.find({ questionId: question._id }).fetch(),
-    totalVotes: question => 0,
-    // Options.aggregate([
-    //   {
-    //     $match: {
-    //       questionId: question._id
-    //     }
-    //   },
-    //   {
-    //     $group: {
-    //       _id: 0,
-    //       totalCount: { $sum: '$count' }
-    //     }
-    //   }
-    // ]).totalCount,
+    totalVotes: question => {
+      const options = Options.find({ questionId: question._id }).fetch();
+      return options.map(opt => opt.count).reduce((acc, count) => acc + count);
+
+      // async question => {
+      //   const test = Options.aggregate([
+      //     {
+      //       $match: {
+      //         questionId: question._id
+      //       }
+      //     },
+      //     {
+      //       $group: {
+      //         _id: null,
+      //         totalCount: { $sum: '$count' }
+      //       }
+      //     }
+      //   ]);
+      //   let ret = 0;
+      //   await test.toArray((err, result) => {
+      //     // console.log(result[0].totalCount);
+      //     ret = result[0].totalCount;
+      //     return result[0].totalCount;
+      //   });
+      //   console.log(ret);
+      //   return 0;
+    },
     topOption: question =>
       Options.findOne({ questionId: question._id }, { $orderby: { count: -1 } })
   },

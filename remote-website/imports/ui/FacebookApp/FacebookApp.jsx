@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 1:27:10 pm
+ * Last Modified: Monday, 9th July 2018 7:39:08 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -135,6 +135,12 @@ export class FacebookApp extends Component {
 
     // there are questions to answer, display a random one
     const numQuestions = unansweredQuestions.length;
+
+    if (numQuestions === 0 && this.state.categoryFilter) {
+      // TODO: App shouldn't end...
+      console.log('No more questions on this category!');
+    }
+
     const questionToRender =
       unansweredQuestions[this.getRandomQuestion(numQuestions)];
 
