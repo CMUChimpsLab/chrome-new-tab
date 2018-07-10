@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 7:40:37 pm
+ * Last Modified: Tuesday, 10th July 2018 1:07:29 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -28,7 +28,10 @@ import Menu from './Menu/Menu';
 export class FacebookApp extends Component {
   static propTypes = {
     history: PropTypes.shape({
-      go: PropTypes.func.isRequired
+      go: PropTypes.func.isRequired,
+      location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired
+      }).isRequired
     }).isRequired,
     match: PropTypes.shape({
       params: PropTypes.shape({
@@ -57,6 +60,12 @@ export class FacebookApp extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.user === null) return true;
+    if (
+      this.props.loading !== nextProps.loading ||
+      this.props.userExists !== nextProps.userExists
+    ) {
+      return true;
+    }
     if (this.state.categoryFilter !== nextState.categoryFilter) return true;
     if (this.props.user.responses.length === nextProps.user.responses.length) {
       return false;
@@ -65,6 +74,10 @@ export class FacebookApp extends Component {
   }
 
   getRandomQuestion = max => Math.floor(Math.random() * max);
+
+  handleViewAll = () => {
+    window.open(`${this.props.history.location.pathname}/summary`, '_blank');
+  };
 
   // called when user advances to the next question
   submitVote = (question, option) => {
@@ -87,6 +100,7 @@ export class FacebookApp extends Component {
   };
 
   renderQuestion = q => {
+    console.log('Here!');
     if (q) {
       return (
         <Question
@@ -98,7 +112,12 @@ export class FacebookApp extends Component {
         />
       );
     }
-    return 'Thanks for participating!';
+    return (
+      <div>
+        Thanks for participating!{' '}
+        <button onClick={() => this.handleViewAll()}>View all</button>{' '}
+      </div>
+    );
   };
 
   render() {
@@ -195,6 +214,11 @@ const questionsQuery = gql`
       category
       description
       url
+      totalVotes
+      topOption {
+        title
+        count
+      }
       options {
         _id
         title

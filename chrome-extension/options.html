@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <title>Home | SocialSafety</title>
   <style>
     button {
       height: 30px;
@@ -9,18 +10,29 @@
       outline: none;
       margin: 10px;
     }
+    .wrapper {
+      display: flex;
+    }
+    .inner {
+      margin: auto;
+    }
   </style>
 </head>
 
 <body>
-  <div id="buttonDiv"> </div>
-  <div id='guid'></div>
-  <br/>
-  <br/> Name:
-  <form action='submit' id='form'>
-    <input type='text' name='name'>
-    <input type="button" id="submit" value="Submit email">
-  </form>
+  <div class="wrapper">
+    <div class="inner">
+        <div id="buttonDiv"> </div>
+        <div id='guid'></div>
+        <br/>
+        <br/> Name:
+        <form action='submit' id='form'>
+          <input type='text' name='name'>
+          <input type="button" id="submit" value="Submit email">
+        </form>
+    </div>
+  </div>
+  
 </body>
 <script src="options.js"></script>
 

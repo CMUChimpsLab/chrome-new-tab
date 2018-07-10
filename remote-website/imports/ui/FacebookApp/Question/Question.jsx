@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 7:31:39 pm
+ * Last Modified: Tuesday, 10th July 2018 12:53:24 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -28,6 +28,11 @@ export class Question extends Component {
       category: PropTypes.string,
       description: PropTypes.string,
       url: PropTypes.string,
+      totalVotes: PropTypes.number.isRequired,
+      topOption: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired
+      }).isRequired,
       options: PropTypes.array.isRequired
     }).isRequired,
     submitVote: PropTypes.func.isRequired,
@@ -44,19 +49,11 @@ export class Question extends Component {
   }
 
   getMaxVote = () => {
-    let max = 0;
-    let maxTitle = '';
-    let sum = 0;
-    this.props.question.options.forEach(op => {
-      sum += op.count;
-      if (op.count > max) {
-        max = op.count;
-        maxTitle = op.title;
-      }
-    });
+    const { topOption, totalVotes } = this.props.question;
 
     // FIXME: diplay something else when first person votes
-    const percentage = sum > 0 ? ((max / sum) * 100).toFixed(0) : 0;
+    const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
+
     return (
       <div>
         <p className="ans">
@@ -74,7 +71,7 @@ export class Question extends Component {
               of people think
               <span className="ans-important" id="ans-crowd">
                 {' '}
-                {maxTitle}{' '}
+                {topOption.title}{' '}
               </span>
               is the best option
             </span>

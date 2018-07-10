@@ -30,6 +30,12 @@ function guid() {
 // chrome.browserAction.setBadgeText({ text: 'Hey!' });
 
 chrome.runtime.onInstalled.addListener(function() {
+
+  //user sees options.html when extension is installed
+  chrome.tabs.create({
+    url: '/options.html'
+  });
+
   chrome.storage.sync.set({ color: '#3aa757', guid: guid() }, function() {
     chrome.storage.sync.get('guid', function(store) {
       let user = {
