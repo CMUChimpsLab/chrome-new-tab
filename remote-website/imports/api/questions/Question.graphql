@@ -4,6 +4,8 @@ type Question {
   category: String
   description: String
   url: String
+  totalVotes: Int
+  topOption: Option
   options: [Option]
 }
 
