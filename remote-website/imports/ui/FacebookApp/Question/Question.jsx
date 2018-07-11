@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wednesday, 11th July 2018 11:46:43 am
+ * Last Modified: Wednesday, 11th July 2018 2:55:01 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -74,6 +74,7 @@ export class Question extends Component {
                 {topOption.title}{' '}
               </span>
               is the best option
+              <span>{this.renderStats()}</span>
             </span>
           )}
         </p>
@@ -116,6 +117,14 @@ export class Question extends Component {
       votedOption: option
     });
   };
+
+  renderStats = () =>
+    this.props.question.options.map(opt => (
+      <div key={opt._id}>
+        {opt.title}:{' '}
+        {((opt.count / this.props.question.totalVotes) * 100).toFixed(0)}&#37;
+      </div>
+    ));
 
   // renders each option
   renderUnvoted() {
