@@ -6,21 +6,17 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 5:09:44 pm
+ * Last Modified: Wednesday, 11th July 2018 11:16:17 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
-.sidebar {
-    width: 100%;
-    float: right;
-    margin-right: 2%;
-}
+
+
 
 .filter {
-    width: 80%;
+    width: 100%;
     margin-bottom: 5vh;
-    // border: 2px solid rgba(206, 223, 239, 0.9);
     box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
 }
 
@@ -35,7 +31,7 @@
     width: 100%;
     background-color: #95A5A6;
     color: white;
-    font-size: 16px;
+    font-size: 1.2em;
     font-weight: 200;
 }
 
@@ -62,16 +58,16 @@
     height: 30px;
     background: #fff;
     text-shadow: 0;
-    font-size: 13px;
+    
     border: 0;
     background-color: #81CFE0;
     box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
-    width: 80%;
+    width: 100%;
     text-align: left;
     padding: 3%;
-    font-size: 15px;
     font-weight: 200;
     color: white;
+    font-size: 1em;
 
     &:hover {
         background-color: #19b5fe;

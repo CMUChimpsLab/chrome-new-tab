@@ -11,13 +11,14 @@
 }
 
 .fb-title {
-  font-size: 18px;
+  font-size: 1.6em;
   color: $font-important;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .fb-description {
-  font-size: 13px;
+  font-size: 1.1em;
+  margin-top: 0.5%;
 }
 
 .fb-opt-list {
@@ -27,12 +28,12 @@
 
 .fb-opt-list li {
   display: inline;
-  margin-right: 20px;
+  margin-right: 25px;
 }
 
 .ans {
   background-color: white;
-  font-size: 14px;
+  font-size: 1.3em;
   padding: 10px;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
@@ -40,8 +41,8 @@
 }
 
 .ans-important {
-  font-size: 25px;
-  font-weight: 700;
+  font-size: 2em;
+  font-weight: 600;
   color: rgb(82, 179, 217);
 }
 

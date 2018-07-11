@@ -11,6 +11,8 @@ $font-important: #52b3d9;
 $fb-main: #3b5998;
 $fb-second: #8b9dc3;
 
-//size
-$opt-width: 100px;
-$opt-height: 45px;
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 13px;
+}
