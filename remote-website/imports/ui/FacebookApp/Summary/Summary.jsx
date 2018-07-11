@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wednesday, 11th July 2018 1:59:13 pm
+ * Last Modified: Wednesday, 11th July 2018 3:00:10 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -83,6 +83,11 @@ const questionsQuery = gql`
       category
       description
       url
+      totalVotes
+      topOption {
+        title
+        count
+      }
       options {
         _id
         title
