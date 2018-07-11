@@ -24,11 +24,12 @@
 .fb-opt-list {
   display: table; /* Allow the centering to work */
   margin: 0 auto;
+  
 }
 
 .fb-opt-list li {
   display: inline;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 
 .ans {
@@ -43,7 +44,7 @@
 .ans-important {
   font-size: 1.8em;
   font-weight: 600;
-  color: rgb(82, 179, 217);
+  color: $opt-highlight;
 }
 
 .action-buttons {
@@ -74,11 +75,11 @@
 }
 
 #action-fb {
-  border: 2px solid $fb-second;
-  color: $fb-second;
+  border: 2px solid $opt-color;
+  color: $opt-color;
   &:hover {
     color: white;
-    background: $fb-second;
+    background: $opt-color;
   }
 }
 

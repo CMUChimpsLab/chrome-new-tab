@@ -3,19 +3,22 @@
 .fb-option {
   width: 90px;
   height: 40px;
-  font-size: 15px;
+  padding: 4px;
+
+  font-size: 14px;
   font-weight: 300;
   vertical-align: top;
   background-color: $opt-color;
   color: #ffffff;
   border-radius: 15px;
   border: 0px;
+
   -webkit-border-radius: 10px;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   text-shadow: 2px 2px 3px rgba(52, 73, 94, 0.5);
-  box-shadow: 3px 3px 0px rgba(70, 150, 180, 0.9);
+  box-shadow: 3px 3px 0px $opt-shadow;
   &:hover {
     background-color: $opt-highlight;
     box-shadow: 3px 3px 0px yellow;
