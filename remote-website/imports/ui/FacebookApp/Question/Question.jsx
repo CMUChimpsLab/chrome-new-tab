@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 10th July 2018 12:53:24 pm
+ * Last Modified: Wednesday, 11th July 2018 11:46:43 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,7 +14,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import Option from '../Option/Option';
+import Option from './Option/Option';
 // css
 import './Question.scss';
 import '../../assets/font.css';

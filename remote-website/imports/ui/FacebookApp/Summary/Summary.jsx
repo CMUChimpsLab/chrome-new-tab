@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 2:47:28 pm
+ * Last Modified: Wednesday, 11th July 2018 1:59:13 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -18,9 +18,9 @@ import gql from 'graphql-tag';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import Wrapper from '../../Components/Wrapper/Wrapper';
 import SummaryQuestion from './SummaryQuestion/SummaryQuestion';
 import Users from '../../../api/users/users';
+import './Summary.scss';
 
 export class Summary extends Component {
   static propTypes = {
@@ -70,7 +70,7 @@ export class Summary extends Component {
       return 'Please use the Chrome Extension!';
     }
 
-    return <Wrapper>{this.renderQuestions()}</Wrapper>;
+    return <div className="summary">{this.renderQuestions()}</div>;
   }
 }
 

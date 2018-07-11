@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Saturday, 7th July 2018 10:02:05 am
+ * Last Modified: Wednesday, 11th July 2018 11:45:31 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -16,7 +16,7 @@ import PropTypes from 'prop-types';
 
 // css
 import './Option.scss';
-import '../../assets/font.css';
+import '../../../assets/font.css';
 
 // saves vote when user selects an option
 // IMPORTANT: vote is not sent to the database until

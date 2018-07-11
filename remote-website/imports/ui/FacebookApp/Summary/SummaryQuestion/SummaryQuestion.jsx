@@ -6,13 +6,14 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 9th July 2018 2:45:27 pm
+ * Last Modified: Wednesday, 11th July 2018 2:37:56 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import './SummaryQuestion.scss';
 
 export class SummaryQuestion extends Component {
   static propTypes = {
@@ -41,12 +42,17 @@ export class SummaryQuestion extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.answered ? (
-          <strong>{this.props.question.title}</strong>
-        ) : (
-          this.props.question.title
-        )}
+      <div className="summary-q">
+        <div className="summary-q-title">
+          {this.props.answered ? (
+            <strong>{this.props.question.title}</strong>
+          ) : (
+            this.props.question.title
+          )}
+        </div>
+        <div className="summary-q-popular">most popular op</div>
+        <div className="summary-q-user">my choice</div>
+        <div className="summary-q-link">link</div>
       </div>
     );
   }

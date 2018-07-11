@@ -1,0 +1,25 @@
+/*
+ * File: Summary.scss
+ * Project: Chrome New Tab
+ * File Created: Wednesday, 11th July 2018 11:52:18 am
+ * Description:
+ * Authors: Rosie Sun (rosieswj@gmail.com)
+ *          Gustavo Umbelino (gumbelin@gmail.com)
+ * -----
+ * Last Modified: Wednesday, 11th July 2018 2:39:17 pm
+ * -----
+ * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ */
+
+ @import '../../assets/main';
+
+
+.summary {
+    background-color: $q-bg;
+    width: 90%;
+    margin: 5% auto 0 auto;
+    box-sizing: border-box;
+    padding: 2%;
+}
+
+

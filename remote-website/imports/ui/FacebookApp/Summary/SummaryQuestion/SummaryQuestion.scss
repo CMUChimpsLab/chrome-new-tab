@@ -1,0 +1,30 @@
+/*
+ * File: SummaryQuestion.scss
+ * Project: Chrome New Tab
+ * File Created: Wednesday, 11th July 2018 1:57:20 pm
+ * Description:
+ * Authors: Rosie Sun (rosieswj@gmail.com)
+ *          Gustavo Umbelino (gumbelin@gmail.com)
+ * -----
+ * Last Modified: Wednesday, 11th July 2018 2:48:08 pm
+ * -----
+ * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ */
+
+.summary-q-title, .summary-q-popular, .summary-q-user, .summary-q-link {
+    display: inline-block;
+}
+
+.summary-q-title {
+    width: 40%;
+}
+
+.summary-q-user, .summary-q-popular, .summary-q-link {
+    width: 20%;
+    text-align: center;
+}
+
+.summary-q {
+    border-bottom: 2px solid white;
+    padding: 10px 0;
+}
