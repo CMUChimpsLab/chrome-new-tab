@@ -22,7 +22,12 @@ body {
 .banner {
   align-items: center;
   width: 100vw;
-  background-color: #89c4f4;
+  /* background-color: #89c4f4; */
+
+  background: #6190e8; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6190e8, #a7bfe8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   display: flex;
   color: #fff;
   flex-flow: column nowrap;
@@ -62,7 +67,7 @@ body {
   height: 90px;
   width: 100%;
   overflow: hidden;
-  background-color: #75c0f2;
+  background-color: #a7bfe8;
 }
 
 .footer p {
