@@ -5,7 +5,6 @@ type Question {
   description: String
   url: String
   totalVotes: Int
-  topOption: Option
   options: [Option]
 }
 
