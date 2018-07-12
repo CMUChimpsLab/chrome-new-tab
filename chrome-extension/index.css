@@ -95,7 +95,7 @@ body {
 
 #search:hover,
 #search:focus {
-  background-color: $opt-highlight;
+  background: #59abe3;
 }
 
 #search button,
