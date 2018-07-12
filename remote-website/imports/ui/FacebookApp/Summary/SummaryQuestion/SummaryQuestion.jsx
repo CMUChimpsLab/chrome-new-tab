@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thursday, 12th July 2018 2:53:55 pm
+ * Last Modified: Thursday, 12th July 2018 3:14:28 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,7 +14,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import './SummaryQuestion.scss';
-import MaterialIcon from 'react-google-material-icons';
+import MaterialIcon from '../../../../../node_modules/react-google-material-icons';
 
 export class SummaryQuestion extends Component {
   static propTypes = {
@@ -24,7 +24,10 @@ export class SummaryQuestion extends Component {
       category: PropTypes.string,
       description: PropTypes.string,
       url: PropTypes.string,
-      options: PropTypes.array.isRequired
+      options: PropTypes.array.isRequired,
+      topOption: PropTypes.shape({
+        title: PropTypes.string.isRequired
+      }).isRequired
     }).isRequired,
     userGuid: PropTypes.string.isRequired,
     answered: PropTypes.bool.isRequired
