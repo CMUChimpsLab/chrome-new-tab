@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 1:39:33 pm
+ * Last Modified: Friday, 13th July 2018 4:49:23 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -67,13 +67,6 @@ export class Question extends Component {
       }
     ];
   };
-
-  // this.props.question.options.map(opt => (
-  //   <div key={opt._id}>
-  //     {opt.title}:{' '}
-  //     {((opt.count / this.props.question.totalVotes) * 100).toFixed(0)}&#37;
-  //   </div>
-  // ));
 
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
@@ -160,7 +153,6 @@ export class Question extends Component {
     <div>
       <BarChart
         data={this.getStats()}
-        // data={this.state.dummydata}
         width={400}
         height={300}
         margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
