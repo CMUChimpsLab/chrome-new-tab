@@ -6,25 +6,66 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wednesday, 11th July 2018 2:48:08 pm
+ * Last Modified: Thursday, 12th July 2018 2:56:57 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
+ @import "../../../assets/main";
+
 .summary-q-title, .summary-q-popular, .summary-q-user, .summary-q-link {
     display: inline-block;
+    vertical-align: middle;
 }
 
-.summary-q-title {
-    width: 40%;
-}
-
-.summary-q-user, .summary-q-popular, .summary-q-link {
-    width: 20%;
+.summary-q-popular, .summary-q-link, .summary-q-user {
     text-align: center;
 }
 
 .summary-q {
     border-bottom: 2px solid white;
     padding: 10px 0;
+    font-size: 14px;
+}
+
+.summary-q-popular {
+    width: 20%;
+}
+
+.summary-q-user {
+    width: 10%;
+}
+
+.summary-q-title {
+    width: 40%;
+}
+
+.summary-q-link {
+    width: 30%;   
+}
+
+.summary-q-button {
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid $opt-color;
+    padding: 5px 8px;
+    background: #fff;
+    text-shadow: 0;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.25s ease;
+    box-shadow: 3px 3px 0px rgba(191, 191, 191, 0.7);
+    color: $opt-color;
+    &:hover {
+        color: white;
+        background: $opt-color;
+    }
+}
+
+#vote-yes {
+    color: #1BBC9B;
+}
+
+#vote-no {
+    color: #95A5A6;
 }
