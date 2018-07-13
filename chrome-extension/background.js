@@ -29,6 +29,53 @@ function guid() {
 // chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
 // chrome.browserAction.setBadgeText({ text: 'Hey!' });
 
+chrome.webRequest.onHeadersReceived.addListener(
+  function(info) {
+      var headers = info.responseHeaders;
+
+      // remove header to display in iframe
+      for (var i=headers.length-1; i>=0; --i) {
+          var header = headers[i].name.toLowerCase();
+          if (header == 'x-frame-options' || header == 'frame-options') {
+              headers.splice(i, 1); // Remove header
+          }
+      }
+
+      // // add header for cors
+      // headers.push({
+      //   name: 'access-control-allow-origin',
+      //   value: '*'
+      // });
+
+      console.log(headers);
+      
+      return {responseHeaders: headers};
+  },
+  {
+      urls: [ '*://*/*' ], // Pattern to match all http(s) pages
+      types: [ 'sub_frame' ]
+  },
+  ['blocking', 'responseHeaders']
+);
+
+// chrome.webRequest.onSendHeaders.addListener(
+//   function(info) {
+//       var headers = info.requestHeaders;
+//       headers.push({
+//         name: 'Access-Control-Allow-Origin',
+//         value: '*'
+//       });
+//       console.log(headers)
+//       return {requestHeaders: headers};
+//   },
+//   {
+//       urls: [ '*://www.facebook.com/*' ], // Pattern to match all http(s) pages
+//       types: [ 'sub_frame' ]
+//   },
+//   ['requestHeaders']
+
+// );
+
 chrome.runtime.onInstalled.addListener(function() {
 
   //user sees options.html when extension is installed

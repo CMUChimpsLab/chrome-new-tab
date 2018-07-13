@@ -10,11 +10,11 @@
   "web_accessible_resources": ["blank_ntp_est.html"],
   "content_security_policy":
     "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js; object-src 'self'",
-  "permissions": ["http://localhost/*", "storage", "activeTab"],
+  "permissions": ["http://localhost/*", "storage", "activeTab", "webRequest","webRequestBlocking", "*://*.facebook.com/"],
   "options_page": "options.html",
   "background": {
     "scripts": ["background.js"],
-    "persistent": false
+    "persistent": true
   },
   "icons": {
     "16": "images/icons/16/icon2-16.png",
