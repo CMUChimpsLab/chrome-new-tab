@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wednesday, 11th July 2018 3:00:10 pm
+ * Last Modified: Thursday, 12th July 2018 10:49:44 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -45,9 +45,30 @@ export class Summary extends Component {
   renderQuestions = () => {
     // ids of questions answered
     const answeredIds = this.props.user.responses.map(res => res.questionId);
-
     // functions to filter questions
     const contains = _id => answeredIds.indexOf(_id) > -1;
+
+    // given question id, find opt id in response
+    const optIdInResponse = _id =>
+      (contains(_id)
+        ? this.props.user.responses.filter(function(res) {
+          return res.questionId == _id;
+        })[0].optionId
+        : null);
+
+    // given question id, find question's all options
+    const getOptsFromId = _id =>
+      this.props.questions.filter(function(q) {
+        return q._id == _id;
+      })[0].options;
+
+    // given question id, find specific opt that user selects in response
+    const getResOptTitle = _id =>
+      (contains(_id)
+        ? getOptsFromId(_id).filter(function(opt) {
+            return opt._id == optIdInResponse(_id);
+          })[0].title
+        : '');
 
     return this.props.questions.map(q => (
       <SummaryQuestion
@@ -55,6 +76,7 @@ export class Summary extends Component {
         question={q}
         userGuid={this.userGuid}
         answered={contains(q._id)}
+        userOption={getResOptTitle(q._id)}
       />
     ));
   };

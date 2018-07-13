@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thursday, 12th July 2018 3:14:28 pm
+ * Last Modified: Thursday, 12th July 2018 10:58:11 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -30,7 +30,8 @@ export class SummaryQuestion extends Component {
       }).isRequired
     }).isRequired,
     userGuid: PropTypes.string.isRequired,
-    answered: PropTypes.bool.isRequired
+    answered: PropTypes.bool.isRequired,
+    userOption: PropTypes.string.isRequired
   };
 
   // login to Facebook, don't require info
@@ -44,8 +45,8 @@ export class SummaryQuestion extends Component {
     });
   };
 
-  renderUserVote = () => (
-    <div className="summary-q-user">
+  renderStatus = () => (
+    <div className="sum-icon">
       {this.props.answered ? (
         <span id="vote-yes">
           <MaterialIcon icon="check_circle" size={28} />
@@ -61,12 +62,13 @@ export class SummaryQuestion extends Component {
   render() {
     return (
       <div className="summary-q">
-        {this.renderUserVote()}
-        <div className="summary-q-title">{this.props.question.title}</div>
-        <div className="summary-q-popular">
-          {this.props.question.topOption.title}
+        {this.renderStatus()}
+        <div className="sum-title">{this.props.question.title}</div>
+        <div className="sum-popular">{this.props.question.topOption.title}</div>
+        <div className="sum-user">
+          {this.props.answered ? this.props.userOption : ''}
         </div>
-        <div className="summary-q-link">
+        <div className="sum-link">
           <button
             className="summary-q-button"
             onClick={() => this.loginAndRedirect(this.props.question.url)}
