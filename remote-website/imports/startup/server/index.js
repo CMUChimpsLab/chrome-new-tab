@@ -1,6 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Restivus } from 'meteor/nimble:restivus';
 import { ServiceConfiguration } from 'meteor/service-configuration';
+import { HTTP } from 'meteor/http';
+// import scrapeIt from 'scrape-it';
+import { check } from 'meteor/check';
 
 import './register-api';
 import Questions from '../../api/questions/questions';
@@ -21,6 +24,25 @@ if (Meteor.isServer) {
     // WARNING: THIS RESETS THE DATABASE OF QUESTIONS
     // AND USER RESPONSES. BE CAREFUL!!!
     // resetMongo();
+
+    // expose method to client
+    Meteor.methods({
+      async testMethod(url) {
+        check(url, String);
+        return HTTP.get(url, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'User-Agent':
+              'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+          }
+        });
+        // === OR ===
+        // const page = await scrapeIt(url, {
+        //   title: 'title'
+        // });
+        // return page.data.title;
+      }
+    });
 
     // Global configuration
     const Api = new Restivus({

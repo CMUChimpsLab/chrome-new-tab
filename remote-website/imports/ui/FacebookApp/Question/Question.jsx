@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thursday, 12th July 2018 6:04:56 pm
+ * Last Modified: Thursday, 12th July 2018 7:41:10 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,16 +14,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { HTTP } from 'meteor/http';
-import scrapeIt from 'scrape-it';
-
-// import {
-//   XYPlot,
-//   XAxis,
-//   YAxis,
-//   HorizontalGridLines,
-//   LineSeries
-// } from 'react-vis';
 import Option from './Option/Option';
 
 // css
@@ -74,6 +64,7 @@ export class Question extends Component {
           frameBorder="0"
           sandbox="allow-same-origin allow-scripts"
         /> */}
+        <div id="test" />
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
@@ -124,26 +115,9 @@ export class Question extends Component {
         console.error(err);
       } else {
         window.open(url, '_blank');
-        // document.getElementById('iframe').src = url;
-        // const iframe = document.getElementById('iframe');
-        // iframe.onload = () => {
-        //   console.log('loaded!');
-        //   const iframeDocument = iframe.contentDocument || iframe.contentWindow;
-        //   if (!iframeDocument) {
-        //     console.log("iframe couldn't be found in DOM.");
-        //   }
-        //   console.log(iframeDocument.body);
-        // };
-
-        // success if CORS is disabled
-        // HTTP.get(url, {}, (error, result) => {
-        //   console.log(result.content);
-        // });
-
-        scrapeIt(url, {
-          title: 'title'
-        }).then(page => {
-          console.log(page);
+        Meteor.call('testMethod', url, (error, result) => {
+          console.log(result);
+          document.getElementById('test').innerHTML = result.content;
         });
       }
     });
