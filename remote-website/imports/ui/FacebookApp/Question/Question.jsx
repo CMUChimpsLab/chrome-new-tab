@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 4:49:23 pm
+ * Last Modified: Friday, 13th July 2018 4:03:32 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -115,7 +115,12 @@ export class Question extends Component {
           </button>
           {/* <br /> */}
           <button
-            onClick={() => this.loginAndRedirect(this.props.question.url)}
+            onClick={() =>
+              this.loginAndRedirect(
+                this.props.question.url,
+                this.props.userGuid
+              )
+            }
             id="action-fb"
           >
             Change my setting on Facebook
@@ -127,13 +132,13 @@ export class Question extends Component {
   };
 
   // login to Facebook, don't require info
-  loginAndRedirect = url => {
+  loginAndRedirect = (url, guid) => {
     Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
       if (err) {
         console.error(err);
       } else {
-        // window.open(url, '_blank');
-        Meteor.call('testMethod', url, (error, result) => {
+        window.open(url, '_blank');
+        Meteor.call('testMethod', url, guid, (error, result) => {
           console.log(result);
           document.getElementById('test').innerHTML = result.content;
         });
