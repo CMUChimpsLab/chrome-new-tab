@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 4:12:56 pm
+ * Last Modified: Friday, 13th July 2018 1:39:33 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,16 +14,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import { BarChart } from 'react-d3-components/lib/';
 import Option from './Option/Option';
-import {BarChart} from '../../../../node_modules/react-d3-components/lib/';
-
 
 // css
 import './Question.scss';
 
 import '../../assets/font.css';
-
-
 
 export class Question extends Component {
   static propTypes = {
@@ -50,52 +47,33 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: props.answered,
-      votedOption: null,
-      dummydata: [{
-        label: 'somethingA',
-        values: [{x: 'SomethingA', y: 10}, {x: 'SomethingB', y: 4}, {x: 'SomethingC', y: 3}]
-      }]
+      votedOption: null
     };
   }
 
   getStats = () => {
     const getPercent = opt => {
-      var p = ((opt.count /
-        this.props.question.totalVotes) * 100).toFixed(0);
-      return parseInt(p);
-    } 
-    var ops = this.props.question.options.map(opt => 
-      ({'title': opt.title, 'percent': getPercent(opt)})
-    );
-    var res = [{label: 'somethingA', values: ops}];
-    console.log(res);
-    return res;
-  }
-  
+      const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
+      return parseInt(p, 10);
+    };
+    const ops = this.props.question.options.map(opt => ({
+      x: opt.title,
+      y: getPercent(opt)
+    }));
+    return [
+      {
+        label: 'somethingA', // not sure what this is for lol
+        values: ops
+      }
+    ];
+  };
 
-  renderStats = () => {
-    //getStats should be correct
-    {this.getStats()}
-
-    return (
-      <div>
-        <BarChart
-        // data={this.getStats()}
-        data={this.state.dummydata}
-        width={400}
-        height={300}
-        margin={{top: 10, bottom: 50, left: 50, right: 10}}/>
-       </div>
-    );
-
-    }
-
-    // this.props.question.options.map(opt => (
-    //   <div key={opt._id}>
-    //     {opt.title}:{' '}
-    //     {((opt.count / this.props.question.totalVotes) * 100).toFixed(0)}&#37;
-    //   </div>
-    // ));
+  // this.props.question.options.map(opt => (
+  //   <div key={opt._id}>
+  //     {opt.title}:{' '}
+  //     {((opt.count / this.props.question.totalVotes) * 100).toFixed(0)}&#37;
+  //   </div>
+  // ));
 
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
@@ -178,29 +156,37 @@ export class Question extends Component {
     });
   };
 
-  
+  renderStats = () => (
+    <div>
+      <BarChart
+        data={this.getStats()}
+        // data={this.state.dummydata}
+        width={400}
+        height={300}
+        margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+      />
+    </div>
+  );
 
   // renders each option
-  renderUnvoted = () =>  {
-    return (
-      <div className="fb-opt-list">
-        <ul>
-          {this.props.question.options.map(opt => (
-            <li key={opt._id}>
-              <Option option={opt} handleVoted={this.handleVoted} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+  renderUnvoted = () => (
+    <div className="fb-opt-list">
+      <ul>
+        {this.props.question.options.map(opt => (
+          <li key={opt._id}>
+            <Option option={opt} handleVoted={this.handleVoted} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   render() {
     return (
       <div className="fb-question">
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
-        {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()} 
+        {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
       </div>
     );
   }
