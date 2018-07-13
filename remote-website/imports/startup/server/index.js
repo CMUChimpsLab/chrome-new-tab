@@ -29,12 +29,18 @@ if (Meteor.isServer) {
     Meteor.methods({
       async testMethod(url) {
         check(url, String);
+        console.log(Meteor.user().services.facebook.accessToken)
         return HTTP.get(url, {
           headers: {
             'Access-Control-Allow-Origin': '*',
-            'User-Agent':
-              'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+            // 'User-Agent': 'Meteor/1.0'
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+            // Cookie: '[get it from chrome]'
           }
+          // },
+          // params: {
+          //   access_token: Meteor.user().services.facebook.accessToken
+          // }
         });
         // === OR ===
         // const page = await scrapeIt(url, {

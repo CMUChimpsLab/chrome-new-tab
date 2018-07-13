@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thursday, 12th July 2018 7:41:10 pm
+ * Last Modified: Thursday, 12th July 2018 8:34:40 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -114,7 +114,7 @@ export class Question extends Component {
       if (err) {
         console.error(err);
       } else {
-        window.open(url, '_blank');
+        // window.open(url, '_blank');
         Meteor.call('testMethod', url, (error, result) => {
           console.log(result);
           document.getElementById('test').innerHTML = result.content;
