@@ -1,3 +1,6 @@
+const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
+
+
 function showIframe(iframeElement) {
   console.log('iframeElement ' + iframeElement);
   var x = document.getElementById(iframeElement);
@@ -11,7 +14,7 @@ function showIframe(iframeElement) {
 
 chrome.storage.sync.get('guid', function(data) {
   document.getElementById('facebook-app').innerHTML =
-    '<div class="section-iframe"><iframe style="visibility: initial " iframeBorder="0" src="http://localhost:3000/facebookapp/' +
+    '<div class="section-iframe"><iframe style="visibility: initial " iframeBorder="0" src="'+SERVER_URL+'/facebookapp/' +
     data.guid +
     '"></iframe></div>';
 });

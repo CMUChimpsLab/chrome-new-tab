@@ -3,6 +3,8 @@
 // found in the LICENSE file.
 
 'use strict';
+const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
+// const SERVER_URL = 'http://localhost:3000';
 
 function guid() {
   function s4() {
@@ -99,7 +101,7 @@ chrome.runtime.onInstalled.addListener(function() {
         }
       };
 
-      xhttp.open('POST', 'http://localhost:3000/api/v1/chrome-users', true);
+      xhttp.open('POST', SERVER_URL + '/api/v1/chrome-users', true);
       xhttp.setRequestHeader('Content-Type', 'application/json');
       xhttp.send(JSON.stringify(user));
     });
