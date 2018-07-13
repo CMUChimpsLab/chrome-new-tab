@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thursday, 12th July 2018 8:34:40 pm
+ * Last Modified: Friday, 13th July 2018 4:12:56 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -15,11 +15,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import Option from './Option/Option';
+import {BarChart} from '../../../../node_modules/react-d3-components/lib/';
+
 
 // css
 import './Question.scss';
 
 import '../../assets/font.css';
+
+
 
 export class Question extends Component {
   static propTypes = {
@@ -46,9 +50,52 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: props.answered,
-      votedOption: null
+      votedOption: null,
+      dummydata: [{
+        label: 'somethingA',
+        values: [{x: 'SomethingA', y: 10}, {x: 'SomethingB', y: 4}, {x: 'SomethingC', y: 3}]
+      }]
     };
   }
+
+  getStats = () => {
+    const getPercent = opt => {
+      var p = ((opt.count /
+        this.props.question.totalVotes) * 100).toFixed(0);
+      return parseInt(p);
+    } 
+    var ops = this.props.question.options.map(opt => 
+      ({'title': opt.title, 'percent': getPercent(opt)})
+    );
+    var res = [{label: 'somethingA', values: ops}];
+    console.log(res);
+    return res;
+  }
+  
+
+  renderStats = () => {
+    //getStats should be correct
+    {this.getStats()}
+
+    return (
+      <div>
+        <BarChart
+        // data={this.getStats()}
+        data={this.state.dummydata}
+        width={400}
+        height={300}
+        margin={{top: 10, bottom: 50, left: 50, right: 10}}/>
+       </div>
+    );
+
+    }
+
+    // this.props.question.options.map(opt => (
+    //   <div key={opt._id}>
+    //     {opt.title}:{' '}
+    //     {((opt.count / this.props.question.totalVotes) * 100).toFixed(0)}&#37;
+    //   </div>
+    // ));
 
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
@@ -83,7 +130,6 @@ export class Question extends Component {
                 {topOption.title}{' '}
               </span>
               is the best option
-              <span>{this.renderStats()}</span>
             </span>
           )}
         </p>
@@ -104,6 +150,7 @@ export class Question extends Component {
             Change my setting on Facebook
           </button>
         </div>
+        {this.renderStats()}
       </div>
     );
   };
@@ -131,16 +178,10 @@ export class Question extends Component {
     });
   };
 
-  renderStats = () =>
-    this.props.question.options.map(opt => (
-      <span key={opt._id}>
-        {opt.title}:{' '}
-        {((opt.count / this.props.question.totalVotes) * 100).toFixed(0)}&#37;
-      </span>
-    ));
+  
 
   // renders each option
-  renderUnvoted() {
+  renderUnvoted = () =>  {
     return (
       <div className="fb-opt-list">
         <ul>
@@ -159,7 +200,7 @@ export class Question extends Component {
       <div className="fb-question">
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
-        {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
+        {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()} 
       </div>
     );
   }
