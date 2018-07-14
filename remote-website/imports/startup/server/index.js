@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import { Restivus } from 'meteor/nimble:restivus';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import { HTTP } from 'meteor/http';
-// import scrapeIt from 'scrape-it';
 import { check } from 'meteor/check';
 
 import './register-api';

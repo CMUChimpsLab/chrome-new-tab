@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 4:03:32 pm
+ * Last Modified: Friday, 13th July 2018 5:27:53 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -15,6 +15,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { BarChart } from 'react-d3-components/lib/';
+import cheerio from 'cheerio';
+
 import Option from './Option/Option';
 
 // css
@@ -68,6 +70,47 @@ export class Question extends Component {
     ];
   };
 
+  getCurrentSelectedOption = (url, guid) => {
+    Meteor.call('testMethod', url, guid, (error, result) => {
+      const $ = cheerio.load(result.content);
+      const list = [];
+
+      // Timeline and Tagging Settings
+      $('div[class="content"]')
+        .find('div > div > div > div > a > span')
+        .each(function(index, element) {
+          list.push(
+            $(element)
+              .clone() // clone the element
+              .children() // select all the children
+              .remove() // remove all the children
+              .end() // again go back to selected element
+              .text()
+          );
+        });
+      if (list.length > 1) {
+        document.getElementById(
+          'test'
+        ).innerHTML = `Your current selected option: <strong>${
+          list[1]
+        }</strong>`;
+      } else {
+        $('div[class="content"]')
+          .find('div > div > div > div > a > span')
+          .each(function(index, element) {
+            list.push(
+              $(element)
+                .clone() // clone the element
+                .children() // select all the children
+                .remove() // remove all the children
+                .end() // again go back to selected element
+                .text()
+            );
+          });
+      }
+    });
+  };
+
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
 
@@ -82,7 +125,6 @@ export class Question extends Component {
           frameBorder="0"
           sandbox="allow-same-origin allow-scripts"
         /> */}
-        <div id="test" />
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
@@ -115,12 +157,7 @@ export class Question extends Component {
           </button>
           {/* <br /> */}
           <button
-            onClick={() =>
-              this.loginAndRedirect(
-                this.props.question.url,
-                this.props.userGuid
-              )
-            }
+            onClick={() => this.loginAndRedirect(this.props.question.url)}
             id="action-fb"
           >
             Change my setting on Facebook
@@ -132,16 +169,12 @@ export class Question extends Component {
   };
 
   // login to Facebook, don't require info
-  loginAndRedirect = (url, guid) => {
+  loginAndRedirect = url => {
     Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
       if (err) {
         console.error(err);
       } else {
         window.open(url, '_blank');
-        Meteor.call('testMethod', url, guid, (error, result) => {
-          console.log(result);
-          document.getElementById('test').innerHTML = result.content;
-        });
       }
     });
   };
@@ -184,6 +217,11 @@ export class Question extends Component {
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
+        <div id="test" />
+        {this.getCurrentSelectedOption(
+          this.props.question.url,
+          this.props.userGuid
+        )}
       </div>
     );
   }
