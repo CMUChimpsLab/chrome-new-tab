@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 5:27:53 pm
+ * Last Modified: Friday, 13th July 2018 8:27:25 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -33,6 +33,7 @@ export class Question extends Component {
       category: PropTypes.string,
       description: PropTypes.string,
       url: PropTypes.string,
+      scrapeTag: PropTypes.number.isRequired,
       totalVotes: PropTypes.number.isRequired,
       topOption: PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -76,25 +77,7 @@ export class Question extends Component {
       const list = [];
 
       // Timeline and Tagging Settings
-      $('div[class="content"]')
-        .find('div > div > div > div > a > span')
-        .each(function(index, element) {
-          list.push(
-            $(element)
-              .clone() // clone the element
-              .children() // select all the children
-              .remove() // remove all the children
-              .end() // again go back to selected element
-              .text()
-          );
-        });
-      if (list.length > 1) {
-        document.getElementById(
-          'test'
-        ).innerHTML = `Your current selected option: <strong>${
-          list[1]
-        }</strong>`;
-      } else {
+      if (this.props.question.scrapeTag === 0) {
         $('div[class="content"]')
           .find('div > div > div > div > a > span')
           .each(function(index, element) {
@@ -107,6 +90,96 @@ export class Question extends Component {
                 .text()
             );
           });
+        if (list.length > 1) {
+          document.getElementById(
+            'test'
+          ).innerHTML = `Your current selected option: <strong>${
+            list[1]
+          }</strong>`;
+        }
+      } else if (this.props.question.scrapeTag === 1) {
+        $('div[class="clearfix"]')
+          .find('div > div > a > span')
+          .each(function(index, element) {
+            list.push($(element).text());
+          });
+        if (list.length > 1) {
+          document.getElementById(
+            'test'
+          ).innerHTML = `Your current selected option: <strong>${
+            list[1]
+          }</strong>`;
+        }
+      } else if (this.props.question.scrapeTag === 2) {
+        $('form')
+          .find('div > div > a > span')
+          .each(function(index, element) {
+            list.push($(element).text());
+          });
+        if (list.length > 3) {
+          document.getElementById(
+            'test'
+          ).innerHTML = `Your current selected option: <strong>${
+            list[3]
+          }</strong>`;
+        }
+      } else if (this.props.question.scrapeTag === 3) {
+        $('ul')
+          .find('li > div > div > div > a > span')
+          .each(function(index, element) {
+            list.push(
+              $(element)
+                .clone() // clone the element
+                .children() // select all the children
+                .remove() // remove all the children
+                .end() // again go back to selected element
+                .text()
+            );
+          });
+        if (list.length > 1) {
+          document.getElementById(
+            'test'
+          ).innerHTML = `Your current selected option: <strong>${
+            list[1]
+          }</strong>`;
+        }
+      } else if (this.props.question.scrapeTag === 4) {
+        const op = $('input[id="search_filter_public"]').prop('checked')
+          ? 'Yes'
+          : 'No';
+        document.getElementById(
+          'test'
+        ).innerHTML = `Your current selected option: <strong>${op}</strong>`;
+      } else if (this.props.question.scrapeTag === 5) {
+        $('div[class="content"]')
+          .find('div > div > div > div > a > span')
+          .each(function(index, element) {
+            list.push($(element).text());
+          });
+        if (list.length > 1) {
+          document.getElementById(
+            'test'
+          ).innerHTML = `Your current selected option: <strong>${
+            list[0]
+          }</strong>`;
+        }
+      } else if (this.props.question.scrapeTag === 6) {
+        $('form')
+          .find('div > div > a > span')
+          .each(function(index, element) {
+            list.push($(element).text());
+          });
+        if (list.length > 0) {
+          document.getElementById(
+            'test'
+          ).innerHTML = `Your current selected option: <strong>${
+            list[0]
+          }</strong>`;
+        }
+      } else if (this.props.question.scrapeTag >= 7) {
+        console.log("Can't scrape ads yet.");
+      } else {
+        console.log('Make sure this question has a valid scrapeTag');
       }
     });
   };

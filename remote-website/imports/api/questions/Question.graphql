@@ -4,6 +4,7 @@ type Question {
   category: String
   description: String
   url: String
+  scrapeTag: Int
   totalVotes: Int
   topOption: Option
   options: [Option]
