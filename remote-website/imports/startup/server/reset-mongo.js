@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Sunday, 8th July 2018 1:23:24 pm
+ * Last Modified: Friday, 13th July 2018 6:27:10 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -16,11 +16,19 @@ import Options from '../../api/options/options';
 import Users from '../../api/users/users';
 import questions from './raw-question-data';
 
-function insertQuestion({ title, category, description, url, options }) {
+function insertQuestion({
+  title,
+  category,
+  description,
+  scrapeTag,
+  url,
+  options
+}) {
   // create question
   const questionId = Questions.insert({
     title,
     category,
+    scrapeTag,
     description,
     url
   });

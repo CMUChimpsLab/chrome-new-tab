@@ -2,14 +2,13 @@ import { Meteor } from 'meteor/meteor';
 import { Restivus } from 'meteor/nimble:restivus';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import { HTTP } from 'meteor/http';
-// import scrapeIt from 'scrape-it';
 import { check } from 'meteor/check';
 
 import './register-api';
 import Questions from '../../api/questions/questions';
 import Users from '../../api/users/users';
 import Emails from '../../api/emails/emails';
-// import resetMongo from './reset-mongo';
+import resetMongo from './reset-mongo';
 
 // set up REST API
 if (Meteor.isServer) {
@@ -23,19 +22,20 @@ if (Meteor.isServer) {
   Meteor.startup(() => {
     // WARNING: THIS RESETS THE DATABASE OF QUESTIONS
     // AND USER RESPONSES. BE CAREFUL!!!
-    // resetMongo();
+    resetMongo();
 
     // expose method to client
     Meteor.methods({
-      async testMethod(url) {
+      async testMethod(url, guid) {
         check(url, String);
-        console.log(Meteor.user().services.facebook.accessToken)
+        check(guid, String);
         return HTTP.get(url, {
           headers: {
             'Access-Control-Allow-Origin': '*',
             // 'User-Agent': 'Meteor/1.0'
-            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
-            // Cookie: '[get it from chrome]'
+            'User-Agent':
+              'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+            Cookie: Users.findOne({ guid }).facebook_cookie
           }
           // },
           // params: {
@@ -75,5 +75,27 @@ if (Meteor.isServer) {
     // used by SocialSafety to create users
     Api.addCollection(Users);
     Api.addCollection(Emails);
+
+    // Maps to: /api/v1/cookies/:guid
+    Api.addRoute('cookies/:guid', {
+      post() {
+        // find user
+        const user = Users.findOne({ guid: this.urlParams.guid });
+        if (!user) {
+          return {
+            statusCode: 404
+          };
+        }
+
+        // update cookie
+        Users.update(
+          { guid: this.urlParams.guid },
+          { $set: { facebook_cookie: this.request.body.data } }
+        );
+        return {
+          statusCode: 200
+        };
+      }
+    });
   });
 }
