@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 4:49:23 pm
+ * Last Modified: Friday, 13th July 2018 5:00:47 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -104,7 +104,17 @@ export class Question extends Component {
             </span>
           )}
         </p>
-        <div className="action-buttons">
+        {this.renderStats()}
+        {this.renderActionButtons()}
+        
+      </div>
+    );
+  };
+
+
+  renderActionButtons = () => {
+    return (
+      <div className="action-buttons">
           <button
             id="action-next"
             onClick={() =>
@@ -120,12 +130,8 @@ export class Question extends Component {
           >
             Change my setting on Facebook
           </button>
-        </div>
-        {this.renderStats()}
-      </div>
-    );
-  };
-
+        </div>);
+  }
   // login to Facebook, don't require info
   loginAndRedirect = url => {
     Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
