@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 11:58:03 am
+ * Last Modified: Tue Jul 17 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -132,7 +132,7 @@ const questions = [
     title:
       "Would you like to review posts that you're tagged in before the posts appear on your timeline?", // "Review posts you're tagged in before the post appears on your timeline?",
     description:
-      "Timeline review controls whether you have to manually approve posts you're tagged in before they go on your timeline. When you have a post to review, just click Timeline review on the left-hand side of your activity log.\nNote: This only controls what's allowed on your timeline. Posts you're tagged in still appear in search, News Feed and other places on Facebook",
+      "Timeline review controls whether you have to manually approve posts you're tagged in before they go on your timeline. When you have a post to review, just click Timeline review on the left-hand side of your activity log. Note: This only controls what's allowed on your timeline. Posts you're tagged in still appear in search, News Feed and other places on Facebook.",
     url:
       'https://www.facebook.com/settings?tab=timeline&section=timeline_review&view',
     options: ['Yes', 'No', 'Not sure'],
@@ -143,10 +143,10 @@ const questions = [
     title:
       'Would you like to review tags people add to your posts before the tags appear on Facebook?', // 'Review tags people add to your posts before the tags appear on Facebook?',
     description:
-      "If someone who you aren't friends with adds a tag to your post, you'll still be asked to review it.\nRemember: When you approve a tag, the person tagged and their friends may be able to see your post.",
+      "If someone who you aren't friends with adds a tag to your post, you'll still be asked to review it. Remember: When you approve a tag, the person tagged and their friends may be able to see your post.",
     url:
       'https://www.facebook.com/settings?tab=timeline&section=tagreview&view',
-    options: ['Enabled', 'Disabled', 'Not sure'],
+    options: ['Yes', 'No', 'Not sure'],
     scrapeTag: 6 // checked
   },
   {

@@ -11,7 +11,10 @@ export default {
   Question: {
     options: question => Options.find({ questionId: question._id }).fetch(),
     totalVotes: question => {
-      const options = Options.find({ questionId: question._id }).fetch();
+      const options = Options.find({
+        questionId: question._id,
+        title: { $ne: 'Not sure' }
+      }).fetch();
       return options.map(opt => opt.count).reduce((acc, count) => acc + count);
 
       // async question => {
@@ -38,7 +41,10 @@ export default {
       //   return 0;
     },
     topOption: question =>
-      Options.findOne({ questionId: question._id }, { sort: { count: -1 } })
+      Options.findOne(
+        { questionId: question._id, title: { $ne: 'Not sure' } },
+        { sort: { count: -1 } }
+      )
   },
 
   Mutation: {
