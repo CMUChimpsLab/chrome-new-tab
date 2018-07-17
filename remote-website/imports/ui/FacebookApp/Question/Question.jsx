@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 8:27:25 pm
+ * Last Modified: Monday, 16th July 2018 12:19:33 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -243,13 +243,18 @@ export class Question extends Component {
 
   // login to Facebook, don't require info
   loginAndRedirect = url => {
-    Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
-      if (err) {
-        console.error(err);
-      } else {
-        window.open(url, '_blank');
-      }
-    });
+    // check if user is already logged in
+    if (Meteor.userId()) {
+      window.open(url, '_blank');
+    } else {
+      Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
+        if (err) {
+          console.error(err);
+        } else {
+          window.open(url, '_blank');
+        }
+      });
+    }
   };
 
   // called when user selects an option

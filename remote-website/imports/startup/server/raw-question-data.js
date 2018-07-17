@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 8:21:26 pm
+ * Last Modified: Monday, 16th July 2018 12:20:24 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,68 +14,72 @@
 const questions = [
   {
     category: 'Friends',
-    title: 'Who can send you friend requests?',
+    title: 'Who do you think should be able to send you friend requests?', // 'Who can send you friend requests?',
     url: 'https://www.facebook.com/settings?tab=privacy&section=canfriend&view',
-    options: ['Friends of friends', 'Everyone'],
+    options: ['Everyone', 'Friends of friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
     category: 'Friends',
-    title: 'Who can see your friends list?',
+    title: 'Who do you think should be able to see your friends list?', // 'Who can see your friends list?',
     url:
       'https://www.facebook.com/settings?tab=privacy&section=friendlist&view',
-    options: ['Only me', 'Friends', 'Public'],
+    options: ['Public', 'Friends', 'Only me', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
     category: 'Friends',
-    title: 'Who can look you up using the email address you provided?',
+    title:
+      'Who do you think should be able to look you up using the email address you provided?', // 'Who can look you up using the email address you provided?',
     description:
-      'Strangers won’t be able to hunt you down using your contact information',
+      "This applies to people who can't see your email address on your profile",
     url: 'https://www.facebook.com/settings?tab=privacy&section=findemail&view',
-    options: ['Friends', 'Friends of friends', 'Everyone'],
+    options: ['Everyone', 'Friends of friends', 'Friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
     category: 'Friends',
-    title: 'Who can look you up using the phone address you provided?',
+    title:
+      'Who do you think should be able to look you up using the phone number you provided?',
     description:
-      'Strangers won’t be able to hunt you down using your contact information',
+      "This applies to people who can't see your phone number on your profile.",
     url: 'https://www.facebook.com/settings?tab=privacy&section=findphone&view',
-    options: ['Friends', 'Friends of friends', 'Everyone'],
+    options: ['Everyone', 'Friends of Friends', 'Friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
     category: 'Friends',
-    title: 'Who Can Follow Me?',
-    description: 'Strangers won’t be able see your posts in News Feed',
+    title: 'Who should be able to follow you?', // 'Who Can Follow Me?',
+    description:
+      'Followers see your posts in News Feed. Friends follow your posts by default, but you can also allow people who are not your friends to follow your public posts. Use this setting to choose who can follow you.\nEach time you post, you choose which audience you want to share with.',
     url: 'https://www.facebook.com/settings?tab=followers',
-    options: ['Friends', 'Public'],
+    options: ['Public', 'Friends', 'Not sure'],
     scrapeTag: 1 // checked
   },
   {
     category: 'Posts', // changed
-    title: 'Who can comment on your public posts?',
+    title:
+      'In your opinion, who should be able to comment on your public posts?', // 'Who can comment on your public posts?',
     description:
       'Choose who is allowed to comment on your posts. Remember that in addition to who you choose here, anyone tagged in a post and their friends may be able to comment, too.',
     url: 'https://www.facebook.com/settings?tab=followers&section=comment&view',
-    options: ['Friends', 'Friends of Friends', 'Public'],
+    options: ['Friends', 'Friends of Friends', 'Public', 'Not sure'],
     scrapeTag: 2 // checked
   },
   {
     category: 'Posts',
-    title: 'Who can see your future posts?',
+    title: 'Who should be able to see your future posts?', // 'Who can see your future posts?',
     description:
-      'People not friends with you won’t be able to see your posts each time you create a new post',
+      'You decide who can see your posts each time you create a new post. Facebook will use that audience for future posts unless you change it.',
     url: 'https://www.facebook.com/settings?tab=privacy&section=composer&view',
-    options: ['Only me', 'Friends', 'Public'],
+    options: ['Only me', 'Friends', 'Public', 'Not sure'],
     scrapeTag: 3 // checked
   },
   // {
   //   category: 'Posts',
   //   title: 'Who can comment on your public posts?',
   //   url: 'https://www.facebook.com/settings?tab=followers&section=comment&view',
-  //   options: ['Friends', 'Friends of friends', 'Public'],
+  //   options: ['Friends', 'Friends of Friends', 'Public', 'Not sure'],
   //   scrapeTag: 2
   // },
   {
@@ -85,68 +89,64 @@ const questions = [
       "You can get notifications when people who aren't your friends start following you and share, like or comment on your public posts. Turn these notifications on for",
     url:
       'https://www.facebook.com/settings?tab=followers&section=notifications&view',
-    options: ['Nobody', 'Friends of friends', 'Public'],
+    options: ['Public', 'Friends of Friends', 'Nobody', 'Not sure'],
     scrapeTag: 2 // checked
   },
   {
     category: 'Profile & Personal info',
-    title:
-      'Do you want search engines outside of Facebook to link to your profile?',
+    title: 'Should search engines outside of Facebook to link to your profile?', // 'Do you want search engines outside of Facebook to link to your profile?',
     description:
-      'Search engine sites like Google or Yahoo will stop linking to your profile',
+      'When this setting is on, search engines may link to your profile in their results\nWhen this setting is off, search engines will stop linking to your profile, but this may take some time. Your profile can still be found on Facebook if people search for your name',
     url: 'https://www.facebook.com/settings?tab=privacy&section=search&view',
-    options: ['Yes', 'No'],
+    options: ['Yes', 'No', 'Not sure'],
     scrapeTag: 4 // checked
   },
   {
     category: 'Profile & Personal info',
-    title:
-      'Do you want Facebook to be able to recognize you in photos and videos?',
-    description: 'Facebook won’t recommend tagging you in photos',
+    title: 'Should Facebook be able to recognize you in photos and videos?',
     url:
       'https://www.facebook.com/settings?tab=facerec&section=face_recognition&view',
-    options: ['Yes', 'No'],
+    options: ['Yes', 'No', 'Not sure'],
     scrapeTag: 5 // checked
   },
   {
     category: 'Profile & Personal info',
     title:
-      'Who can like or comment on your public profile pictures and other profile info?',
+      'Who should be able to like or comment on your public profile pictures and other profile info?', // 'Who can like or comment on your public profile pictures and other profile info?',
     description:
-      'Strangers being able to hunt you down or discover your interests',
+      'Manage who can like or comment on profile information that is always public, including your profile pictures, profile videos, cover photos, featured photos and updates to your short bio.',
     url:
       'https://www.facebook.com/settings?tab=followers&section=public_profile_media&view',
-    options: ['Friends', 'Friends of Friends', 'Public'],
+    options: ['Public', 'Friends of Friends', 'Friends', 'Not sure'],
     scrapeTag: 2 // checked
   },
   {
     category: 'Timeline & Tags',
-    title: 'Who can post on your timeline?',
-    description: 'Strangers won’t be able to make comments on your timeline',
+    title: 'Who should be allowed to post on your timeline?', // 'Who can post on your timeline?',
     url: 'https://www.facebook.com/settings?tab=timeline&section=posting&view',
-    options: ['Only me', 'Friends'],
+    options: ['Only me', 'Friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
     category: 'Timeline & Tags',
     title:
-      "Review posts you're tagged in before the post appears on your timeline?",
+      "Would you like to review posts that you're tagged in before the posts appear on your timeline?", // "Review posts you're tagged in before the post appears on your timeline?",
     description:
-      'Letting others post on your behalf — at least until you approve each post',
+      "Timeline review controls whether you have to manually approve posts you're tagged in before they go on your timeline. When you have a post to review, just click Timeline review on the left-hand side of your activity log.\nNote: This only controls what's allowed on your timeline. Posts you're tagged in still appear in search, News Feed and other places on Facebook",
     url:
       'https://www.facebook.com/settings?tab=timeline&section=timeline_review&view',
-    options: ['Enabled', 'Disabled'],
+    options: ['Yes', 'No', 'Not sure'],
     scrapeTag: 6 // checked
   },
   {
     category: 'Timeline & Tags',
     title:
-      'Review tags people add to your posts before the tags appear on Facebook?',
+      'Would you like to review tags people add to your posts before the tags appear on Facebook?', // 'Review tags people add to your posts before the tags appear on Facebook?',
     description:
-      'Letting others post on your behalf — at least until you approve each post',
+      "If someone who you aren't friends with adds a tag to your post, you'll still be asked to review it.\nRemember: When you approve a tag, the person tagged and their friends may be able to see your post.",
     url:
       'https://www.facebook.com/settings?tab=timeline&section=tagreview&view',
-    options: ['Enabled', 'Disabled'],
+    options: ['Enabled', 'Disabled', 'Not sure'],
     scrapeTag: 6 // checked
   },
   {
@@ -154,50 +154,58 @@ const questions = [
     title:
       "When you're tagged in a post, who do you want to add to the audience of the post if they can't already see it?",
     description:
-      'People won’t be able to see these posts in places like News Feed and search',
+      "They'll be able to see these posts in places such as News Feed and search.",
     url:
       'https://www.facebook.com/settings?tab=timeline&section=expansion&view',
-    options: ['Only me', 'Friends'],
+    options: ['Only me', 'Friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
     category: 'Timeline & Tags',
-    title: "Who can see posts you're tagged in on your timeline?",
-    url: 'https://www.facebook.com/settings?tab=timeline&section=tagging&view',
-    options: ['Only me', 'Friends', 'Friends of Friends', 'Everyone'],
-    scrapeTag: 0 // checked
-  },
-  {
-    category: 'Ads',
-    title: 'Ads based on data from partners',
-    description:
-      'You may see ads based on your browsing history or online orders',
-    url:
-      'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
-    options: ['Allowed', 'Not allowed'],
-    scrapeTag: 7 // wait
-  },
-  {
-    category: 'Ads',
     title:
-      'Ads based on your activity on Facebook Company Products that you see elsewhere',
-    description:
-      'More "relevant" ads, which is more of a problem for advertisers than for you',
-    url:
-      'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
-    options: ['Yes', 'No'],
-    scrapeTag: 8
-  },
-  {
-    category: 'Ads',
-    title: 'Ads that include your social actions',
-    description:
-      'Your friends will not see ads based on actions you take, such as liking a page or sharing a post',
-    url:
-      'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
-    options: ['Only my friends', 'No one'],
-    scrapeTag: 9
+      "Who should be able to see posts that you're tagged in on your timeline?", // "Who can see posts that you're tagged in on your timeline?",
+    url: 'https://www.facebook.com/settings?tab=timeline&section=tagging&view',
+    options: [
+      'Everyone',
+      'Friends of Friends',
+      'Friends',
+      'Only me',
+      'Not sure'
+    ],
+    scrapeTag: 0 // checked
   }
+  // ,
+  // {
+  //   category: 'Ads',
+  //   title: 'Ads based on data from partners',
+  //   description:
+  //     'You may see ads based on your browsing history or online orders',
+  //   url:
+  //     'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
+  //   options: ['Allowed', 'Not allowed', 'Not sure'],
+  //   scrapeTag: 7 // wait
+  // },
+  // {
+  //   category: 'Ads',
+  //   title:
+  //     'Ads based on your activity on Facebook Company Products that you see elsewhere',
+  //   description:
+  //     'More "relevant" ads, which is more of a problem for advertisers than for you',
+  //   url:
+  //     'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
+  //   options: ['Yes', 'No', 'Not sure'],
+  //   scrapeTag: 8
+  // },
+  // {
+  //   category: 'Ads',
+  //   title: 'Ads that include your social actions',
+  //   description:
+  //     'Your friends will not see ads based on actions you take, such as liking a page or sharing a post',
+  //   url:
+  //     'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
+  //   options: ['Only my friends', 'No one', 'Not sure'],
+  //   scrapeTag: 9
+  // }
 ];
 
 export default questions;
