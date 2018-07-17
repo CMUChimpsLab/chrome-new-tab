@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 3:09:23 pm
+ * Last Modified: Tue Jul 17 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -64,14 +64,15 @@ export class Question extends Component {
     );
   };
 
-  getStats = () => {
+
+  getStats = () => {  
     const getPercent = opt => {
       const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
       return parseInt(p, 10);
     };
     const ops = this.props.question.options.map(opt => ({
-      x: opt.title,
-      y: getPercent(opt)
+      x:getPercent(opt),
+      y:opt.title,
     }));
     return [
       {
@@ -191,10 +192,12 @@ export class Question extends Component {
 
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
-
-    // FIXME: diplay something else when first person votes
     const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
-
+    const getPercent = opt => {
+      const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
+      return parseInt(p, 10);
+    };
+      
     return (
       <div>
         <p className="ans">
@@ -217,8 +220,9 @@ export class Question extends Component {
           <BarChart
             data={this.getStats()}
             width={400}
+            // chartSeries={chartSeries}
             height={200}
-            margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
+            margin={{ top: 20, bottom: 20, left: 30, right:10}}
           />
         </p>
         {/* {this.props.question.totalVotes > 0 && this.renderStats()} */}
@@ -294,18 +298,6 @@ export class Question extends Component {
   );
 
   renderStats = () => {
-    const chartSeries = [
-      {
-        color: '#ff7f0e',
-        style: {
-          'stroke-width': 2,
-          'stroke-opacity': 0.2,
-          'fill-opacity': 0.2
-        }
-      }
-    ];
-    const yLabel = 'percentage';
-    const xLabel = 'option';
     return (
       <div>
         <BarChart
