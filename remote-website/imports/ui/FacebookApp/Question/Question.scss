@@ -37,13 +37,14 @@
   background-color: #fafaf2;
   font-size: 1.2em;
   padding: 10px;
-  color: #909999;
+  color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
+  animation: appear 600ms ease-out forwards;
 }
 
 .current-important {
-  color: #95A5A6;
+  color: #ee9b66;
   font-size: 1.4em;
   font-weight: 600;
 }
@@ -54,7 +55,7 @@
   padding: 10px;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
-  animation: appear 500ms ease-out forwards;
+  animation: appear 600ms ease-out forwards;
 }
 
 .ans-important {
@@ -62,6 +63,7 @@
   font-weight: 600;
   color: $opt-highlight;
 }
+
 
 .action-buttons {
   text-align: right;
@@ -104,10 +106,10 @@
     transform:scale(0);
   }
   50% {
-    transform:scale(1.02)
+    transform:scale(1.01)
   }
   75% {
-    transform:scale(0.98)
+    transform:scale(0.99)
   }
   100% {
    transform:scale(1)
