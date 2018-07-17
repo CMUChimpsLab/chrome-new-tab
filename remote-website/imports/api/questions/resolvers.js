@@ -38,7 +38,7 @@ export default {
       //   return 0;
     },
     topOption: question =>
-      Options.findOne({ questionId: question._id }, { $orderby: { count: -1 } })
+      Options.findOne({ questionId: question._id }, { sort: { count: -1 } })
   },
 
   Mutation: {

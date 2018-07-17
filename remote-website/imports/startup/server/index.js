@@ -40,7 +40,7 @@ if (Meteor.isServer) {
       },
       hasCookies(guid) {
         check(guid, String);
-        return Users.findOne({ guid }).facebook_cookie != null;
+        return true; // Users.findOne({ guid }).facebook_cookie !== undefined;
       }
     });
 
