@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 16th July 2018 6:34:23 pm
+ * Last Modified: Tuesday, 17th July 2018 11:58:03 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -94,9 +94,9 @@ const questions = [
   },
   {
     category: 'Profile & Personal info',
-    title: 'Should search engines outside of Facebook to link to your profile?', // 'Do you want search engines outside of Facebook to link to your profile?',
+    title: 'Should search engines outside of Facebook link to your profile?', // 'Do you want search engines outside of Facebook to link to your profile?',
     description:
-      'When this setting is on, search engines may link to your profile in their results\nWhen this setting is off, search engines will stop linking to your profile, but this may take some time. Your profile can still be found on Facebook if people search for your name',
+      'When this setting is on, search engines may link to your profile in their results. When this setting is off, search engines will stop linking to your profile, but this may take some time. Your profile can still be found on Facebook if people search for your name.',
     url: 'https://www.facebook.com/settings?tab=privacy&section=search&view',
     options: ['Yes', 'No', 'Not sure'],
     scrapeTag: 4 // checked
