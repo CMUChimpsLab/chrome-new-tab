@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 16th July 2018 12:19:33 pm
+ * Last Modified: Monday, 16th July 2018 5:19:21 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -219,24 +219,8 @@ export class Question extends Component {
             </span>
           )}
         </p>
-        <div className="action-buttons">
-          <button
-            id="action-next"
-            onClick={() =>
-              this.props.submitVote(this.props.question, this.state.votedOption)
-            }
-          >
-            Next Question
-          </button>
-          {/* <br /> */}
-          <button
-            onClick={() => this.loginAndRedirect(this.props.question.url)}
-            id="action-fb"
-          >
-            Change my setting on Facebook
-          </button>
-        </div>
         {this.renderStats()}
+        {this.renderActionButtons()}
       </div>
     );
   };
@@ -264,6 +248,26 @@ export class Question extends Component {
       votedOption: option
     });
   };
+
+  renderActionButtons = () => (
+    <div className="action-buttons">
+      <button
+        id="action-next"
+        onClick={() =>
+          this.props.submitVote(this.props.question, this.state.votedOption)
+        }
+      >
+        Next Question
+      </button>
+      {/* <br /> */}
+      <button
+        onClick={() => this.loginAndRedirect(this.props.question.url)}
+        id="action-fb"
+      >
+        Change my setting on Facebook
+      </button>
+    </div>
+  );
 
   renderStats = () => (
     <div>

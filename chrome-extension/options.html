@@ -4,23 +4,65 @@
 <head>
   <title>Home | SocialSafety</title>
   <style>
-    button {
-      height: 30px;
-      width: 30px;
-      outline: none;
-      margin: 10px;
+    body {
+      margin: 0px;
+      box-sizing: border-box;
+      font-family: 'Source Sans Pro', sans-serif;
+      background: #6190e8; /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #6190e8, #a7bfe8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   
     }
-    .wrapper {
+
+    .header {
+      /* background-color: yellow; */
+      width: 100vw;
+      align-items: center;
       display: flex;
+      flex-flow: column nowrap;
+      color: #fff;
+   }
+
+    .header-text {
+      margin-top: 20vh;
+      text-align: center;
+
     }
-    .inner {
-      margin: auto;
+    
+    .header-text h1 {
+      font-size: 35px;
+      font-weight: 300;
+      text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
     }
+
+    .fb-login {
+      width: 80vh;
+      margin: 3% auto;
+      background-color: rgba(255, 255, 255, 0.5);
+      box-shadow: -5px 5px 0px rgba(206, 223, 239, 0.3);
+      padding: 2%;
+      font-size: 15px;
+      text-align: center;
+    }
+
   </style>
 </head>
 
 <body>
-  <div class="wrapper">
+
+  <div class="row header">
+    <div class="header-text"><h1>Getting started on Chrome New Tab</h1></div>
+  </div>
+  <div class="row">
+    <div class="fb-login">
+      <p>To use our feature to manage your Facebook privacy settings, 
+      <br>please log into Facebook</p>
+      <button onclick="">Log into Facebook</button>
+    </div>
+
+  </div>
+
+  <!-- <div class="wrapper">
     <div class="inner">
         <div id="buttonDiv"> </div>
         <div id='guid'></div>
@@ -31,7 +73,7 @@
           <input type="button" id="submit" value="Submit email">
         </form>
     </div>
-  </div>
+  </div> -->
   
 </body>
 <script src="options.js"></script>
