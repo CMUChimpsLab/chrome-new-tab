@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 9:14:04 am
+ * Last Modified: Tuesday, 17th July 2018 9:59:04 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -261,6 +261,8 @@ export class Question extends Component {
   };
 
   renderCurrentOption = () => {
+    const hasCookies = Meteor.call('hasCookies', this.props.userGuid);
+    console.log(`user has cookies: ${hasCookies}`);
     if (this.state.currentOption) {
       return (
         <p>
