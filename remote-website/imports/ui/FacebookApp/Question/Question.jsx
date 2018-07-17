@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 3:09:23 pm
+ * Last Modified: Tue Jul 17 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -69,10 +69,12 @@ export class Question extends Component {
       const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
       return parseInt(p, 10);
     };
-    const ops = this.props.question.options.map(opt => ({
-      x: opt.title,
-      y: getPercent(opt)
-    }));
+    const ops = this.props.question.options
+      .filter(opt => opt.title !== 'Not sure')
+      .map(opt => ({
+        x: opt.title,
+        y: getPercent(opt)
+      }));
     return [
       {
         label: 'somethingA', // not sure what this is for lol
