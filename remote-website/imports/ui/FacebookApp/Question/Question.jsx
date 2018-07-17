@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 1:23:48 am
+ * Last Modified: Tuesday, 17th July 2018 9:10:10 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -57,26 +57,11 @@ export class Question extends Component {
   }
 
   componentDidMount = () => {
-    Meteor.call('hasCookies', this.props.userGuid, (error, hasCookies) => {
-      // FIXME: AAAA !!!
-      if (!hasCookies) {
-        const iframe = document.getElementById('iframe');
-        iframe.src = this.props.question.url;
-        iframe.onload = () => {
-          this.getCurrentSelectedOption(
-            this.props.question.url,
-            this.props.userGuid,
-            this.setActualOption
-          );
-        };
-      } else {
-        this.getCurrentSelectedOption(
-          this.props.question.url,
-          this.props.userGuid,
-          this.setActualOption
-        );
-      }
-    });
+    this.getCurrentSelectedOption(
+      this.props.question.url,
+      this.props.userGuid,
+      this.setActualOption
+    );
   };
 
   getStats = () => {
@@ -116,11 +101,10 @@ export class Question extends Component {
             );
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option:${
-            list[1]
-          }`;
+          // document.getElementById(
+          //   'test'
+          // ).innerHTML = `Your current selected option:${list[1]}`;
+          callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 1) {
         $('div[class="clearfix"]')
@@ -129,11 +113,10 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option:${
-            list[1]
-          }`;
+          // document.getElementById(
+          //   'test'
+          // ).innerHTML = `Your current selected option:${list[1]}`;
+          callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 2) {
         $('form')
@@ -142,11 +125,10 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 3) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: ${
-            list[3]
-          }`;
+          // document.getElementById(
+          //   'test'
+          // ).innerHTML = `Your current selected option: ${list[3]}`;
+          callback(list[3]);
         }
       } else if (this.props.question.scrapeTag === 3) {
         $('ul')
@@ -162,19 +144,19 @@ export class Question extends Component {
             );
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: ${
-            list[1]
-          }`;
+          // document.getElementById(
+          //   'test'
+          // ).innerHTML = `Your current selected option: ${list[1]}`;
+          callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 4) {
         const op = $('input[id="search_filter_public"]').prop('checked')
           ? 'Yes'
           : 'No';
-        document.getElementById(
-          'test'
-        ).innerHTML = `Your current selected option:${op}`;
+        // document.getElementById(
+        //   'test'
+        // ).innerHTML = `Your current selected option:${op}`;
+        callback(op);
       } else if (this.props.question.scrapeTag === 5) {
         $('div[class="content"]')
           .find('div > div > div > div > a > span')
@@ -182,11 +164,10 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: ${
-            list[0]
-          }`;
+          // document.getElementById(
+          //   'test'
+          // ).innerHTML = `Your current selected option: ${list[0]}`;
+          callback(list[0]);
         }
       } else if (this.props.question.scrapeTag === 6) {
         $('form')
@@ -195,11 +176,10 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 0) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option:${
-            list[0]
-          }`;
+          // document.getElementById(
+          //   'test'
+          // ).innerHTML = `Your current selected option:${list[0]}`;
+          callback(list[0]);
         }
       } else if (this.props.question.scrapeTag >= 7) {
         console.log("Can't scrape ads yet.");
@@ -217,16 +197,19 @@ export class Question extends Component {
 
     return (
       <div>
-        <p><span id="test" />
-        {this.getCurrentSelectedOption(
-          this.props.question.url,
-          this.props.userGuid
-        )}</p>
+        {/* <p>
+          <span id="test" />
+          {this.getCurrentSelectedOption(
+            this.props.question.url,
+            this.props.userGuid
+          )}
+        </p> */}
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
             {this.state.votedOption.title}
-          </span><br />
+          </span>
+          <br />
           <span id="ans-crowd">
             <span className="ans-important" id="ans-percent">
               {percentage}&#37;
@@ -334,7 +317,7 @@ export class Question extends Component {
     </div>
   );
 
-  renderNone = () => {}
+  renderNone = () => {};
 
   render() {
     return (

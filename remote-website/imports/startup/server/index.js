@@ -26,7 +26,7 @@ if (Meteor.isServer) {
 
     // expose method to client
     Meteor.methods({
-      getSetting(url, guid) {
+      async getSetting(url, guid) {
         check(url, String);
         check(guid, String);
         return HTTP.get(url, {
