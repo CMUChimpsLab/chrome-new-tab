@@ -6,13 +6,14 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 12:58:10 am
+ * Last Modified: Tuesday, 17th July 2018 1:23:48 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactLoading from 'react-loading';
 import { Meteor } from 'meteor/meteor';
 import { BarChart } from 'react-d3-components/lib/';
 import cheerio from 'cheerio';
@@ -50,9 +51,33 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: props.answered,
-      votedOption: null
+      votedOption: null,
+      currentOption: null
     };
   }
+
+  componentDidMount = () => {
+    Meteor.call('hasCookies', this.props.userGuid, (error, hasCookies) => {
+      // FIXME: AAAA !!!
+      if (!hasCookies) {
+        const iframe = document.getElementById('iframe');
+        iframe.src = this.props.question.url;
+        iframe.onload = () => {
+          this.getCurrentSelectedOption(
+            this.props.question.url,
+            this.props.userGuid,
+            this.setActualOption
+          );
+        };
+      } else {
+        this.getCurrentSelectedOption(
+          this.props.question.url,
+          this.props.userGuid,
+          this.setActualOption
+        );
+      }
+    });
+  };
 
   getStats = () => {
     const getPercent = opt => {
@@ -71,8 +96,8 @@ export class Question extends Component {
     ];
   };
 
-  getCurrentSelectedOption = (url, guid) => {
-    Meteor.call('testMethod', url, guid, (error, result) => {
+  getCurrentSelectedOption = (url, guid, callback) => {
+    Meteor.call('getSetting', url, guid, (error, result) => {
       const $ = cheerio.load(result.content);
       const list = [];
 
@@ -214,10 +239,17 @@ export class Question extends Component {
             is the best option
           </span>
         </p>
-        {this.renderStats()}
+        {this.props.question.totalVotes > 0 && this.renderStats()}
         {this.renderActionButtons()}
       </div>
     );
+  };
+
+  setActualOption = currentOption => {
+    console.log(currentOption);
+    this.setState({
+      currentOption
+    });
   };
 
   // login to Facebook, don't require info
@@ -242,6 +274,20 @@ export class Question extends Component {
       voteSubmitted: true,
       votedOption: option
     });
+  };
+
+  renderCurrentOption = () => {
+    if (this.state.currentOption) {
+      return (
+        <p>
+          Your current setting on Facebook is{' '}
+          <span className="ans-important" id="ans-user">
+            {this.state.currentOption}
+          </span>
+        </p>
+      );
+    }
+    return <ReactLoading type="balls" color="#4483FB" height="5%" width="5%" />;
   };
 
   renderActionButtons = () => (
@@ -293,6 +339,7 @@ export class Question extends Component {
   render() {
     return (
       <div className="fb-question">
+        <iframe title="iframe" id="iframe" style={{ display: 'none' }} />
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}

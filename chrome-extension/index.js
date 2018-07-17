@@ -13,6 +13,12 @@ function showIframe(iframeElement) {
   }
 }
 
+// TODO: Focus on input on window load
+// window.addEventListener('load', () => {
+//   document.getElementById("input").focus();
+// } , false );
+
+
 chrome.storage.sync.get('guid', function(data) {
   document.getElementById('facebook-app').innerHTML =
     '<div class="section-iframe"><iframe style="visibility: initial " iframeBorder="0" src="'+SERVER_URL+'/facebookapp/' +
