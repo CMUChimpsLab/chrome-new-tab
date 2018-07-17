@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 1:23:48 am
+ * Last Modified: Tuesday, 17th July 2018 10:04:42 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -118,9 +118,7 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option:${
-            list[1]
-          }`;
+          ).innerHTML = `Your current selected option: ${list[1]}`;
         }
       } else if (this.props.question.scrapeTag === 1) {
         $('div[class="clearfix"]')
@@ -131,9 +129,7 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option:${
-            list[1]
-          }`;
+          ).innerHTML = `Your current selected option: ${list[1]}`;
         }
       } else if (this.props.question.scrapeTag === 2) {
         $('form')
@@ -144,9 +140,7 @@ export class Question extends Component {
         if (list.length > 3) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: ${
-            list[3]
-          }`;
+          ).innerHTML = `Your current selected option: ${list[3]}`;
         }
       } else if (this.props.question.scrapeTag === 3) {
         $('ul')
@@ -164,9 +158,7 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: ${
-            list[1]
-          }`;
+          ).innerHTML = `Your current selected option: ${list[1]}`;
         }
       } else if (this.props.question.scrapeTag === 4) {
         const op = $('input[id="search_filter_public"]').prop('checked')
@@ -174,7 +166,7 @@ export class Question extends Component {
           : 'No';
         document.getElementById(
           'test'
-        ).innerHTML = `Your current selected option:${op}`;
+        ).innerHTML = `Your current selected option: ${op}`;
       } else if (this.props.question.scrapeTag === 5) {
         $('div[class="content"]')
           .find('div > div > div > div > a > span')
@@ -184,9 +176,7 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: ${
-            list[0]
-          }`;
+          ).innerHTML = `Your current selected option: ${list[0]}`;
         }
       } else if (this.props.question.scrapeTag === 6) {
         $('form')
@@ -197,9 +187,7 @@ export class Question extends Component {
         if (list.length > 0) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option:${
-            list[0]
-          }`;
+          ).innerHTML = `Your current selected option: ${list[0]}`;
         }
       } else if (this.props.question.scrapeTag >= 7) {
         console.log("Can't scrape ads yet.");
@@ -217,16 +205,19 @@ export class Question extends Component {
 
     return (
       <div>
-        <p><span id="test" />
-        {this.getCurrentSelectedOption(
-          this.props.question.url,
-          this.props.userGuid
-        )}</p>
+        <p className="current">
+          <span id="test" />
+          {this.getCurrentSelectedOption(
+            this.props.question.url,
+            this.props.userGuid
+          )}
+        </p>
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
             {this.state.votedOption.title}
-          </span><br />
+          </span>
+          <br />
           <span id="ans-crowd">
             <span className="ans-important" id="ans-percent">
               {percentage}&#37;
@@ -310,16 +301,33 @@ export class Question extends Component {
     </div>
   );
 
-  renderStats = () => (
-    <div>
-      <BarChart
-        data={this.getStats()}
-        width={400}
-        height={200}
-        margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
-      />
-    </div>
-  );
+  renderStats = () => {
+    const chartSeries = [
+      {
+        color: '#ff7f0e',
+        style: {
+          'stroke-width': 2,
+          'stroke-opacity': 0.2,
+          'fill-opacity': 0.2
+        }
+      }
+    ];
+    const yLabel = 'percentage';
+    const xLabel = 'option';
+    return (
+      <div>
+        <BarChart
+          data={this.getStats()}
+          width={400}
+          height={200}
+          chartSeries={chartSeries}
+          xLabel={xLabel}
+          yLabel={yLabel}
+          margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+        />
+      </div>
+    );
+  };
 
   // renders each option
   renderUnvoted = () => (
@@ -334,7 +342,7 @@ export class Question extends Component {
     </div>
   );
 
-  renderNone = () => {}
+  renderNone = () => {};
 
   render() {
     return (

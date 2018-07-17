@@ -32,6 +32,14 @@
   margin-right: 20px;
 }
 
+.current {
+  background-color:#fffee5;
+  font-size: 1.2em;
+  padding: 10px;
+  align-items: baseline;
+  box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
+}
+
 .ans {
   background-color: white;
   font-size: 1.2em;
@@ -40,6 +48,8 @@
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
   animation: appear 500ms ease-out forwards;
 }
+
+
 
 .ans-important {
   font-size: 1.8em;
