@@ -6,13 +6,14 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 16th July 2018 5:19:21 pm
+ * Last Modified: Monday, 16th July 2018 9:32:24 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactLoading from 'react-loading';
 import { Meteor } from 'meteor/meteor';
 import { BarChart } from 'react-d3-components/lib/';
 import cheerio from 'cheerio';
@@ -50,9 +51,33 @@ export class Question extends Component {
 
     this.state = {
       voteSubmitted: props.answered,
-      votedOption: null
+      votedOption: null,
+      currentOption: null
     };
   }
+
+  componentDidMount = () => {
+    Meteor.call('hasCookies', this.props.userGuid, (error, hasCookies) => {
+      // FIXME: AAAA !!!
+      if (!hasCookies) {
+        const iframe = document.getElementById('iframe');
+        iframe.src = this.props.question.url;
+        iframe.onload = () => {
+          this.getCurrentSelectedOption(
+            this.props.question.url,
+            this.props.userGuid,
+            this.setActualOption
+          );
+        };
+      } else {
+        this.getCurrentSelectedOption(
+          this.props.question.url,
+          this.props.userGuid,
+          this.setActualOption
+        );
+      }
+    });
+  };
 
   getStats = () => {
     const getPercent = opt => {
@@ -71,8 +96,8 @@ export class Question extends Component {
     ];
   };
 
-  getCurrentSelectedOption = (url, guid) => {
-    Meteor.call('testMethod', url, guid, (error, result) => {
+  getCurrentSelectedOption = (url, guid, callback) => {
+    Meteor.call('getSetting', url, guid, (error, result) => {
       const $ = cheerio.load(result.content);
       const list = [];
 
@@ -91,11 +116,7 @@ export class Question extends Component {
             );
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: <strong>${
-            list[1]
-          }</strong>`;
+          callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 1) {
         $('div[class="clearfix"]')
@@ -104,11 +125,7 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: <strong>${
-            list[1]
-          }</strong>`;
+          callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 2) {
         $('form')
@@ -117,11 +134,7 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 3) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: <strong>${
-            list[3]
-          }</strong>`;
+          callback(list[3]);
         }
       } else if (this.props.question.scrapeTag === 3) {
         $('ul')
@@ -137,19 +150,13 @@ export class Question extends Component {
             );
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: <strong>${
-            list[1]
-          }</strong>`;
+          callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 4) {
         const op = $('input[id="search_filter_public"]').prop('checked')
           ? 'Yes'
           : 'No';
-        document.getElementById(
-          'test'
-        ).innerHTML = `Your current selected option: <strong>${op}</strong>`;
+        callback(op);
       } else if (this.props.question.scrapeTag === 5) {
         $('div[class="content"]')
           .find('div > div > div > div > a > span')
@@ -157,11 +164,7 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 1) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: <strong>${
-            list[0]
-          }</strong>`;
+          callback(list[0]);
         }
       } else if (this.props.question.scrapeTag === 6) {
         $('form')
@@ -170,11 +173,7 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 0) {
-          document.getElementById(
-            'test'
-          ).innerHTML = `Your current selected option: <strong>${
-            list[0]
-          }</strong>`;
+          callback(list[0]);
         }
       } else if (this.props.question.scrapeTag >= 7) {
         console.log("Can't scrape ads yet.");
@@ -204,6 +203,8 @@ export class Question extends Component {
             {this.state.votedOption.title}
           </span>
           <br />
+          {this.renderCurrentOption()}
+          <br />
           {/* in case there are no votes for this question */}
           {percentage > 0 && (
             <span>
@@ -219,10 +220,17 @@ export class Question extends Component {
             </span>
           )}
         </p>
-        {this.renderStats()}
+        {this.props.question.totalVotes > 0 && this.renderStats()}
         {this.renderActionButtons()}
       </div>
     );
+  };
+
+  setActualOption = currentOption => {
+    console.log(currentOption);
+    this.setState({
+      currentOption
+    });
   };
 
   // login to Facebook, don't require info
@@ -247,6 +255,20 @@ export class Question extends Component {
       voteSubmitted: true,
       votedOption: option
     });
+  };
+
+  renderCurrentOption = () => {
+    if (this.state.currentOption) {
+      return (
+        <p>
+          Your current setting on Facebook is{' '}
+          <span className="ans-important" id="ans-user">
+            {this.state.currentOption}
+          </span>
+        </p>
+      );
+    }
+    return <ReactLoading type="balls" color="#4483FB" height="5%" width="5%" />;
   };
 
   renderActionButtons = () => (
@@ -296,14 +318,10 @@ export class Question extends Component {
   render() {
     return (
       <div className="fb-question">
+        <iframe title="iframe" id="iframe" style={{ display: 'none' }} />
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
-        <div id="test" />
-        {this.getCurrentSelectedOption(
-          this.props.question.url,
-          this.props.userGuid
-        )}
       </div>
     );
   }

@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 16th July 2018 12:20:24 pm
+ * Last Modified: Monday, 16th July 2018 6:34:23 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -188,9 +188,11 @@ const questions = [
   // {
   //   category: 'Ads',
   //   title:
-  //     'Ads based on your activity on Facebook Company Products that you see elsewhere',
+  //     'Ads based on your activity on Facebook Company Products that you
+  // see elsewhere',
   //   description:
-  //     'More "relevant" ads, which is more of a problem for advertisers than for you',
+  //     'More "relevant" ads, which is more of a problem for advertisers than
+  // for you',
   //   url:
   //     'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
   //   options: ['Yes', 'No', 'Not sure'],
@@ -200,7 +202,8 @@ const questions = [
   //   category: 'Ads',
   //   title: 'Ads that include your social actions',
   //   description:
-  //     'Your friends will not see ads based on actions you take, such as liking a page or sharing a post',
+  //     'Your friends will not see ads based on actions you take, such as
+  // liking a page or sharing a post',
   //   url:
   //     'https://www.facebook.com/ads/preferences/?entry_product=ad_settings_screen',
   //   options: ['Only my friends', 'No one', 'Not sure'],
