@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 16th July 2018 5:19:21 pm
+ * Last Modified: Tuesday, 17th July 2018 12:58:10 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -93,9 +93,9 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: <strong>${
+          ).innerHTML = `Your current selected option:${
             list[1]
-          }</strong>`;
+          }`;
         }
       } else if (this.props.question.scrapeTag === 1) {
         $('div[class="clearfix"]')
@@ -106,9 +106,9 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: <strong>${
+          ).innerHTML = `Your current selected option:${
             list[1]
-          }</strong>`;
+          }`;
         }
       } else if (this.props.question.scrapeTag === 2) {
         $('form')
@@ -119,9 +119,9 @@ export class Question extends Component {
         if (list.length > 3) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: <strong>${
+          ).innerHTML = `Your current selected option: ${
             list[3]
-          }</strong>`;
+          }`;
         }
       } else if (this.props.question.scrapeTag === 3) {
         $('ul')
@@ -139,9 +139,9 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: <strong>${
+          ).innerHTML = `Your current selected option: ${
             list[1]
-          }</strong>`;
+          }`;
         }
       } else if (this.props.question.scrapeTag === 4) {
         const op = $('input[id="search_filter_public"]').prop('checked')
@@ -149,7 +149,7 @@ export class Question extends Component {
           : 'No';
         document.getElementById(
           'test'
-        ).innerHTML = `Your current selected option: <strong>${op}</strong>`;
+        ).innerHTML = `Your current selected option:${op}`;
       } else if (this.props.question.scrapeTag === 5) {
         $('div[class="content"]')
           .find('div > div > div > div > a > span')
@@ -159,9 +159,9 @@ export class Question extends Component {
         if (list.length > 1) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: <strong>${
+          ).innerHTML = `Your current selected option: ${
             list[0]
-          }</strong>`;
+          }`;
         }
       } else if (this.props.question.scrapeTag === 6) {
         $('form')
@@ -172,9 +172,9 @@ export class Question extends Component {
         if (list.length > 0) {
           document.getElementById(
             'test'
-          ).innerHTML = `Your current selected option: <strong>${
+          ).innerHTML = `Your current selected option:${
             list[0]
-          }</strong>`;
+          }`;
         }
       } else if (this.props.question.scrapeTag >= 7) {
         console.log("Can't scrape ads yet.");
@@ -192,32 +192,27 @@ export class Question extends Component {
 
     return (
       <div>
-        {/* <iframe
-          title="facebook"
-          id="iframe"
-          frameBorder="0"
-          sandbox="allow-same-origin allow-scripts"
-        /> */}
+        <p><span id="test" />
+        {this.getCurrentSelectedOption(
+          this.props.question.url,
+          this.props.userGuid
+        )}</p>
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
             {this.state.votedOption.title}
-          </span>
-          <br />
-          {/* in case there are no votes for this question */}
-          {percentage > 0 && (
-            <span>
-              <span className="ans-important" id="ans-percent">
-                {percentage}&#37;
-              </span>{' '}
-              of people think
-              <span className="ans-important" id="ans-crowd">
-                {' '}
-                {topOption.title}{' '}
-              </span>
-              is the best option
+          </span><br />
+          <span id="ans-crowd">
+            <span className="ans-important" id="ans-percent">
+              {percentage}&#37;
+            </span>{' '}
+            of people think
+            <span className="ans-important" id="ans-crowd">
+              {' '}
+              {topOption.title}{' '}
             </span>
-          )}
+            is the best option
+          </span>
         </p>
         {this.renderStats()}
         {this.renderActionButtons()}
@@ -274,7 +269,7 @@ export class Question extends Component {
       <BarChart
         data={this.getStats()}
         width={400}
-        height={300}
+        height={200}
         margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
       />
     </div>
@@ -293,17 +288,14 @@ export class Question extends Component {
     </div>
   );
 
+  renderNone = () => {}
+
   render() {
     return (
       <div className="fb-question">
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
-        <div id="test" />
-        {this.getCurrentSelectedOption(
-          this.props.question.url,
-          this.props.userGuid
-        )}
       </div>
     );
   }
