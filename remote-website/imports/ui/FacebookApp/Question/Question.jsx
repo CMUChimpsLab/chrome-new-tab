@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 9:10:10 am
+ * Last Modified: Tuesday, 17th July 2018 9:12:05 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -293,16 +293,33 @@ export class Question extends Component {
     </div>
   );
 
-  renderStats = () => (
-    <div>
-      <BarChart
-        data={this.getStats()}
-        width={400}
-        height={200}
-        margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
-      />
-    </div>
-  );
+  renderStats = () => {
+    const chartSeries = [
+      {
+        color: '#ff7f0e',
+        style: {
+          'stroke-width': 2,
+          'stroke-opacity': 0.2,
+          'fill-opacity': 0.2
+        }
+      }
+    ];
+    const yLabel = 'percentage';
+    const xLabel = 'option';
+    return (
+      <div>
+        <BarChart
+          data={this.getStats()}
+          width={400}
+          height={200}
+          chartSeries={chartSeries}
+          xLabel={xLabel}
+          yLabel={yLabel}
+          margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+        />
+      </div>
+    );
+  };
 
   // renders each option
   renderUnvoted = () => (
