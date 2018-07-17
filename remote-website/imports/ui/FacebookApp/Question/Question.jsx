@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 1:01:50 pm
+ * Last Modified: Tuesday, 17th July 2018 3:06:48 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -197,13 +197,6 @@ export class Question extends Component {
 
     return (
       <div>
-        {/* <p>
-          <span id="test" />
-          {this.getCurrentSelectedOption(
-            this.props.question.url,
-            this.props.userGuid
-          )}
-        </p> */}
         {this.renderCurrentOption()}
         <p className="ans">
           Your have selected{' '}
@@ -222,9 +215,14 @@ export class Question extends Component {
             </span>
             is the best option
           </span>
+          <BarChart
+            data={this.getStats()}
+            width={400}
+            height={200}
+            margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
+          />
         </p>
-        {this.props.question.totalVotes > 0 && this.renderStats()}
-
+        {/* {this.props.question.totalVotes > 0 && this.renderStats()} */}
         {this.renderActionButtons()}
       </div>
     );
@@ -312,10 +310,7 @@ export class Question extends Component {
           data={this.getStats()}
           width={400}
           height={200}
-          chartSeries={chartSeries}
-          xLabel={xLabel}
-          yLabel={yLabel}
-          margin={{ top: 10, bottom: 50, left: 50, right: 10 }}
+          margin={{ top: 20, bottom: 0, left: 20, right: 0 }}
         />
       </div>
     );
