@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 3:07:56 pm
+ * Last Modified: Tuesday, 17th July 2018 3:09:23 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -197,7 +197,6 @@ export class Question extends Component {
 
     return (
       <div>
-        {this.renderCurrentOption()}
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
@@ -223,6 +222,7 @@ export class Question extends Component {
           />
         </p>
         {/* {this.props.question.totalVotes > 0 && this.renderStats()} */}
+        {this.renderCurrentOption()}
         {this.renderActionButtons()}
       </div>
     );
