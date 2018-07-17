@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 9:12:05 am
+ * Last Modified: Tuesday, 17th July 2018 9:14:04 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -204,6 +204,7 @@ export class Question extends Component {
             this.props.userGuid
           )}
         </p> */}
+        {this.renderCurrentOption()}
         <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
