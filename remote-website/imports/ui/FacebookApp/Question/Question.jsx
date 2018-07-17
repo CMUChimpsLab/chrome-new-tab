@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 9:14:04 am
+ * Last Modified: Tuesday, 17th July 2018 1:01:50 pm
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -224,6 +224,7 @@ export class Question extends Component {
           </span>
         </p>
         {this.props.question.totalVotes > 0 && this.renderStats()}
+
         {this.renderActionButtons()}
       </div>
     );
@@ -263,11 +264,9 @@ export class Question extends Component {
   renderCurrentOption = () => {
     if (this.state.currentOption) {
       return (
-        <p>
+        <p className="current">
           Your current setting on Facebook is{' '}
-          <span className="ans-important" id="ans-user">
-            {this.state.currentOption}
-          </span>
+          <span className="current-important">{this.state.currentOption}</span>
         </p>
       );
     }
