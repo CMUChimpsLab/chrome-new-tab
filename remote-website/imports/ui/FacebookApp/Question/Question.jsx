@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 17th July 2018 9:59:04 am
+ * Last Modified: Tuesday, 17th July 2018 10:38:07 am
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -224,6 +224,7 @@ export class Question extends Component {
           </span>
         </p>
         {this.props.question.totalVotes > 0 && this.renderStats()}
+
         {this.renderActionButtons()}
       </div>
     );
@@ -265,11 +266,9 @@ export class Question extends Component {
     console.log(`user has cookies: ${hasCookies}`);
     if (this.state.currentOption) {
       return (
-        <p>
+        <p className="current">
           Your current setting on Facebook is{' '}
-          <span className="ans-important" id="ans-user">
-            {this.state.currentOption}
-          </span>
+          <span className="current-important">{this.state.currentOption}</span>
         </p>
       );
     }
