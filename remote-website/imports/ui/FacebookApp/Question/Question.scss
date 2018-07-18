@@ -41,13 +41,13 @@
   color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
-  border: 2px red solid;
+  border: 2px #e5b540 solid;
   animation: appear 600ms ease-out forwards;
 }
 
 .current-important {
   // color: #ee9b66;
-  color: red;
+  color: #e5b540;
   font-size: 1.4em;
   font-weight: 600;
 }

@@ -288,7 +288,7 @@ export class Question extends Component {
         </p>
       );
     }
-    return <ReactLoading type="balls" color="red" height="5%" width="5%" />;
+    return <ReactLoading type="balls" color="#e5b540" height="5%" width="5%" />;
   };
 
   renderActionButtons = () => (
