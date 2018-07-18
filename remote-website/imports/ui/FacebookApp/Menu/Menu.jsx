@@ -12,7 +12,6 @@
  */
 
 import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import './Menu.scss';
 
@@ -44,8 +43,10 @@ export class Menu extends Component {
       <div className="sidebar">
         <div className="filter">
           <span id="filter-title">
-            Filter:{' '}
-            {this.props.selectedCategory ? this.props.selectedCategory : ''}
+            Filter
+            {this.props.selectedCategory
+              ? `: ${this.props.selectedCategory}`
+              : ''}
           </span>
           {this.props.categories.map(category => (
             <button

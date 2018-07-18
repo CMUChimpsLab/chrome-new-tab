@@ -52,8 +52,7 @@ export class Question extends Component {
     this.state = {
       voteSubmitted: props.answered,
       votedOption: null,
-      currentSetting: null,
-      userLoggedIn: false
+      currentSetting: null
     };
   }
 
