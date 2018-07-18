@@ -6,12 +6,13 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tuesday, 10th July 2018 12:25:11 pm
+ * Last Modified: Wed Jul 18 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import './Menu.scss';
 
@@ -42,7 +43,10 @@ export class Menu extends Component {
     return (
       <div className="sidebar">
         <div className="filter">
-          <span id="filter-title">Filter</span>
+          <span id="filter-title">
+            Filter:{' '}
+            {this.props.selectedCategory ? this.props.selectedCategory : ''}
+          </span>
           {this.props.categories.map(category => (
             <button
               key={category}
@@ -58,6 +62,9 @@ export class Menu extends Component {
             View all questions
           </button>
         </div>
+        {/* <div id="view-all">
+          <button onClick={() => Meteor.logout()}>Logout from Facebook</button>
+        </div> */}
       </div>
     );
   }

@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Monday, 16th July 2018 11:35:59 am
+ * Last Modified: Wed Jul 18 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -80,13 +80,14 @@ export class FacebookApp extends Component {
   };
 
   // called when user advances to the next question
-  submitVote = (question, option) => {
+  submitVote = (question, option, currentSetting) => {
     this.props
       .aswerQuestion({
         variables: {
           guid: this.userGuid,
           questionId: question._id,
-          optionId: option._id
+          optionId: option._id,
+          currentSetting
         }
       })
       .catch(error => {
@@ -111,12 +112,11 @@ export class FacebookApp extends Component {
         />
       );
     }
-    return (
-      <div>
-        Thanks for participating!{' '}
-        <button onClick={() => this.handleViewAll()}>View all</button>{' '}
-      </div>
-    );
+
+    // log user out
+    Meteor.logout();
+
+    return <div>Thanks for participating! </div>;
   };
 
   render() {
@@ -134,6 +134,7 @@ export class FacebookApp extends Component {
     // get unique categories from questions
     const categories = this.props.questions
       .map(q => q.category)
+      // .filter(category => category !== this.state.categoryFilter)
       .filter(function(item, i, ar) {
         return ar.indexOf(item) === i;
       });
@@ -158,6 +159,10 @@ export class FacebookApp extends Component {
     if (numQuestions === 0 && this.state.categoryFilter) {
       // TODO: App shouldn't end...
       console.log('No more questions on this category!');
+      this.setState({
+        categoryFilter: null
+      });
+      return '';
     }
 
     const questionToRender =
@@ -190,8 +195,18 @@ export class FacebookApp extends Component {
 
 // mutation used to submit vote to database
 const aswerQuestion = gql`
-  mutation answerQuestion($guid: String!, $questionId: ID!, $optionId: ID!) {
-    aswerQuestion(guid: $guid, questionId: $questionId, optionId: $optionId) {
+  mutation answerQuestion(
+    $guid: String!
+    $questionId: ID!
+    $optionId: ID!
+    $currentSetting: String
+  ) {
+    aswerQuestion(
+      guid: $guid
+      questionId: $questionId
+      optionId: $optionId
+      currentSetting: $currentSetting
+    ) {
       responses {
         question {
           title
