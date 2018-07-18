@@ -36,13 +36,18 @@ export default {
       return Users.findOne(userId);
     },
 
-    aswerQuestion(_, { guid, questionId, optionId }) {
+    aswerQuestion(_, { guid, questionId, optionId, currentSetting }) {
       // insert responses ids to user object
       Users.update(
         { guid },
         {
           $push: {
-            responses: { questionId, optionId }
+            responses: {
+              questionId,
+              optionId,
+              currentSetting,
+              timestamp: new Date()
+            }
           }
         }
       );

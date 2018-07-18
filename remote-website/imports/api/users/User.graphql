@@ -1,6 +1,8 @@
 type Response {
   question: Question
   option: Option
+  currentSetting: String
+  timestamp: String
 }
 
 type User {
@@ -15,7 +17,7 @@ type Mutation {
   createUser(guid: String!, name: String): User
   setName(guid: String!, name: String!): User
   deleteUser(_id: ID!): User
-  aswerQuestion(guid: String!, questionId: ID!, optionId: ID!): User
+  aswerQuestion(guid: String!, questionId: ID!, optionId: ID!, currentSetting: String): User
 }
 
 type Query {

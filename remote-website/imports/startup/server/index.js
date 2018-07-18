@@ -8,7 +8,7 @@ import './register-api';
 import Questions from '../../api/questions/questions';
 import Users from '../../api/users/users';
 import Emails from '../../api/emails/emails';
-import resetMongo from './reset-mongo';
+// import resetMongo from './reset-mongo';
 
 // set up REST API
 if (Meteor.isServer) {
@@ -22,7 +22,7 @@ if (Meteor.isServer) {
   Meteor.startup(() => {
     // WARNING: THIS RESETS THE DATABASE OF QUESTIONS
     // AND USER RESPONSES. BE CAREFUL!!!
-    resetMongo();
+    // resetMongo();
 
     // expose method to client
     Meteor.methods({

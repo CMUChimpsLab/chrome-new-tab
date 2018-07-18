@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tue Jul 17 2018
+ * Last Modified: Wed Jul 18 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -52,7 +52,8 @@ export class Question extends Component {
     this.state = {
       voteSubmitted: props.answered,
       votedOption: null,
-      currentOption: null
+      currentSetting: null,
+      userLoggedIn: false
     };
   }
 
@@ -64,8 +65,7 @@ export class Question extends Component {
     );
   };
 
-
- getStats = () => {  
+  getStats = () => {
     const getPercent = opt => {
       const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
       return parseInt(p, 10);
@@ -195,11 +195,12 @@ export class Question extends Component {
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
     const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
-    const getPercent = opt => {
-      const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
-      return parseInt(p, 10);
-    };
-      
+    // const getPercent = opt => {
+    //   const p = ((opt.count / this.props.question.totalVotes) * 100)
+    // .toFixed(0);
+    //   return parseInt(p, 10);
+    // };
+
     return (
       <div>
         <p className="ans">
@@ -225,20 +226,20 @@ export class Question extends Component {
             width={400}
             // chartSeries={chartSeries}
             height={200}
-            margin={{ top: 20, bottom: 20, left: 30, right:10}}
+            margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
           />
         </p>
         {/* {this.props.question.totalVotes > 0 && this.renderStats()} */}
-        {this.renderCurrentOption()}
+        {this.renderCurrentSetting()}
         {this.renderActionButtons()}
       </div>
     );
   };
 
-  setActualOption = currentOption => {
-    console.log(currentOption);
+  setActualOption = currentSetting => {
+    console.log(currentSetting);
     this.setState({
-      currentOption
+      currentSetting
     });
   };
 
@@ -266,19 +267,28 @@ export class Question extends Component {
     });
   };
 
-  renderCurrentOption = () => {
-    // if (Meteor.userId()) {
-    //   return `Please login to Facebook: ${Meteor.userId()}`;
-    // }
-    if (this.state.currentOption) {
+  renderCurrentSetting = () => {
+    if (!Meteor.userId()) {
+      return (
+        <a
+          href="#"
+          onClick={() => {
+            this.loginAndRedirect('https://facebook.com');
+          }}
+        >
+          Please login to Facebook to see your current settings.
+        </a>
+      );
+    }
+    if (this.state.currentSetting) {
       return (
         <p className="current">
           Your current setting on Facebook is{' '}
-          <span className="current-important">{this.state.currentOption}</span>
+          <span className="current-important">{this.state.currentSetting}</span>
         </p>
       );
     }
-    return <ReactLoading type="balls" color="#ee9b66" height="5%" width="5%" />;
+    return <ReactLoading type="balls" color="red" height="5%" width="5%" />;
   };
 
   renderActionButtons = () => (
@@ -286,7 +296,11 @@ export class Question extends Component {
       <button
         id="action-next"
         onClick={() =>
-          this.props.submitVote(this.props.question, this.state.votedOption)
+          this.props.submitVote(
+            this.props.question,
+            this.state.votedOption,
+            this.state.currentSetting
+          )
         }
       >
         Next Question
@@ -301,18 +315,16 @@ export class Question extends Component {
     </div>
   );
 
-  renderStats = () => {
-    return (
-      <div>
-        <BarChart
-          data={this.getStats()}
-          width={400}
-          height={200}
-          margin={{ top: 20, bottom: 0, left: 20, right: 0 }}
-        />
-      </div>
-    );
-  };
+  renderStats = () => (
+    <div>
+      <BarChart
+        data={this.getStats()}
+        width={400}
+        height={200}
+        margin={{ top: 20, bottom: 0, left: 20, right: 0 }}
+      />
+    </div>
+  );
 
   // renders each option
   renderUnvoted = () => (
