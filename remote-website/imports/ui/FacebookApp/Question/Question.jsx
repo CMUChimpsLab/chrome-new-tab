@@ -220,6 +220,7 @@ export class Question extends Component {
             is the best option
           </span>
           <BarChart
+            grid
             data={this.getStats()}
             width={400}
             // chartSeries={chartSeries}
@@ -266,8 +267,9 @@ export class Question extends Component {
   };
 
   renderCurrentOption = () => {
-    const hasCookies = Meteor.call('hasCookies', this.props.userGuid);
-    console.log(`user has cookies: ${hasCookies}`);
+    // if (Meteor.userId()) {
+    //   return `Please login to Facebook: ${Meteor.userId()}`;
+    // }
     if (this.state.currentOption) {
       return (
         <p className="current">
@@ -276,7 +278,7 @@ export class Question extends Component {
         </p>
       );
     }
-    return <ReactLoading type="balls" color="#4483FB" height="5%" width="5%" />;
+    return <ReactLoading type="balls" color="#ee9b66" height="5%" width="5%" />;
   };
 
   renderActionButtons = () => (
