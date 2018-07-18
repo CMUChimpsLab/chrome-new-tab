@@ -34,17 +34,20 @@
 }
 
 .current {
-  background-color: #fafaf2;
+  // background-color: #fafaf2;
+  background-color: white;
   font-size: 1.2em;
-  padding: 10px;
+  padding: 7px 10px;
   color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
+  border: 2px red solid;
   animation: appear 600ms ease-out forwards;
 }
 
 .current-important {
-  color: #ee9b66;
+  // color: #ee9b66;
+  color: red;
   font-size: 1.4em;
   font-weight: 600;
 }

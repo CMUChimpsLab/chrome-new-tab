@@ -14,28 +14,27 @@ body {
 .section-iframe iframe {
   box-sizing: border-box;
   border: 0px solid #ccc;
-  height: 50%;
+  height: 60vh;
   width: 100%;
 }
 
 .banner {
   align-items: center;
   width: 100vw;
-  /* background-color: #89c4f4; */
+  color: white;
 
   background: #6190e8; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #6190e8, #a7bfe8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   display: flex;
-  color: #fff;
   flex-flow: column nowrap;
-  height: 200px;
+  padding: 2% 0 2% 0;
   justify-content: center;
 }
 
 .banner h1 {
-  font-size: 2.7em;
+  font-size: 2.5em;
   font-weight: 400;
   text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
 }
@@ -63,19 +62,17 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 90px;
-  width: 100%;
+  height: 80px;
   background-color: #a7bfe8;
 }
 
 .footer p {
   display: block;
   padding-top: 20px;
-  width: 100%;
   font-weight: 600;
   text-align: center;
   color: white;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 #search {
@@ -83,7 +80,7 @@ body {
   border: 2px white solid;
   margin: 0 auto 0 auto;
   padding: 0.5em;
-  font: 20px "Lato", arial, sans-serif;
+  font: 17px "Lato", arial, sans-serif;
   transition: all 0.5s;
   width: 400px;
 }
@@ -94,7 +91,7 @@ body {
 
 #search:hover,
 #search:focus {
-  background: #59abe3;
+  background: #4483FB;
 }
 
 #search button,
