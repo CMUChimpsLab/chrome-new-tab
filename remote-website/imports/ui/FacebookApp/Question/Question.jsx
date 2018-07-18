@@ -65,7 +65,7 @@ export class Question extends Component {
   };
 
 
-  getStats = () => {  
+ getStats = () => {  
     const getPercent = opt => {
       const p = ((opt.count / this.props.question.totalVotes) * 100).toFixed(0);
       return parseInt(p, 10);
