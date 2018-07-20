@@ -1,6 +1,6 @@
 {
   "name": "SocialSafety",
-  "description": "SocialSafety helps you fight evil things on the internet",
+  "description": "SocialSafety helps you fight evil things on the internet.",
   "version": "0.9",
   "incognito": "split",
   "chrome_url_overrides": {
