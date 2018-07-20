@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Jul 18 2018
+ * Last Modified: Thu Jul 19 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -58,6 +58,12 @@ export class FacebookApp extends Component {
     this.state = { categoryFilter: null };
   }
 
+  componentDidMount() {
+    Meteor.call('hasCookies', this.props.match.params.guid, results => {
+      console.log(results);
+    });
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.user === null) return true;
     if (
@@ -77,6 +83,14 @@ export class FacebookApp extends Component {
 
   handleViewAll = () => {
     window.open(`${this.props.history.location.pathname}/summary`, '_blank');
+  };
+
+  logoutAndClear = () => {
+    // log user out
+    Meteor.logout();
+    Meteor.call('clearCookies', this.userGuid, () => {
+      window.open('https://www.facebook.com', '_blank');
+    });
   };
 
   // called when user advances to the next question
@@ -113,8 +127,7 @@ export class FacebookApp extends Component {
       );
     }
 
-    // log user out
-    Meteor.logout();
+    this.logoutAndClear();
 
     return <div>Thanks for participating! </div>;
   };
@@ -181,6 +194,7 @@ export class FacebookApp extends Component {
                 filter={this.filterByCategory}
                 categories={categories}
                 history={this.props.history}
+                logout={this.logoutAndClear}
               />
             )}
           </div>

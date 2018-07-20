@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Jul 18 2018
+ * Last Modified: Thu Jul 19 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -54,22 +54,22 @@ export class Summary extends Component {
     const optIdInResponse = _id =>
       contains(_id)
         ? this.props.user.responses.filter(function(res) {
-          return res.questionId == _id;
-        })[0].optionId
+            return res.questionId === _id;
+          })[0].optionId
         : null;
 
     // given question id, find question's all options
     const getOptsFromId = _id =>
       this.props.questions.filter(function(q) {
-        return q._id == _id;
+        return q._id === _id;
       })[0].options;
 
     // given question id, find specific opt that user selects in response
     const getResOptTitle = _id =>
       contains(_id)
         ? getOptsFromId(_id).filter(function(opt) {
-            return opt._id == optIdInResponse(_id);
-          })[0].title
+          return opt._id === optIdInResponse(_id);
+        })[0].title
         : '';
 
     return this.props.questions.map(q => (
@@ -83,34 +83,30 @@ export class Summary extends Component {
     ));
   };
 
-  renderHeader() {
-    return (
-      <div className="header-q">
-        <div className="header-icon" />
-        <div className="header-title">Question</div>
-        <div className="header-popular">Most Popular</div>
-        <div className="header-user">Your choice </div>
-        <div className="header-link">Link to Facebook</div>
-      </div>
-    );
-  }
+  renderHeader = () => (
+    <div className="header-q">
+      <div className="header-icon" />
+      <div className="header-title">Question</div>
+      <div className="header-popular">Most Popular</div>
+      <div className="header-user">Your choice </div>
+      <div className="header-link">Link to Facebook</div>
+    </div>
+  );
 
-  renderFooter() {
-    return (
-      <div className="annotation">
-        <p>
-          <span id="vote-yes">
-            <MaterialIcon icon="check_circle" size={28} />
-          </span>
-          <span className="anno-text">answered questions</span>
-          <span id="vote-no">
-            <MaterialIcon icon="contact_support" id="vote-no" size={28} />
-          </span>
-          <span className="anno-text">unanswered questions</span>
-        </p>
-      </div>
-    );
-  }
+  renderFooter = () => (
+    <div className="annotation">
+      <p>
+        <span id="vote-yes">
+          <MaterialIcon icon="check_circle" size={28} />
+        </span>
+        <span className="anno-text">answered questions</span>
+        <span id="vote-no">
+          <MaterialIcon icon="contact_support" id="vote-no" size={28} />
+        </span>
+        <span className="anno-text">unanswered questions</span>
+      </p>
+    </div>
+  );
 
   render() {
     if (this.props.loading || !this.props.userExists) {
@@ -143,6 +139,7 @@ const questionsQuery = gql`
       description
       url
       totalVotes
+      scrapeTag
       topOption {
         title
         count

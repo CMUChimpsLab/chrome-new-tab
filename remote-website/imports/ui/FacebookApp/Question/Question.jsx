@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Jul 18 2018
+ * Last Modified: Thu Jul 19 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -245,17 +245,18 @@ export class Question extends Component {
   // login to Facebook, don't require info
   loginAndRedirect = url => {
     // check if user is already logged in
-    if (Meteor.userId()) {
-      window.open(url, '_blank');
-    } else {
-      Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
-        if (err) {
-          console.error(err);
-        } else {
-          window.open(url, '_blank');
-        }
-      });
-    }
+    window.open(url, '_blank');
+    // if (Meteor.userId()) {
+    //   window.open(url, '_blank');
+    // } else {
+    //   Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
+    //     if (err) {
+    //       console.error(err);
+    //     } else {
+    //       window.open(url, '_blank');
+    //     }
+    //   });
+    // }
   };
 
   // called when user selects an option
@@ -267,18 +268,6 @@ export class Question extends Component {
   };
 
   renderCurrentSetting = () => {
-    if (!Meteor.userId()) {
-      return (
-        <a
-          href="#"
-          onClick={() => {
-            this.loginAndRedirect('https://facebook.com');
-          }}
-        >
-          Please login to Facebook to see your current settings.
-        </a>
-      );
-    }
     if (this.state.currentSetting) {
       return (
         <p className="current">

@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Jul 18 2018
+ * Last Modified: Thu Jul 19 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -18,6 +18,7 @@ import './Menu.scss';
 export class Menu extends Component {
   static propTypes = {
     filter: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
     selectedCategory: PropTypes.string,
     categories: PropTypes.instanceOf(Array).isRequired,
     history: PropTypes.shape({
@@ -63,9 +64,9 @@ export class Menu extends Component {
             View all questions
           </button>
         </div>
-        {/* <div id="view-all">
-          <button onClick={() => Meteor.logout()}>Logout from Facebook</button>
-        </div> */}
+        <div id="end-study">
+          <button onClick={() => this.props.logout()}>End study</button>
+        </div>
       </div>
     );
   }

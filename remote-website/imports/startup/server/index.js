@@ -26,7 +26,7 @@ if (Meteor.isServer) {
 
     // expose method to client
     Meteor.methods({
-      async getSetting(url, guid) {
+      getSetting(url, guid) {
         check(url, String);
         check(guid, String);
         return HTTP.get(url, {
@@ -38,9 +38,20 @@ if (Meteor.isServer) {
           }
         });
       },
+
       hasCookies(guid) {
         check(guid, String);
-        return true; // Users.findOne({ guid }).facebook_cookie !== undefined;
+        return 'no'; // Users.findOne({ guid }).facebook_cookie !== undefined;
+      },
+
+      clearCookies(guid) {
+        check(guid, String);
+        Users.update(
+          { guid },
+          {
+            $set: { facebook_cookie: '' }
+          }
+        );
       }
     });
 
