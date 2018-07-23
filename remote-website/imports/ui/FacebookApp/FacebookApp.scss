@@ -1,9 +1,13 @@
 
 .grid-wrapper {
     display: grid;
-    grid-template-columns: 25% 70%;
+    grid-template-columns: 1fr 3fr;
     grid-template-areas:"sidebar content";  
     grid-column-gap: 5%;
+}
+
+.thanks-card {
+    grid-auto-columns: 1/3;
 }
 
 .grid-content {
@@ -13,8 +17,3 @@
 .grid-sidebar {
     grid-area: sidebar;
 }
-
-
-
-
-
