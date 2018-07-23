@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 19 2018
+ * Last Modified: Sun Jul 22 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -16,6 +16,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { graphql, compose } from 'react-apollo';
+import { Line } from 'rc-progress';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import Question from './Question/Question';
@@ -157,6 +158,9 @@ export class FacebookApp extends Component {
       catFilter(q, this.state.categoryFilter)
     );
 
+    const percent =
+      (this.props.user.responses.length / this.props.questions.length) * 100;
+
     // get questions that have NOT been answered
     const unansweredQuestions = filteredQuestions.filter(q => !contains(q._id));
 
@@ -199,6 +203,7 @@ export class FacebookApp extends Component {
             )}
           </div>
           <div className="grid-content">
+            <Line percent={percent} strokeWidth="2" strokeColor="#e5b540" />
             {this.renderQuestion(questionToRender)}
           </div>
         </div>
