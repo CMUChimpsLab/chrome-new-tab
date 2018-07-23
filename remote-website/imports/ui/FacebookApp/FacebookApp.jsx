@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Sun Jul 22 2018
+ * Last Modified: Mon Jul 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -161,6 +161,14 @@ export class FacebookApp extends Component {
     const percent =
       (this.props.user.responses.length / this.props.questions.length) * 100;
 
+    const barcolor = () => {
+      if (percent < 33) {
+        return '#95c1e5';
+      } else if (percent > 66) {
+        return '#0f74d8';
+      }
+      return '#589ff4';
+    };
     // get questions that have NOT been answered
     const unansweredQuestions = filteredQuestions.filter(q => !contains(q._id));
 
@@ -203,7 +211,7 @@ export class FacebookApp extends Component {
             )}
           </div>
           <div className="grid-content">
-            <Line percent={percent} strokeWidth="2" strokeColor="#e5b540" />
+            <Line percent={percent} strokeWidth="2" strokeColor={barcolor()} />
             {this.renderQuestion(questionToRender)}
           </div>
         </div>
