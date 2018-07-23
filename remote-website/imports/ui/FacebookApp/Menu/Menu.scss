@@ -6,13 +6,17 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 19 2018
+ * Last Modified: Mon Jul 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
 
 @import '../../assets/main.scss';
+
+.sidebar {
+    width: 15vw;
+}
 
 .filter {
     width: 100%;
@@ -31,7 +35,7 @@
     width: 100%;
     background-color: #95A5A6;
     color: white;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 200;
 }
 
