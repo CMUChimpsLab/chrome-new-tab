@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Sun Jul 22 2018
+ * Last Modified: Mon Jul 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -88,7 +88,6 @@ export class FacebookApp extends Component {
 
   logoutAndClear = () => {
     // log user out
-    Meteor.logout();
     Meteor.call('clearCookies', this.userGuid, () => {
       window.open('https://www.facebook.com', '_blank');
     });
@@ -127,8 +126,6 @@ export class FacebookApp extends Component {
         />
       );
     }
-
-    this.logoutAndClear();
 
     return <div>Thanks for participating! </div>;
   };
