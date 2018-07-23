@@ -25,6 +25,7 @@ import './FacebookApp.scss';
 import Wrapper from '../Components/Wrapper/Wrapper';
 import Users from '../../api/users/users';
 import Menu from './Menu/Menu';
+import Thanks from './Thanks/Thanks';
 
 export class FacebookApp extends Component {
   static propTypes = {
@@ -127,7 +128,7 @@ export class FacebookApp extends Component {
       );
     }
 
-    return <div>Thanks for participating! </div>;
+    return <div>Thanks for participating!</div>;
   };
 
   render() {
@@ -195,9 +196,9 @@ export class FacebookApp extends Component {
 
     return (
       <Wrapper>
-        <div className="grid-wrapper">
-          <div className="grid-sidebar">
-            {!!questionToRender && (
+        {questionToRender ? (
+          <div className="grid-wrapper">
+            <div className="grid-sidebar">
               <Menu
                 selectedCategory={this.state.categoryFilter}
                 filter={this.filterByCategory}
@@ -205,13 +206,20 @@ export class FacebookApp extends Component {
                 history={this.props.history}
                 logout={this.logoutAndClear}
               />
-            )}
+            </div>
+            <div className="grid-content">
+              <Line
+                percent={percent}
+                strokeWidth="2"
+                strokeColor={barcolor()}
+              />
+              {this.renderQuestion(questionToRender)}
+            </div>
           </div>
-          <div className="grid-content">
-            <Line percent={percent} strokeWidth="2" strokeColor={barcolor()} />
-            {this.renderQuestion(questionToRender)}
-          </div>
-        </div>
+        ) : (
+          // TODO: change this to be more useful!
+          <Thanks />
+        )}
       </Wrapper>
     );
   }

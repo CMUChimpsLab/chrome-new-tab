@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 19 2018
+ * Last Modified: Mon Jul 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -22,7 +22,6 @@ import Option from './Option/Option';
 
 // css
 import './Question.scss';
-
 import '../../assets/font.css';
 
 export class Question extends Component {
