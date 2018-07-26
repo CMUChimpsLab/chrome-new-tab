@@ -14,7 +14,8 @@
         "include": [],
         "exclude": [
             "markdown",
-            "json"
+            "json",
+            "csv",
         ],
         "autoHeader": "manualSave"
     },

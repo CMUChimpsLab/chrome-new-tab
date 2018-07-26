@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Mon Jul 23 2018
+ * Last Modified: Thu Jul 26 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { Meteor } from 'meteor/meteor';
 import { BarChart } from 'react-d3-components/lib/';
+// import { BarHorizontalChart } from 'react-d3-basic';
 import cheerio from 'cheerio';
 
 import Option from './Option/Option';
@@ -180,7 +181,8 @@ export class Question extends Component {
           // document.getElementById(
           //   'test'
           // ).innerHTML = `Your current selected option:${list[0]}`;
-          callback(list[0]);
+          if (list[0] === 'Enabled') callback('Yes');
+          else callback('No');
         }
       } else if (this.props.question.scrapeTag >= 7) {
         console.log("Can't scrape ads yet.");
@@ -219,10 +221,8 @@ export class Question extends Component {
             is the best option
           </span>
           <BarChart
-            grid
             data={this.getStats()}
-            width={400}
-            // chartSeries={chartSeries}
+            width={600}
             height={200}
             margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
           />
@@ -238,6 +238,24 @@ export class Question extends Component {
     console.log(currentSetting);
     this.setState({
       currentSetting
+    });
+  };
+
+  settingsMatch = condition => {
+    if (condition === 2) {
+      return this.state.currentSetting === this.state.votedOption.title;
+    }
+    if (condition === 3) {
+      return this.state.currentSetting === this.props.question.topOption.title;
+    }
+    return false;
+  };
+
+  // called when user selects an option
+  handleVoted = option => {
+    this.setState({
+      voteSubmitted: true,
+      votedOption: option
     });
   };
 
@@ -258,20 +276,38 @@ export class Question extends Component {
     // }
   };
 
-  // called when user selects an option
-  handleVoted = option => {
-    this.setState({
-      voteSubmitted: true,
-      votedOption: option
-    });
-  };
-
+  // TODO: rewrite this! so ugly.
   renderCurrentSetting = () => {
     if (this.state.currentSetting) {
+      // if (this.state.votedOption.title === 'Not sure') {
+      //   if (this.settingsMatch(3)) {
+      //     return (
+      //       <p className="current">
+      //         Your current setting on Facebook is{' '}
+      //         <span className="current-important">
+      //           {this.state.currentSetting}
+      //         </span>
+      //       </p>
+      //     );
+      //   }
+      // }
+      if (this.settingsMatch(3)) {
+        return (
+          <p className="current-ok">
+            Your current setting on Facebook is{' '}
+            <span className="current-important ok">
+              {this.state.currentSetting}
+            </span>
+          </p>
+        );
+      }
       return (
-        <p className="current">
+        <p className="current-warning">
           Your current setting on Facebook is{' '}
-          <span className="current-important">{this.state.currentSetting}</span>
+          <span className="current-important warning">
+            {this.state.currentSetting}
+          </span>
+          . Would you like to change it?
         </p>
       );
     }
@@ -302,16 +338,16 @@ export class Question extends Component {
     </div>
   );
 
-  renderStats = () => (
-    <div>
-      <BarChart
-        data={this.getStats()}
-        width={400}
-        height={200}
-        margin={{ top: 20, bottom: 0, left: 20, right: 0 }}
-      />
-    </div>
-  );
+  // renderStats = () => (
+  //   <div>
+  //     <BarHorizontalChart
+  //       data={this.getStats()}
+  //       width={400}
+  //       height={200}
+  //       margin={{ top: 20, bottom: 0, left: 20, right: 0 }}
+  //     />
+  //   </div>
+  // );
 
   // renders each option
   renderUnvoted = () => (

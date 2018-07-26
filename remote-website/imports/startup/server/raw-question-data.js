@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tue Jul 17 2018
+ * Last Modified: Thu Jul 26 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -44,7 +44,7 @@ const questions = [
     description:
       "This applies to people who can't see your phone number on your profile.",
     url: 'https://www.facebook.com/settings?tab=privacy&section=findphone&view',
-    options: ['Everyone', 'Friends of Friends', 'Friends', 'Not sure'],
+    options: ['Everyone', 'Friends of friends', 'Friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
@@ -63,7 +63,7 @@ const questions = [
     description:
       'Choose who is allowed to comment on your posts. Remember that in addition to who you choose here, anyone tagged in a post and their friends may be able to comment, too.',
     url: 'https://www.facebook.com/settings?tab=followers&section=comment&view',
-    options: ['Friends', 'Friends of Friends', 'Public', 'Not sure'],
+    options: ['Friends', 'Friends of friends', 'Public', 'Not sure'],
     scrapeTag: 2 // checked
   },
   {
@@ -89,7 +89,7 @@ const questions = [
       "You can get notifications when people who aren't your friends start following you and share, like or comment on your public posts. Turn these notifications on for",
     url:
       'https://www.facebook.com/settings?tab=followers&section=notifications&view',
-    options: ['Public', 'Friends of Friends', 'Nobody', 'Not sure'],
+    options: ['Public', 'Friends of friends', 'Nobody', 'Not sure'],
     scrapeTag: 2 // checked
   },
   {
@@ -117,7 +117,7 @@ const questions = [
       'Manage who can like or comment on profile information that is always public, including your profile pictures, profile videos, cover photos, featured photos and updates to your short bio.',
     url:
       'https://www.facebook.com/settings?tab=followers&section=public_profile_media&view',
-    options: ['Public', 'Friends of Friends', 'Friends', 'Not sure'],
+    options: ['Public', 'Friends of friends', 'Friends', 'Not sure'], // "Only me" is not an option
     scrapeTag: 2 // checked
   },
   {
@@ -167,7 +167,7 @@ const questions = [
     url: 'https://www.facebook.com/settings?tab=timeline&section=tagging&view',
     options: [
       'Everyone',
-      'Friends of Friends',
+      'Friends of friends',
       'Friends',
       'Only me',
       'Not sure'

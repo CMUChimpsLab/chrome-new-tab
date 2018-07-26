@@ -6,11 +6,12 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Friday, 13th July 2018 6:27:10 pm
+ * Last Modified: Thu Jul 26 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
 
+import { CSV } from 'meteor/clinical:csv';
 import Questions from '../../api/questions/questions';
 import Options from '../../api/options/options';
 import Users from '../../api/users/users';
@@ -43,6 +44,48 @@ function insertQuestion({
   });
 }
 
+// called to populate db with mTurk data
+function insertMTurkData(data) {
+  // for each response
+  data.forEach(response => {
+    // for each question
+    Object.keys(response).forEach((title, index) => {
+      if (index >= 28 && index <= 44) {
+        // find question by name
+        const question = Questions.findOne({ title });
+        // make sure it exists
+        if (!question) {
+          // console.log(`Skipping ${title}`);
+          return;
+        }
+
+        // const opt = Options.findOne({
+        //   questionId: question._id,
+        //   title: response[title].trim()
+        // });
+
+        // if (!opt) {
+        //   console.log(`Option NOT FOUND: ${title}
+        // "${response[title].trim()}"`);
+        //   return;
+        // }
+
+        Options.update(
+          {
+            questionId: question._id,
+            title: response[title].trim()
+          },
+          {
+            $inc: {
+              count: 1
+            }
+          }
+        );
+      }
+    });
+  });
+}
+
 // clear questions, options, and user responsess
 function clear() {
   Questions.remove({});
@@ -52,11 +95,19 @@ function clear() {
 
 // populates db
 const resetMongo = () => {
-  console.log('Resetting Questions database');
+  console.log('Resetting Questions database...');
   clear();
   questions.forEach(q => {
     insertQuestion(q);
   });
+  // eslint-disable-next-line no-undef
+  CSV.parse(Assets.getText('mTurk_raw.csv'), {
+    header: true,
+    complete(result) {
+      insertMTurkData(result.data);
+    }
+  });
+  console.log('Done');
 };
 
 export default resetMongo;
