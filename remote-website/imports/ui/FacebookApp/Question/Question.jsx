@@ -186,23 +186,28 @@ export class Question extends Component {
             {this.state.votedOption.title}
           </span>
           <br />
-          <span id="ans-crowd">
-            <span className="ans-important" id="ans-percent">
-              {percentage}&#37;
-            </span>{' '}
-            of people think
-            <span className="ans-important" id="ans-crowd">
-              {' '}
-              {topOption.title}{' '}
-            </span>
-            is the best option
-          </span>
-          <BarChart
-            data={this.getStats()}
-            width={600}
-            height={200}
-            margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
-          />
+          {/* Only show crowd response if condition 3 */}
+          {this.props.condition === 3 && (
+            <div>
+              <span id="ans-crowd">
+                <span className="ans-important" id="ans-percent">
+                  {percentage}&#37;
+                </span>{' '}
+                of people think
+                <span className="ans-important" id="ans-crowd">
+                  {' '}
+                  {topOption.title}{' '}
+                </span>
+                is the best option
+              </span>
+              <BarChart
+                data={this.getStats()}
+                width={600}
+                height={200}
+                margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
+              />
+            </div>
+          )}
         </p>
         {this.renderCurrentSetting()}
         {this.renderActionButtons()}
@@ -310,7 +315,6 @@ export class Question extends Component {
       >
         Next Question
       </button>
-      {/* <br /> */}
       <button
         onClick={() => this.loginAndRedirect(this.props.question.url)}
         id="action-fb"
