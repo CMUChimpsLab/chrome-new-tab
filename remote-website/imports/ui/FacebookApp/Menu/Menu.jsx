@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 19 2018
+ * Last Modified: Fri Jul 27 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -65,7 +65,7 @@ export class Menu extends Component {
           </button>
         </div>
         <div id="end-study">
-          <button onClick={() => this.props.logout()}>End study</button>
+          <button onClick={() => this.props.logout()}>Logout Facebook</button>
         </div>
       </div>
     );

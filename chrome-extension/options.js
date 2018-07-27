@@ -102,6 +102,11 @@ document.getElementById('accept-cookies').addEventListener('click', setCookiesPe
 
 
 
+chrome.storage.sync.get('guid', (store) => {
+  document.getElementById('subject-id').innerHTML = "<b>Subject ID</b>: " + store.guid;
+});
+
+
 
 
 // let page = document.getElementById('buttonDiv');

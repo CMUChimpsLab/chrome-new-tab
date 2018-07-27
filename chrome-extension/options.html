@@ -81,6 +81,20 @@
     font-size: 14px;
   }
 
+  .center {
+    display: grid;
+    justify-items: center;
+  }
+
+  .legend {
+    font-style: italic;
+    font-size: 16px;
+  }
+
+  .space {
+    margin: 1em;
+  }
+
 
 </style>
 </head>
@@ -92,16 +106,25 @@
   </div>
   <div class="row">
     <div class="fb-login">
-      <p>Chrome New Tab is a tool that helps you with privacy management in a few simple steps: <br>
-        - You answer a question about Facebook privacy settings and tell us your preferred option <br>
-        - We analyze the decisions made by the crowd and find the most popular option  <br>
-        - We present the result to you, and you can choose to change your Facebook privacy setting in just one click! <br>
-        <br>
-        Please note that we will collect your cookies on Facebook.com to display your current privacy settings. <b>By using our extension, we assume that you give us permission to use your Facebook cookies. </b><br>
-        <br>
-        Simply open the New Tab and answer a question to get started!
+      <h1>Chrome New Tab</h1>
+      <p>Chrome New Tab is a crowdsourcing plugin that helps you manage your privacy online.<br>
+        This plugin overrides your new tab page and gives you access to multiple privacy management applications!<br><br>
+        
+        <h1>Facebook Setting Checkup</h1>Facebook Setting Checkup is one of the applications currently running on the Chrome New Tab.<br>
+        In this application you will answer questions regarding you privacy settings on Facebook.<br>
+        You can answer as many questions as you want, the progress bar on top of the question shows your progress.
+        <div class="center space">
+          <img src='./images/screenshots/question-bar.png' alt='Question + Progress bar'>
+          <div class="legend">Facebook Privacy Question</div>
+        </div>
+    
+        <div id="subject-id"></div><br>
+
+        Please note that we will collect your cookies from facebook.com to display your current privacy settings.<br>
+        <b>By clicking continue, you you agree to have your Facebook cookies collected, stored, and used for the duration of this experiement.</b><br>
+        
         </p>
-        <button id='accept-cookies'>Accept and continue</button>
+        <div class="center"><button id='accept-cookies'>Accept and continue</button></div>
     </div>
   </div>
   <div class="footer">
@@ -110,19 +133,6 @@
         <br> Disclaimer: we collected your data only for crowdsourcing to better understand people's preferences.
       </p>
     </div>
-
-  <!-- <div class="wrapper">
-    <div class="inner">
-        <div id="buttonDiv"> </div>
-        <div id='guid'></div>
-        <br/>
-        <br/> Name:
-        <form action='submit' id='form'>
-          <input type='text' name='name'>
-          <input type="button" id="submit" value="Submit email">
-        </form>
-    </div>
-  </div> -->
   
 </body>
 <script src="options.js"></script>
