@@ -42,7 +42,7 @@
   color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
-  border: 2px #1dca35 solid;
+  border: 2px #0c8e1e solid;
   animation: appear 600ms ease-out forwards;
 }
 
@@ -53,7 +53,7 @@
   color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
-  border: 2px #e5b540 solid;
+  border: 2px #ffbf24 solid;
   animation: appear 600ms ease-out forwards;
 }
 
@@ -64,7 +64,7 @@
   color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
-  border: 2px #e54040 solid;
+  border: 2px #d21717 solid;
   animation: appear 600ms ease-out forwards;
 }
 
@@ -74,13 +74,13 @@
 }
 
 .ok {
-  color: #1dca35;
+  color: #0c8e1e;
 }
 .warning {
-  color: #e5b540;
+  color: #ffbf24;
 }
 .alert {
-  color: #e54040;
+  color: #d21717;
 }
 
 .ans {

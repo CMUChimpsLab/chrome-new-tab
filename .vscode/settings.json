@@ -1,6 +1,6 @@
 {
     "eslint.options": {
-        "configFile": "remote-website/.eslintrc"
+        "configFile": ".eslintrc"
     },
     "psi-header.config": {
         "forceToTop": true,

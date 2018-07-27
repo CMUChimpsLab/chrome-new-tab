@@ -65,7 +65,9 @@ export class Menu extends Component {
           </button>
         </div>
         <div id="end-study">
-          <button onClick={() => this.props.logout()}>Logout Facebook</button>
+          <button onClick={() => this.props.logout()}>
+            Logout of Facebook
+          </button>
         </div>
       </div>
     );
