@@ -57,6 +57,7 @@ export class FacebookApp extends Component {
 
   constructor(props) {
     super(props);
+    // Valid conditions: 2 or 3
     this.condition = 3;
     this.state = { categoryFilter: null };
   }
