@@ -10,13 +10,23 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './Thanks.scss';
 import '../../assets/font.css';
 
-export default () => (
+const Thanks = props => (
   <div className="thanks-body">
     <h1>Thanks for participating!</h1>
     <p>Now please log out of Facebook! We will not be using it anymore.</p>
+    <button onClick={() => props.handleViewAll()}>View all questions</button>
+    <button onClick={() => props.logout()}>Logout Facebook</button>
   </div>
 );
+
+Thanks.propTypes = {
+  handleViewAll: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired
+};
+
+export default Thanks;

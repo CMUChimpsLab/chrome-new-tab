@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Mon Jul 23 2018
+ * Last Modified: Fri Jul 27 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -57,6 +57,7 @@ export class FacebookApp extends Component {
 
   constructor(props) {
     super(props);
+    this.condition = 3;
     this.state = { categoryFilter: null };
   }
 
@@ -121,6 +122,7 @@ export class FacebookApp extends Component {
         <Question
           submitVote={this.submitVote}
           key={q._id}
+          condition={this.condition}
           question={q}
           userGuid={this.userGuid}
           answered={false}
@@ -218,7 +220,10 @@ export class FacebookApp extends Component {
           </div>
         ) : (
           // TODO: change this to be more useful!
-          <Thanks />
+          <Thanks
+            handleViewAll={this.handleViewAll}
+            logout={this.logoutAndClear}
+          />
         )}
       </Wrapper>
     );

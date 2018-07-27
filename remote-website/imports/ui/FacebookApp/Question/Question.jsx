@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 26 2018
+ * Last Modified: Fri Jul 27 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -27,6 +27,7 @@ import '../../assets/font.css';
 
 export class Question extends Component {
   static propTypes = {
+    condition: PropTypes.number.isRequired,
     answered: PropTypes.bool.isRequired,
     question: PropTypes.shape({
       _id: PropTypes.string.isRequired,
@@ -48,6 +49,8 @@ export class Question extends Component {
 
   constructor(props) {
     super(props);
+
+    this.MatchEnum = Object.freeze({ OK: 1, WARNING: 2, ALERT: 3 });
 
     this.state = {
       voteSubmitted: props.answered,
@@ -103,9 +106,6 @@ export class Question extends Component {
             );
           });
         if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option:${list[1]}`;
           callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 1) {
@@ -115,9 +115,6 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option:${list[1]}`;
           callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 2) {
@@ -127,9 +124,6 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 3) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option: ${list[3]}`;
           callback(list[3]);
         }
       } else if (this.props.question.scrapeTag === 3) {
@@ -146,18 +140,12 @@ export class Question extends Component {
             );
           });
         if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option: ${list[1]}`;
           callback(list[1]);
         }
       } else if (this.props.question.scrapeTag === 4) {
         const op = $('input[id="search_filter_public"]').prop('checked')
           ? 'Yes'
           : 'No';
-        // document.getElementById(
-        //   'test'
-        // ).innerHTML = `Your current selected option:${op}`;
         callback(op);
       } else if (this.props.question.scrapeTag === 5) {
         $('div[class="content"]')
@@ -166,9 +154,6 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option: ${list[0]}`;
           callback(list[0]);
         }
       } else if (this.props.question.scrapeTag === 6) {
@@ -178,9 +163,6 @@ export class Question extends Component {
             list.push($(element).text());
           });
         if (list.length > 0) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option:${list[0]}`;
           if (list[0] === 'Enabled') callback('Yes');
           else callback('No');
         }
@@ -195,11 +177,6 @@ export class Question extends Component {
   getMaxVote = () => {
     const { topOption, totalVotes } = this.props.question;
     const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
-    // const getPercent = opt => {
-    //   const p = ((opt.count / this.props.question.totalVotes) * 100)
-    // .toFixed(0);
-    //   return parseInt(p, 10);
-    // };
 
     return (
       <div>
@@ -227,7 +204,6 @@ export class Question extends Component {
             margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
           />
         </p>
-        {/* {this.props.question.totalVotes > 0 && this.renderStats()} */}
         {this.renderCurrentSetting()}
         {this.renderActionButtons()}
       </div>
@@ -241,14 +217,29 @@ export class Question extends Component {
     });
   };
 
-  settingsMatch = condition => {
+  // used to set the "current setting" color
+  settingsMatch = () => {
+    // get vars
+    const curr = this.state.currentSetting;
+    const vote = this.state.votedOption.title;
+    const pop = this.props.question.topOption.title;
+    const { condition } = this.props;
+
+    // condition 2
     if (condition === 2) {
-      return this.state.currentSetting === this.state.votedOption.title;
+      if (curr === vote) return this.MatchEnum.OK;
+      if (vote === 'Not sure') return this.MatchEnum.WARNING;
     }
+
+    // condition 3
     if (condition === 3) {
-      return this.state.currentSetting === this.props.question.topOption.title;
+      if (curr === pop && pop === vote) return this.MatchEnum.OK;
+      if (curr === pop && vote === 'Not sure') return this.MatchEnum.OK;
+      if (curr === pop || pop === vote || vote === curr) {
+        return this.MatchEnum.WARNING;
+      }
     }
-    return false;
+    return this.MatchEnum.ALERT;
   };
 
   // called when user selects an option
@@ -261,37 +252,14 @@ export class Question extends Component {
 
   // login to Facebook, don't require info
   loginAndRedirect = url => {
-    // check if user is already logged in
     window.open(url, '_blank');
-    // if (Meteor.userId()) {
-    //   window.open(url, '_blank');
-    // } else {
-    //   Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
-    //     if (err) {
-    //       console.error(err);
-    //     } else {
-    //       window.open(url, '_blank');
-    //     }
-    //   });
-    // }
   };
 
   // TODO: rewrite this! so ugly.
   renderCurrentSetting = () => {
     if (this.state.currentSetting) {
-      // if (this.state.votedOption.title === 'Not sure') {
-      //   if (this.settingsMatch(3)) {
-      //     return (
-      //       <p className="current">
-      //         Your current setting on Facebook is{' '}
-      //         <span className="current-important">
-      //           {this.state.currentSetting}
-      //         </span>
-      //       </p>
-      //     );
-      //   }
-      // }
-      if (this.settingsMatch(3)) {
+      const match = this.settingsMatch();
+      if (match === this.MatchEnum.OK) {
         return (
           <p className="current-ok">
             Your current setting on Facebook is{' '}
@@ -301,17 +269,31 @@ export class Question extends Component {
           </p>
         );
       }
+      if (match === this.MatchEnum.WARNING) {
+        return (
+          <p className="current-warning">
+            Your current setting on Facebook is{' '}
+            <span className="current-important warning">
+              {this.state.currentSetting}
+            </span>
+          </p>
+        );
+      }
       return (
-        <p className="current-warning">
+        <p className="current-alert">
           Your current setting on Facebook is{' '}
-          <span className="current-important warning">
+          <span className="current-important alert">
             {this.state.currentSetting}
           </span>
           . Would you like to change it?
         </p>
       );
     }
-    return <ReactLoading type="balls" color="#e5b540" height="5%" width="5%" />;
+    return (
+      <div className="center">
+        <ReactLoading type="bubbles" color="#4468B0" height="7%" width="7%" />
+      </div>
+    );
   };
 
   renderActionButtons = () => (
