@@ -23,7 +23,7 @@ const Thanks = props => (
       View all questions
     </button>
     <button id="end-logout" onClick={() => props.logout()}>
-      Logout Facebook
+      Logout of Facebook
     </button>
   </div>
 );
