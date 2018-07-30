@@ -32,7 +32,6 @@
     "react-dom": "^16.4.1",
     "react-flipcard": "^0.2.1",
     "react-google-material-icons": "^1.0.4",
-    "react-horizontal-bar-chart": "^0.3.2",
     "react-loading": "^2.0.3",
     "react-meteor-data-with-tracker": "^0.1.2",
     "react-router": "^4.3.1",

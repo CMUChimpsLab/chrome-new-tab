@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Fri Jul 27 2018
+ * Last Modified: Mon Jul 30 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -55,7 +55,8 @@ export class Question extends Component {
     this.state = {
       voteSubmitted: props.answered,
       votedOption: null,
-      currentSetting: null
+      currentSetting: null,
+      clickedChange: false
     };
   }
 
@@ -77,7 +78,10 @@ export class Question extends Component {
       .map(opt => ({
         x: opt.title,
         y: getPercent(opt)
+        // label: opt.title,
+        // v: getPercent(opt)
       }));
+    // return ops;
     return [
       {
         label: 'somethingA', // not sure what this is for lol
@@ -309,14 +313,18 @@ export class Question extends Component {
           this.props.submitVote(
             this.props.question,
             this.state.votedOption,
-            this.state.currentSetting
+            this.state.currentSetting,
+            this.state.clickedChange
           )
         }
       >
         Next Question
       </button>
       <button
-        onClick={() => this.loginAndRedirect(this.props.question.url)}
+        onClick={() => {
+          this.setState({ clickedChange: true });
+          this.loginAndRedirect(this.props.question.url);
+        }}
         id="action-fb"
       >
         Change my setting on Facebook

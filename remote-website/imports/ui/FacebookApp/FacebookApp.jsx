@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Fri Jul 27 2018
+ * Last Modified: Mon Jul 30 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -45,7 +45,7 @@ export class FacebookApp extends Component {
       responses: PropTypes.array.isRequired
     }),
     loading: PropTypes.bool.isRequired,
-    aswerQuestion: PropTypes.func.isRequired,
+    answerQuestion: PropTypes.func.isRequired,
     questions: PropTypes.instanceOf(Array),
     userExists: PropTypes.bool.isRequired
   };
@@ -58,7 +58,7 @@ export class FacebookApp extends Component {
   constructor(props) {
     super(props);
     // Valid conditions: 2 or 3
-    this.condition = 3;
+    this.condition = 2;
     this.state = { categoryFilter: null };
   }
 
@@ -97,14 +97,17 @@ export class FacebookApp extends Component {
   };
 
   // called when user advances to the next question
-  submitVote = (question, option, currentSetting) => {
+  submitVote = (question, option, currentSetting, clickedChange) => {
+    const { condition } = this;
     this.props
-      .aswerQuestion({
+      .answerQuestion({
         variables: {
           guid: this.userGuid,
           questionId: question._id,
           optionId: option._id,
-          currentSetting
+          currentSetting,
+          condition,
+          clickedChange
         }
       })
       .catch(error => {
@@ -232,18 +235,22 @@ export class FacebookApp extends Component {
 }
 
 // mutation used to submit vote to database
-const aswerQuestion = gql`
+const answerQuestion = gql`
   mutation answerQuestion(
     $guid: String!
     $questionId: ID!
     $optionId: ID!
     $currentSetting: String
+    $condition: Int
+    $clickedChange: Boolean
   ) {
-    aswerQuestion(
+    answerQuestion(
       guid: $guid
       questionId: $questionId
       optionId: $optionId
       currentSetting: $currentSetting
+      condition: $condition
+      clickedChange: $clickedChange
     ) {
       responses {
         question {
@@ -289,8 +296,8 @@ export default compose(
   graphql(questionsQuery, {
     props: ({ data }) => ({ ...data })
   }),
-  graphql(aswerQuestion, {
-    name: 'aswerQuestion'
+  graphql(answerQuestion, {
+    name: 'answerQuestion'
   }),
   withTracker(props => {
     const usersHandle = Meteor.subscribe('users');

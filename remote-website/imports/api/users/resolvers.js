@@ -36,7 +36,10 @@ export default {
       return Users.findOne(userId);
     },
 
-    aswerQuestion(_, { guid, questionId, optionId, currentSetting }) {
+    answerQuestion(
+      _,
+      { guid, questionId, optionId, currentSetting, condition, clickedChange }
+    ) {
       // insert responses ids to user object
       Users.update(
         { guid },
@@ -46,6 +49,8 @@ export default {
               questionId,
               optionId,
               currentSetting,
+              condition,
+              clickedChange,
               timestamp: new Date()
             }
           }
