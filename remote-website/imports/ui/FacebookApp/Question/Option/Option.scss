@@ -9,18 +9,22 @@
   font-weight: 300;
   vertical-align: top;
   background-color: $opt-color;
-  color: #ffffff;
+  // color: #ffffff;
   border-radius: 15px;
-  border: 0px;
+  // border: 0px;
+  border: 2px $opt-highlight solid;
+  color: $opt-highlight;
+  background-color: white;
 
   -webkit-border-radius: 10px;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  text-shadow: 2px 2px 3px rgba(52, 73, 94, 0.5);
+  // text-shadow: 2px 2px 3px rgba(52, 73, 94, 0.5);
   box-shadow: 3px 3px 0px $opt-shadow;
   &:hover {
     background-color: $opt-highlight;
+    color: white;
     box-shadow: 3px 3px 0px yellow;
   }
 }

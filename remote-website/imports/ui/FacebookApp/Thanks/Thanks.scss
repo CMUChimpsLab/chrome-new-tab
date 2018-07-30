@@ -8,8 +8,61 @@
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
+ @import "../../assets/main";
 
 .thanks-body {
     display: grid;
     justify-items: center;
 }
+
+.thanks-body h1 {
+    color: $opt-highlight;
+    font-weight: 400;
+    font-size: 3em;
+    margin: 10px;
+    padding: 0;
+}
+
+.thanks-body p {
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 1.4em;
+    font-weight: 300;
+}
+
+
+#end-viewall, #end-logout {
+  height: 30px;
+  border-radius: 10px;
+  background: #fff;
+  text-shadow: 0;
+  font: {
+    size: 13px;
+  }
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+ 
+}
+
+
+#end-viewall {
+    color:#44b996;
+    &:hover {
+        color: white;
+        background: #44b996;
+    }
+    border: 2px solid #44b996;
+}
+
+#end-logout {
+    margin-top: 10px;
+    color: $opt-highlight;
+    border: 2px solid $opt-highlight;
+    &:hover {
+      color: white;
+      background: $opt-highlight;
+    }
+}
+

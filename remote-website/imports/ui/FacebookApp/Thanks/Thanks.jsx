@@ -19,8 +19,12 @@ const Thanks = props => (
   <div className="thanks-body">
     <h1>Thanks for participating!</h1>
     <p>Now please log out of Facebook! We will not be using it anymore.</p>
-    <button onClick={() => props.handleViewAll()}>View all questions</button>
-    <button onClick={() => props.logout()}>Logout Facebook</button>
+    <button id="end-viewall" onClick={() => props.handleViewAll()}>
+      View all questions
+    </button>
+    <button id="end-logout" onClick={() => props.logout()}>
+      Logout Facebook
+    </button>
   </div>
 );
 
