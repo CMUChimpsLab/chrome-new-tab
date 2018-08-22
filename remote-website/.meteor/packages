@@ -19,9 +19,9 @@ apollo
 nimble:restivus
 react-meteor-data
 fourseven:scss
-accounts-facebook
-service-configuration
+accounts-facebook@1.3.1
+service-configuration@1.0.11
 meteorhacks:aggregate
-http
-check
+http@1.4.1
+check@1.3.1
 clinical:csv

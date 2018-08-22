@@ -31,7 +31,7 @@
 }
 
 
-#end-viewall, #end-logout {
+#end-viewall, #end-logout, #end-restart {
   height: 30px;
   border-radius: 10px;
   background: #fff;
@@ -66,3 +66,12 @@
     }
 }
 
+#end-restart {
+    margin-top: 10px;
+    color: #fb4444;
+    border: 2px solid #fb4444;
+    &:hover {
+      color: white;
+      background: #fb4444;
+    }
+}

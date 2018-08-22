@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Mon Jul 30 2018
+ * Last Modified: Wed Aug 22 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -56,7 +56,8 @@ export class Question extends Component {
       voteSubmitted: props.answered,
       votedOption: null,
       currentSetting: null,
-      clickedChange: false
+      clickedChange: false,
+      showGraph: false
     };
   }
 
@@ -178,26 +179,29 @@ export class Question extends Component {
     });
   };
 
-  getMaxVote = () => {
-    const { topOption, totalVotes } = this.props.question;
-    const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
+  getMaxVote = () => (
+    // const { topOption, totalVotes } = this.props.question;
+    // const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
 
-    return (
-      <div>
-        <p className="ans">
+    <div>
+      {this.renderSelected()}
+      {this.renderCurrentSetting()}
+      {this.props.condition === 3 && this.renderCrowdChoice()}
+
+      {/* <p className="ans">
           Your have selected{' '}
           <span className="ans-important" id="ans-user">
             {this.state.votedOption.title}
           </span>
           <br />
-          {/* Only show crowd response if condition 3 */}
+          Only show crowd response if condition 3
           {this.props.condition === 3 && (
             <div>
               <span id="ans-crowd">
                 <span className="ans-important" id="ans-percent">
                   {percentage}&#37;
                 </span>{' '}
-                of people think
+                of {this.props.question.totalVotes} people think
                 <span className="ans-important" id="ans-crowd">
                   {' '}
                   {topOption.title}{' '}
@@ -212,12 +216,10 @@ export class Question extends Component {
               />
             </div>
           )}
-        </p>
-        {this.renderCurrentSetting()}
-        {this.renderActionButtons()}
-      </div>
-    );
-  };
+        </p> */}
+      {this.renderActionButtons()}
+    </div>
+  );
 
   setActualOption = currentSetting => {
     console.log(currentSetting);
@@ -229,9 +231,9 @@ export class Question extends Component {
   // used to set the "current setting" color
   settingsMatch = () => {
     // get vars
-    const curr = this.state.currentSetting;
-    const vote = this.state.votedOption.title;
-    const pop = this.props.question.topOption.title;
+    const curr = this.state.currentSetting.toLowerCase();
+    const vote = this.state.votedOption.title.toLowerCase();
+    const pop = this.props.question.topOption.title.toLowerCase();
     const { condition } = this.props;
 
     // condition 2
@@ -263,6 +265,16 @@ export class Question extends Component {
   loginAndRedirect = url => {
     window.open(url, '_blank');
   };
+
+  showGraph = () => {
+    this.setState(prevState => ({ showGraph: !prevState.showGraph }));
+  };
+
+  renderSelected = () => (
+    <p className="selected">
+      You chose <span>{this.state.votedOption.title}</span>
+    </p>
+  );
 
   // TODO: rewrite this! so ugly.
   renderCurrentSetting = () => {
@@ -305,6 +317,47 @@ export class Question extends Component {
     );
   };
 
+  renderCrowdChoice = () => {
+    const { topOption, totalVotes } = this.props.question;
+    const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
+
+    return (
+      <div>
+        <p
+          role="button"
+          onClick={() => this.showGraph()}
+          onKeyDown={() => {}}
+          className="crowd-choice"
+        >
+          <span className="ans-important percent" id="ans-percent">
+            {percentage}&#37;{' '}
+          </span>{' '}
+          of people think
+          <span className="ans-important option" id="ans-crowd">
+            {' '}
+            {topOption.title}{' '}
+          </span>
+          is the best option
+          <span
+            title="source: Amazon Mechanical Turk, August 2018"
+            className="total-votes"
+          >
+            {totalVotes} votes
+          </span>
+        </p>
+        {this.state.showGraph && (
+          <p className="graph">
+            <BarChart
+              data={this.getStats()}
+              width={600}
+              height={200}
+              margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
+            />
+          </p>
+        )}
+      </div>
+    );
+  };
   renderActionButtons = () => (
     <div className="action-buttons">
       <button
