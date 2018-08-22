@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Mon Jul 30 2018
+ * Last Modified: Wed Aug 22 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -46,6 +46,7 @@ export class FacebookApp extends Component {
     }),
     loading: PropTypes.bool.isRequired,
     answerQuestion: PropTypes.func.isRequired,
+    resetResponses: PropTypes.func.isRequired,
     questions: PropTypes.instanceOf(Array),
     userExists: PropTypes.bool.isRequired
   };
@@ -58,7 +59,7 @@ export class FacebookApp extends Component {
   constructor(props) {
     super(props);
     // Valid conditions: 2 or 3
-    this.condition = 2;
+    this.condition = 3;
     this.state = { categoryFilter: null };
   }
 
@@ -87,6 +88,22 @@ export class FacebookApp extends Component {
 
   handleViewAll = () => {
     window.open(`${this.props.history.location.pathname}/summary`, '_blank');
+  };
+
+  handleRestart = () => {
+    console.log('Restarting...');
+    this.props
+      .resetResponses({
+        variables: {
+          guid: this.userGuid
+        }
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   logoutAndClear = () => {
@@ -226,6 +243,7 @@ export class FacebookApp extends Component {
           // TODO: change this to be more useful!
           <Thanks
             handleViewAll={this.handleViewAll}
+            handleRestart={this.handleRestart}
             logout={this.logoutAndClear}
           />
         )}
@@ -252,6 +270,25 @@ const answerQuestion = gql`
       condition: $condition
       clickedChange: $clickedChange
     ) {
+      responses {
+        question {
+          title
+          _id
+        }
+        option {
+          title
+          _id
+          count
+        }
+      }
+    }
+  }
+`;
+
+// mutation used to submit vote to database
+const resetResponses = gql`
+  mutation resetResponses($guid: String!) {
+    resetResponses(guid: $guid) {
       responses {
         question {
           title
@@ -295,6 +332,9 @@ const questionsQuery = gql`
 export default compose(
   graphql(questionsQuery, {
     props: ({ data }) => ({ ...data })
+  }),
+  graphql(resetResponses, {
+    name: 'resetResponses'
   }),
   graphql(answerQuestion, {
     name: 'answerQuestion'

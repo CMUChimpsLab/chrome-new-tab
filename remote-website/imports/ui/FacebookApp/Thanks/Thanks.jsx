@@ -18,18 +18,21 @@ import '../../assets/font.css';
 const Thanks = props => (
   <div className="thanks-body">
     <h1>Thanks for participating!</h1>
-    <p>Now please log out of Facebook! We will not be using it anymore.</p>
     <button id="end-viewall" onClick={() => props.handleViewAll()}>
       View all questions
     </button>
     <button id="end-logout" onClick={() => props.logout()}>
-      Logout of Facebook
+      Go to Facebook
+    </button>
+    <button id="end-restart" onClick={() => props.handleRestart()}>
+      Restart Checkup
     </button>
   </div>
 );
 
 Thanks.propTypes = {
   handleViewAll: PropTypes.func.isRequired,
+  handleRestart: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired
 };
 

@@ -36,6 +36,11 @@ export default {
       return Users.findOne(userId);
     },
 
+    resetResponses(_, { guid }) {
+      Users.update({ guid }, { $set: { responses: [] } });
+      return Users.findOne({ guid });
+    },
+
     answerQuestion(
       _,
       { guid, questionId, optionId, currentSetting, condition, clickedChange }
