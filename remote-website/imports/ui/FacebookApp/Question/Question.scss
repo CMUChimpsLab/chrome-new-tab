@@ -140,7 +140,7 @@
   color: #747474;
   align-items: baseline;
   box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
-  border: 2px #d21717 solid;
+  border: 2px #fb4444 solid;
   animation: appear 600ms ease-out forwards;
 }
 
@@ -156,7 +156,7 @@
   color: #ffbf24;
 }
 .alert {
-  color: #d21717;
+  color: #fb4444;
 }
 
 .ans {
@@ -185,7 +185,7 @@
   background: #fff;
   text-shadow: 0;
   font: {
-    size: 13px;
+    size: 15px;
   }
   margin-right: 10px;
   cursor: pointer;
@@ -208,11 +208,11 @@
 }
 
 #action-fb {
-  border: 2px solid $opt-color;
-  color: $opt-color;
+  border: 2px solid #fb4444;
+  color: #fb4444;
   &:hover {
     color: white;
-    background: $opt-color;
+    background: #fb4444;
   }
 }
 
