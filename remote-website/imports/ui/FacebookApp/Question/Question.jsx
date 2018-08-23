@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Aug 22 2018
+ * Last Modified: Thu Aug 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -15,12 +15,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactLoading from 'react-loading';
 import { Meteor } from 'meteor/meteor';
-import { BarChart } from 'react-d3-components/lib/';
+// import { BarChart } from 'react-d3-components/lib/';
 // import { BarHorizontalChart } from 'react-d3-basic';
 import cheerio from 'cheerio';
 
 import Option from './Option/Option';
-
+import HBarGraph from './HBarGraph/HBarGraph';
 // css
 import './Question.scss';
 import '../../assets/font.css';
@@ -347,12 +347,13 @@ export class Question extends Component {
         </p>
         {this.state.showGraph && (
           <p className="graph">
-            <BarChart
+            <HBarGraph question={this.props.question} />
+            {/* <BarChart
               data={this.getStats()}
               width={600}
               height={200}
               margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
-            />
+            /> */}
           </p>
         )}
       </div>

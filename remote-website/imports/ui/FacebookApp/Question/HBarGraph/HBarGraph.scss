@@ -1,0 +1,27 @@
+/*
+ * File: HBarGraph.scss
+ * Project: Chrome New Tab
+ * File Created: Thursday, 23rd August 2018 9:24:37 am
+ * Description:
+ * Authors: Rosie Sun (rosieswj@gmail.com)
+ *          Gustavo Umbelino (gumbelin@gmail.com)
+ * -----
+ * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ */
+
+.graph-box {
+  margin: 0;
+  .graph-bar {
+    margin-bottom: 0.3em; 
+    .label {
+      font-size: 1.2em;
+      color: #747474;
+      font-weight: normal;
+    }
+  }
+  .data-source {
+    color: gray;
+    font-size: 12px;
+    font-weight: 200;
+  }
+}

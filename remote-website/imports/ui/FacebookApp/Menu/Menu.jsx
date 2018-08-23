@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Fri Jul 27 2018
+ * Last Modified: Wed Aug 22 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -44,7 +44,7 @@ export class Menu extends Component {
       <div className="sidebar">
         <div className="filter">
           <span id="filter-title">
-            Filter
+            Categories
             {this.props.selectedCategory
               ? `: ${this.props.selectedCategory}`
               : ''}

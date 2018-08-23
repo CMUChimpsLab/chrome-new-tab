@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 26 2018
+ * Last Modified: Thu Aug 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -103,7 +103,7 @@ const resetMongo = () => {
   // eslint-disable-next-line no-undef
   CSV.parse(Assets.getText('mTurk_raw.csv'), {
     header: true,
-    complete(result) {
+    step: result => {
       insertMTurkData(result.data);
     }
   });
