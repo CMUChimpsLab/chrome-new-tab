@@ -31,21 +31,23 @@ const HBarGraph = props => {
     <div className="graph-box">
       {filteredOptions.map(opt => {
         const normalPercent = getPercent(opt) * 0.8;
+        const mid = parseInt(props.height, 10) / 2;
+        const y = mid + 5;
         return (
           <div className="graph-bar">
             <span className="label">{opt.title}</span>
-            <svg width="100%" height="30">
+            <svg width="100%" height={props.height}>
               <g>
                 <rect
                   width={`${normalPercent}%`}
-                  height="30"
+                  height={props.height}
                   style={{
                     fill: 'rgb(31, 119, 180)'
                   }}
                 />
                 <text
                   x={`${normalPercent + 1}%`}
-                  y="20"
+                  y={y}
                   fontSize="1em"
                   fontWeight="200"
                   fill="#747474"
@@ -66,10 +68,15 @@ const HBarGraph = props => {
 };
 
 HBarGraph.propTypes = {
+  height: PropTypes.number,
   question: PropTypes.shape({
     totalVotes: PropTypes.number.isRequired,
     options: PropTypes.array.isRequired
   }).isRequired
+};
+
+HBarGraph.defaultProps = {
+  height: 30
 };
 
 export default HBarGraph;

@@ -18,6 +18,7 @@ import { Meteor } from 'meteor/meteor';
 // import { BarChart } from 'react-d3-components/lib/';
 // import { BarHorizontalChart } from 'react-d3-basic';
 import cheerio from 'cheerio';
+import MaterialIcon from '../../../../node_modules/react-google-material-icons';
 
 import Option from './Option/Option';
 import HBarGraph from './HBarGraph/HBarGraph';
@@ -338,22 +339,19 @@ export class Question extends Component {
             {topOption.title}{' '}
           </span>
           is the best option
-          <span
-            title="source: Amazon Mechanical Turk, August 2018"
-            className="total-votes"
-          >
-            {totalVotes} votes
-          </span>
+          {this.state.showGraph ? (
+            <span title="Hide stats" className="total-votes">
+              <MaterialIcon icon="close" size={28} />
+            </span>
+          ) : (
+            <span title="Show stats" className="total-votes">
+              <MaterialIcon icon="show_chart" size={28} />
+            </span>
+          )}
         </p>
         {this.state.showGraph && (
           <p className="graph">
-            <HBarGraph question={this.props.question} />
-            {/* <BarChart
-              data={this.getStats()}
-              width={600}
-              height={200}
-              margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
-            /> */}
+            <HBarGraph height="20" question={this.props.question} />
           </p>
         )}
       </div>

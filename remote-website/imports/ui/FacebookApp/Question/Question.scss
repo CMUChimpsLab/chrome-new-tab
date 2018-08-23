@@ -74,7 +74,8 @@
     margin: 0 0.2em 0 0.2em;
   }
   .total-votes {
-    color: gray;
+    color: #4468B0;
+    display: flex;
     font-size: 1em;
     font-weight: normal;
     margin: auto 0 auto auto;
@@ -180,6 +181,7 @@
 }
 
 .action-buttons button {
+  font-weight: 600;
   height: 30px;
   border-radius: 10px;
   background: #fff;
@@ -208,11 +210,13 @@
 }
 
 #action-fb {
-  border: 2px solid #fb4444;
-  color: #fb4444;
-  &:hover {
     color: white;
     background: #fb4444;
+    border: 2px solid #fb4444;
+  &:hover {
+    background-color: white;
+    color: #fb4444;
+    
   }
 }
 
