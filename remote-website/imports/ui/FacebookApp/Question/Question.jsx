@@ -210,7 +210,7 @@ export class Question extends Component {
               </span>
               <BarChart
                 data={this.getStats()}
-                width={600}
+                width={400}
                 height={200}
                 margin={{ top: 20, bottom: 20, left: 30, right: 10 }}
               />
