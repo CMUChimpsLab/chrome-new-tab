@@ -24,4 +24,7 @@ $q-bg: #e4f1fe;
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 13px;
+    button {
+        outline: none;
+    }
 }
