@@ -1,0 +1,41 @@
+participant_id,condition,scenarios_confidence,num_settings_interacted,num_matches,num_settings_changed,num_settings_not_changed,num_skimmed,num_not_sure,interaction_duration,use_in_real_life,not_a_setting,num_custom_settings,comments
+P1,C3,,,,,,,,,,,,
+P2,C1,1,16,,,,,,,,,,
+P3,C2,5,16,8,3,5,,0,4:40,yes,,,"confident about settings, but still surprised by some of them, ""so convenient"", ""I didn't even know this was a setting"""
+P4,C3,5,16,7,0,9,,1,3:00,yes,0,0,tries to google the setting at first instead of answering them on the screen. Clicked very fast through the questions.
+P5,C2,2,16,6,2,8,,4,6:30,"yes, not often",,,"not sure for a few, didn't want to change a few settings "
+P6,C1,3.5,16,,7,8,3,,6:00,,1,,"no face recognition, skimmed through 3 settings"
+P7,C1,1,16,,0,16,0,,10:00,,,,"didn't change any settings, has gone throgh privacy settings before. talks about 3rd party apps."
+P8,C1,3,16,,2,14,0,,4:45,,,,"changed a few settings, likes the categories, but feels like a recategorization would help. settings are hidden away, defaults are too public"
+P9,C1,3.334,16,,5,11,3,,3:30,,,2,"2 custom options, didn't know about face recognition"
+P10,C1,1,16,,0,16,10,,4:40,,,,"skimmed many settings, doesn't care much about privacy on Facebook"
+P11,C3,2,16,9,0,7,,0,8:50,definitely,0,0,"surprised by a few settings, still didn't change them. When asked why, she said she didn't see the button to change. ""I don't remember going through these settings before"" Also wanted a more consistent set of options to choose from"
+P12,C1,4.667,16,,0,16,0,,5:30,,,1,long conversations about Facebook and privacy expectations at the end
+P13,C1,1,16,,7,8,3,,5:00,,1,,"interesting conversation about reminders at the end. private person, complained about defaults. No face recognition feature."
+P14,C2,3,16,9,3,4,,0,16:30,"yes, not often",,,"was surprised by a few settings, liked the two-stages idea. ""this system makes me think"""
+P15,C2,2,16,4,8,4,,1,11:50,definitely,,,"wanted to change, but it was confused on how to, at first understood after a few questions. Still, changed the wrong setting three times. ""I didn't even know where to adjust [my privacy settings], I learned a lot!"""
+P16,C2,4,16,10,4,2,,1,7:40,yes,,,"used the filters to go to next question, which made her answer the same question twice a few times, clicked on view all."
+P17,C1,4.834,16,,1,15,0,,4:00,,,4,long conversation at the end about tradeoffs. would like to inform people about tradeoffs in choosing settings. a few custom settings and confident about them.
+P18,C3,1.667,16,10,2,4,,2,7:15,yes,0,0,wished they had different options (email). likes the one by one style.
+P19,C3,4,16,6,0,10,,1,3:55,doesn't know,0,0,"didn't react to his current setting, went through questions very fast"
+P20,C2,5,16,11,1,4,,0,5:20,yes,,,"concerned about cambridge analystica, changes settings every 3-4 months, still unaware of face recognition"
+P21,C2,1,16,11,5,0,,0,9:40,definitely,,,"most settings matched because he changed a lot of settings on the facebook page, before answering the questions on the interface. ""With this system, I feel more comfortable using Facebook"". ""I think it’s pretty cool. I’m glad somebody thought about that. I learned something, I gained something by coming here."""
+P22,C3,4,16,9,0,7,,3,8:10,not for Facebook,0,1,"friends except acquaintances option, wish she had more options. too much white space and text too small"
+P23,C3,1,16,5,8,2,,2,12:45,definitely,1,0,"confused on how to change seetting on Facebook. Not familiar with ""timeline"". thought she was changing settings, but wasn't. very confused on the beginning, but knew what to do at the end, without any instruction"
+P24,C3,3,16,3,1,11,,0,4:10,didn't understand why,1,0,a few matches and didn't want to change them. Wanted more options. Long conversation about the system after the last question *17:00*
+P25,C2,5,16,7,0,8,,0,4:10,yes,1,,"Many unchanged settings. ""Hm, I think I’m gettings this confused with my old profile."" Wish Nobody was an option for phone number and email questions"
+P26,C2,2.667,16,4,9,3,,3,8:30,definitely,,,"Changed many settings, would like to change settings directly in the interface. Would like ad questions."
+P27,C3,4.334,16,6,6,4,,1,6:00,definitely,0,2,"Wishes she had a ""No one"" setting for phone number question, didn't know face recognition setting existed. Had ""Custom"" and ""Friends except..."". Social graph was informative"
+P28,C3,,16,11,2,3,,0,7:40,yes,0,2,"Few custom settings, many matches. No record of confidence level for the scenarios. Wants ""Public post notifications"" rephrased."
+P29,C2,4,16,8,0,8,,1,6:00,definitely,,,"Didn't change settings, because she wants to take her time to think more about it, don't want to make a quick decision."
+P30,C1,3,16,,4,12,0,,3:25,,,,"didn't show confidence changing her settings, prob the first time she's gone through her privacy settings"
+P31,C3,1,16,4,0,12,,8,11:55,no,0,1,"Very scared of changing his settings or interacting with the interface. ""I like how it works currently and I’m afraid to mess with it."" Wanted option of no one for email. ""That’s something I might look into, I don’t know enough about that."""
+P32,C2,2,16,4,6,2,,2,5:10,yes,4,,"4 settings did't load, so I didn't count them as changed/didn't change"
+P33,C3,4,16,10,0,5,,1,4:00,maybe not so much,1,3,"wish there was a ""Nobody"" option for the email and phone number questions. Had 3 custom settings. Would like to see the opinion of specialist, rather than crowd/friends.Would prefer version 2 (not social)"
+P34,C2,4,16,12,3,1,,0,3:30,yes,,,"Confident by her settings, still surprised by a couple of them."
+P35,C2,1,16,3,1,11,,2,7:30,no,1,,"Has a Facebook account, but doesn't use it. Said he wanted to change, but didn't click to change it. Was surprised by many settings, still didn't change it."
+P36,C1,2.334,16,,5,11,1,,3:55,,,,"not confident with his settings, second time he goes over them, first time was 3 years ago, surprised by a few"
+P37,C1,3.334,16,,0,16,12,,2:30,,,,"wished she had a more private option for phone number setting. skimmed through many settings, didn't notice a few of them I believe. Doesn't look through privacy settings often, assumes her settings are the way she wants."
+P38,C1,4,16,,4,12,0,,3:00,,,2,"""I don’t know what that means either, I guess I won’t change that"". Clicks on dropdown to see other options and doesn't change it. didn't skim through anys settings and was still pretty fast. Not data on last questions."
+P39,C3,3,16,11,3,2,,2,5:20,yes,0,0,"wishes she had a nobody option for phone number, didn't know how to turn off face recognition."
+P40,C3,2,16,7,0,9,,0,5:30,yes,0,0,"was not sure what the system was. afraid of face recognition. wanted to see a control screen with all options on it. ignored the ""change my setting on facebook"" button. graphs were interesting, ""influenced how I thought about the questions"""

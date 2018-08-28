@@ -49,7 +49,7 @@ const HBarGraph = props => {
                   x={`${normalPercent + 1}%`}
                   y={y}
                   fontSize="1em"
-                  fontWeight="200"
+                  // fontWeight="200"
                   fill="#747474"
                 >
                   {opt.count} votes

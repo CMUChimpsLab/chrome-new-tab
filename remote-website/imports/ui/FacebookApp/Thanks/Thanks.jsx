@@ -12,21 +12,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import MaterialIcon from '../../../../node_modules/react-google-material-icons';
 import './Thanks.scss';
 import '../../assets/font.css';
 
 const Thanks = props => (
   <div className="thanks-body">
     <h1>Thanks for participating!</h1>
-    <button id="end-viewall" onClick={() => props.handleViewAll()}>
+    {/* <button id="end-viewall" onClick={() => props.handleViewAll()}>
       View all questions
     </button>
     <button id="end-logout" onClick={() => props.logout()}>
       Go to Facebook
-    </button>
-    <button id="end-restart" onClick={() => props.handleRestart()}>
-      Restart Checkup
-    </button>
+    </button> */}
+    <span role="button" id="end-viewall" onClick={() => props.handleViewAll()}>
+      <div className="title">View all questions</div>
+      <span className="icon">
+        <MaterialIcon icon="view_headline" size={20} />
+      </span>
+    </span>
+    <span role="button" id="end-logout" onClick={() => props.logout()}>
+      <div className="title">Go to Facebook</div>
+      <span className="icon">
+        <MaterialIcon icon="open_in_new" size={20} />
+      </span>
+    </span>
+    <span role="button" id="end-restart" onClick={() => props.handleRestart()}>
+      <div className="title">Restart Checkup</div>
+      <span className="icon">
+        <MaterialIcon icon="settings_backup_restore" size={20} />
+      </span>
+    </span>
   </div>
 );
 

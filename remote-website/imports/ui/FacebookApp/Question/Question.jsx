@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Aug 23 2018
+ * Last Modified: Fri Aug 24 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -379,7 +379,7 @@ export class Question extends Component {
         }}
         id="action-fb"
       >
-        Change my setting on Facebook
+        Change this setting on Facebook
       </button>
     </div>
   );
@@ -416,6 +416,11 @@ export class Question extends Component {
         <iframe title="iframe" id="iframe" style={{ display: 'none' }} />
         <div className="fb-title">{this.props.question.title}</div>
         <div className="fb-description">{this.props.question.description}</div>
+        {!this.state.voteSubmitted && (
+          <div className="fb-description">
+            <b>Please choose an option:</b>
+          </div>
+        )}
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}
       </div>
     );
