@@ -2,6 +2,7 @@ import Emails from '../emails/emails';
 import Users from '../users/users';
 import Options from '../options/options';
 import Questions from '../questions/questions';
+import ChangeHistory from '../change-history/change-history';
 
 export default {
   Query: {
@@ -33,10 +34,27 @@ export default {
         emails: [],
         responses: []
       });
+
+      // create a history entry for this user
+      ChangeHistory.insert({
+        guid,
+        checkups: [],
+        urls: []
+      });
+
       return Users.findOne(userId);
     },
 
     resetResponses(_, { guid }) {
+      // make copy of user responses
+      const resp = Users.findOne({ guid }).responses;
+
+      // save copy in history
+      ChangeHistory.update(
+        { guid },
+        { $push: { checkups: resp }, $inc: { checkupsCount: 1 } }
+      );
+
       Users.update({ guid }, { $set: { responses: [] } });
       return Users.findOne({ guid });
     },

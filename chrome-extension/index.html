@@ -12,6 +12,7 @@
 </head>
 
 <body>
+	<!-- <button class="change-color"></button> -->
 	<div class="banner">
 		<div id="title">
 			<h1>Chrome New Tab</h1>
@@ -28,10 +29,36 @@
 	<div class="section-row" >
 		<div id="facebook-app"></div>
 	</div>
+	<dialog id="addbox">
+		<div class='dialog-title'>
+			Add shortcut
+		</div>
+		<form class="addform">
+			<div class='field'>
+				<label for='title'>Title</label>
+				<div class='input'>
+						<input type='text' name='title' id='formTitle' placeholder="Title">
+				</div>
+			</div>
+			<div class='field'>
+				<label for='url'>URL</label>
+				<div class='input'>
+					<input type='text' name='url' id='formUrl' placeholder="https://">
+				</div>
+			</div>
+			<div class='buttons'>
+				<div class='right-buttons'>
+						<button id="cancelBtn" class="stdBtn">Cancel</button>
+						<!-- <button id="removeBtn" class="stdBtn">Remove</button> -->
+				</div>
+					<button id="doneBtn" class="done">Done</button>
+			</div>
+		</form>
+	</dialog>
+	<div id="history"></div>
 	<div class="footer">
 		<p>
 			&copy; CHIMPS Lab, Human-Computer Interaction Institute, Carnegie Mellon University
-			<br> Disclaimer: we collected your data only for crowdsourcing to better understand people's preferences.
 		</p>
 	</div>
 </body>

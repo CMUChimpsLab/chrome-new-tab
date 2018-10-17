@@ -7,8 +7,9 @@ import { check } from 'meteor/check';
 import './register-api';
 import Questions from '../../api/questions/questions';
 import Users from '../../api/users/users';
-import Emails from '../../api/emails/emails';
-import resetMongo from './reset-mongo';
+// import Emails from '../../api/emails/emails';
+import ChangeHistory from '../../api/change-history/change-history';
+// import resetMongo from './reset-mongo';
 
 // set up REST API
 if (Meteor.isServer) {
@@ -22,7 +23,7 @@ if (Meteor.isServer) {
   Meteor.startup(() => {
     // WARNING: THIS RESETS THE DATABASE OF QUESTIONS
     // AND USER RESPONSES. BE CAREFUL!!!
-    resetMongo();
+    // resetMongo();
 
     // expose method to client
     Meteor.methods({
@@ -79,7 +80,55 @@ if (Meteor.isServer) {
 
     // used by SocialSafety to create users
     Api.addCollection(Users);
-    Api.addCollection(Emails);
+    // Api.addCollection(Emails);
+
+    Api.addCollection(ChangeHistory);
+
+    Api.addRoute('users', {
+      post() {
+        if (this.request.body) {
+          // insertion successful
+          if (Users.insert(this.request.body)) {
+            // create history
+            ChangeHistory.insert({
+              guid: this.request.body.guid,
+              urls: [],
+              checkupsCount: 0,
+              checkups: []
+            });
+            return {
+              statusCode: 200
+            };
+          }
+        }
+        return {
+          statusCode: 404
+        };
+      }
+    });
+
+    // Maps to: api/v1/history/:guid
+    Api.addRoute('history/:guid', {
+      post() {
+        // find user
+        const user = Users.findOne({ guid: this.urlParams.guid });
+        if (!user) {
+          return {
+            statusCode: 404
+          };
+        }
+
+        // change history should exist at this point, add data
+        ChangeHistory.update(
+          { guid: this.urlParams.guid },
+          { $push: { urls: this.request.body } }
+        );
+
+        return {
+          statusCode: 200
+        };
+      }
+    });
 
     // Maps to: /api/v1/cookies/:guid
     Api.addRoute('cookies/:guid', {

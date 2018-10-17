@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Aug 22 2018
+ * Last Modified: Fri Sep 21 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,6 +14,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Menu.scss';
+
+import MaterialIcon from '../../../../node_modules/react-google-material-icons';
 
 export class Menu extends Component {
   static propTypes = {
@@ -49,26 +51,45 @@ export class Menu extends Component {
               ? `: ${this.props.selectedCategory}`
               : ''}
           </span>
-          {this.props.categories.map(category => (
-            <button
-              key={category}
-              className="category"
-              onClick={() => this.props.filter(category)}
-            >
-              {category}
-            </button>
-          ))}
+          {this.props.categories.length > 0 &&
+            this.props.categories.map((category, index) => {
+              if (index === this.props.categories.length - 1) {
+                return (
+                  <span
+                    key={category}
+                    role="button"
+                    className="categories-last"
+                    onClick={() => this.props.filter(category)}
+                  >
+                    <div className="title">{category}</div>
+                  </span>
+                );
+              }
+              return (
+                <span
+                  key={category}
+                  role="button"
+                  className="categories"
+                  onClick={() => this.props.filter(category)}
+                >
+                  <div className="title">{category}</div>
+                </span>
+              );
+            })}
         </div>
-        <div id="view-all">
-          <button onClick={() => this.handleViewAll()}>
-            View all questions
-          </button>
-        </div>
-        <div id="end-study">
-          <button onClick={() => this.props.logout()}>
-            Logout of Facebook
-          </button>
-        </div>
+        <span role="button" id="view-all" onClick={() => this.handleViewAll()}>
+          <div className="title">View all questions</div>
+          <span className="icon">
+            <MaterialIcon icon="view_headline" size={20} />
+          </span>
+        </span>
+
+        <span role="button" id="goto-fb" onClick={() => this.props.logout()}>
+          <div className="title">Go to Facebook</div>
+          <span className="icon">
+            <MaterialIcon icon="open_in_new" size={20} />
+          </span>
+        </span>
       </div>
     );
   }

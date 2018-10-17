@@ -1,0 +1,16 @@
+type AccessInfo {
+  _id: ID!
+  url: String!
+  timestamp: String!
+}
+
+type ChangeHistory {
+  _id: ID!
+  guid: String!
+  checkups: [Responses]
+  urls: [AccessInfo]
+}
+
+extend type Query {
+  changeHistory(guid: String!): ChangeHistory
+}

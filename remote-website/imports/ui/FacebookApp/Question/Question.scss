@@ -3,6 +3,7 @@
 .fb-question {
   border: 2px $font-important solid;
   background-color: #e4f1fe;
+  border-radius: 10px;
   box-sizing: border-box;
   padding: 15px;
   width: 40vw;
@@ -188,7 +189,7 @@
   text-shadow: 0;
   margin-left: 10px;
   font: {
-    size: 15px;
+    size: 14px;
   }
   cursor: pointer;
   transition: all 0.25s ease;
@@ -211,11 +212,11 @@
 
 #action-fb {
     color: white;
-    background: #fb4444;
-    border: 2px solid #fb4444;
+    background: #e40000;
+    border: 2px solid #e40000;
   &:hover {
     background-color: white;
-    color: #fb4444;
+    color: #e40000;
     
   }
 }

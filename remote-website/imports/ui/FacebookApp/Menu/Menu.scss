@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Aug 22 2018
+ * Last Modified: Tue Sep 25 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -21,7 +21,7 @@
 .filter {
     width: 100%;
     margin-bottom: 5vh;
-    box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
+    // box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
 }
 
 #filter-title, .category {
@@ -33,10 +33,12 @@
 
 #filter-title {
     width: 100%;
-    background-color: #95A5A6;
+    background-color: #4468b0;
     color: white;
     font-size: 1.6em;
-    font-weight: 200;
+    font-weight: 600;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
 }
 
 
@@ -78,9 +80,9 @@
       }
       cursor: pointer;
     transition: all 0.4s ease;
-  }
+}
 
-  #end-study button {
+#end-study button {
     height: 30px;
     text-shadow: 0;
     margin-top: 1em;
@@ -100,4 +102,73 @@
       }
       cursor: pointer;
     transition: all 0.4s ease;
+}
+
+#view-all, #goto-fb, .categories, .categories-last {
+    display: flex;
+    padding: 2px;
+    // font-weight: 600;
+    height: 30px;
+    border-radius: 10px;
+    background: #fff;
+    text-shadow: 0;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+    .title {
+        margin: auto auto auto 5%;
+        font-size: 16px;
+    }
+    .icon {
+        display: flex;
+        margin: auto 6% auto auto;
+    }
   }
+  
+  
+  #view-all {
+      color:#4468b0;
+      font-weight: 600;
+      &:hover {
+          color: white;
+          background: #4468b0;
+      }
+      border: 2px solid #4468b0;
+  }
+
+.categories {
+    border-right: 2px solid #4468b0;
+    border-left: 2px solid #4468b0;
+    border-top: 1px solid #ddd;
+    border-bottom: 0;
+    border-radius: 0;
+    color:#4468b0;
+    &:hover {
+        color: white;
+        background: #4468b0;
+    }
+}
+
+.categories-last {
+    border-top: 1px solid #ddd;
+    border-right: 2px solid #4468b0;
+    border-left: 2px solid #4468b0;
+    border-bottom: 2px solid #4468b0;
+    border-radius: 0 0 10px 10px;
+    color:#4468b0;
+    &:hover {
+        color: white;
+        background: #4468b0;
+    }
+}
+
+  #goto-fb {
+    font-weight: 600;
+    margin-top: 10px;
+    color: #4468b0;
+    border: 2px solid #4468b0;
+    &:hover {
+      color: white;
+      background: #4468b0;
+    }
+}

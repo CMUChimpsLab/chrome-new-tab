@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Jul 26 2018
+ * Last Modified: Fri Sep 21 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -93,7 +93,7 @@ const questions = [
     scrapeTag: 2 // checked
   },
   {
-    category: 'Profile & Personal info',
+    category: 'Profile',
     title: 'Should search engines outside of Facebook link to your profile?', // 'Do you want search engines outside of Facebook to link to your profile?',
     description:
       'When this setting is on, search engines may link to your profile in their results. When this setting is off, search engines will stop linking to your profile, but this may take some time. Your profile can still be found on Facebook if people search for your name.',
@@ -102,7 +102,7 @@ const questions = [
     scrapeTag: 4 // checked
   },
   {
-    category: 'Profile & Personal info',
+    category: 'Profile',
     title: 'Should Facebook be able to recognize you in photos and videos?',
     url:
       'https://www.facebook.com/settings?tab=facerec&section=face_recognition&view',
@@ -110,7 +110,7 @@ const questions = [
     scrapeTag: 5 // checked
   },
   {
-    category: 'Profile & Personal info',
+    category: 'Profile',
     title:
       'Who should be able to like or comment on your public profile pictures and other profile info?', // 'Who can like or comment on your public profile pictures and other profile info?',
     description:
@@ -121,14 +121,14 @@ const questions = [
     scrapeTag: 2 // checked
   },
   {
-    category: 'Timeline & Tags',
+    category: 'Timeline',
     title: 'Who should be allowed to post on your timeline?', // 'Who can post on your timeline?',
     url: 'https://www.facebook.com/settings?tab=timeline&section=posting&view',
     options: ['Only me', 'Friends', 'Not sure'],
     scrapeTag: 0 // checked
   },
   {
-    category: 'Timeline & Tags',
+    category: 'Timeline',
     title:
       "Would you like to review posts that you're tagged in before the posts appear on your timeline?", // "Review posts you're tagged in before the post appears on your timeline?",
     description:
@@ -139,7 +139,7 @@ const questions = [
     scrapeTag: 6 // checked
   },
   {
-    category: 'Timeline & Tags',
+    category: 'Timeline',
     title:
       'Would you like to review tags people add to your posts before the tags appear on Facebook?', // 'Review tags people add to your posts before the tags appear on Facebook?',
     description:
@@ -150,7 +150,7 @@ const questions = [
     scrapeTag: 6 // checked
   },
   {
-    category: 'Timeline & Tags',
+    category: 'Timeline',
     title:
       "When you're tagged in a post, who do you want to add to the audience of the post if they can't already see it?",
     description:
@@ -161,7 +161,7 @@ const questions = [
     scrapeTag: 0 // checked
   },
   {
-    category: 'Timeline & Tags',
+    category: 'Timeline',
     title:
       "Who should be able to see posts that you're tagged in on your timeline?", // "Who can see posts that you're tagged in on your timeline?",
     url: 'https://www.facebook.com/settings?tab=timeline&section=tagging&view',

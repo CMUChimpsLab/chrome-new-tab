@@ -6,6 +6,13 @@
 // const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
 const SERVER_URL = 'http://localhost:3000';
 
+const setting_URLS = [
+  "https://www.facebook.com/settings?tab=privacy",
+  "https://www.facebook.com/settings?tab=timeline",
+  "https://www.facebook.com/settings?tab=facerec",
+  "https://www.facebook.com/settings?tab=followers"
+]
+
 function makeGuid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -27,6 +34,38 @@ function makeGuid() {
     s4()
   );
 }
+
+// captures URLS the user visits
+chrome.tabs.onUpdated.addListener( function( tabId,  changeInfo,  tab) {
+
+  // only send URLS that match settings URLS to the server
+  if(setting_URLS.includes(tab.url) && changeInfo.status === 'complete'){
+
+    // make data
+    const accessInfo = {
+      url: tab.url,
+      timestamp: new Date()
+    }
+
+    // get guid from store
+    chrome.storage.sync.get('guid', function(store) {
+      var xhttp = new XMLHttpRequest();
+
+      // success
+      xhttp.onreadystatechange = function() {
+        if (this.status >= 200 && this.status < 300 && this.readyState === 4) {
+          console.log('URL sent to server');
+        }
+      };
+
+      // send POST request with accessInfo body
+      xhttp.open('POST', SERVER_URL + '/api/v1/history/' + store.guid, true);
+      xhttp.setRequestHeader('Content-Type', 'application/json');
+      xhttp.send(JSON.stringify(accessInfo));
+
+    });
+  }
+});
 
 // chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
 // chrome.browserAction.setBadgeText({ text: 'Hey!' });
@@ -142,7 +181,7 @@ chrome.runtime.onInstalled.addListener(function() {
         }
       };
 
-      xhttp.open('POST', SERVER_URL + '/api/v1/chrome-users', true);
+      xhttp.open('POST', SERVER_URL + '/api/v1/users', true);
       xhttp.setRequestHeader('Content-Type', 'application/json');
       xhttp.send(JSON.stringify(user));
     });
