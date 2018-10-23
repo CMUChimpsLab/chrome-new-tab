@@ -79,10 +79,35 @@ if (Meteor.isServer) {
     Api.addCollection(Questions);
 
     // used by SocialSafety to create users
-    Api.addCollection(Users);
+    // Api.addCollection(Users);
     // Api.addCollection(Emails);
 
     Api.addCollection(ChangeHistory);
+
+    Api.addRoute('chrome-users', {
+      post() {
+        if (this.request.body) {
+          const user = Users.insert(this.request.body);
+          if (user) {
+            return {
+              statusCode: 200
+            };
+          }
+        }
+        return {
+          statusCode: 404
+        };
+      }
+    });
+
+    // Maps to: api/v1/history/:guid
+    // Api.addRoute('cleanup/:guid', {
+    //   get() {
+    //     return {
+    //       statusCode: 200
+    //     }
+    //   }
+    // });
 
     Api.addRoute('users', {
       post() {

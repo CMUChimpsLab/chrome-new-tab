@@ -10,9 +10,20 @@
  */
  @import "../../assets/main";
 
+.circle-body {
+    height: 20vw;
+    width: 20vw;
+    background: #ffffff54;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 50%;
+}
+
 .thanks-body {
     display: grid;
     justify-items: center;
+    margin: auto;
 }
 
 .thanks-body h1 {
@@ -24,25 +35,32 @@
 }
 
 .thanks-body p {
-    margin-bottom: 20px;
-    margin-top: 10px;
-    font-size: 1.4em;
-    font-weight: 300;
+    // margin-bottom: 20px;
+    // margin-top: 10px;
+    margin: -3vw 0 1em 0;
+    color: white;
+    text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
+
+    font-weight: 600;
+    text-align: center;
+    width: 233px;
+    font-size: 2.4em;
+    // font-weight: 300;
 }
 
 
 #end-viewall, #end-logout, #end-restart {
   display: flex;
   padding: 2px;
-  width: 50%;
+  width: 15vw;
   font-weight: 600;
   height: 30px;
   border-radius: 10px;
-  background: #fff;
+  background: #ffffffe8;
   text-shadow: 0;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+//   box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
   .title {
       margin: auto;
       font-size: 16px;
@@ -52,34 +70,51 @@
       display: flex;
       margin: auto 6% auto auto;
   }
+  margin-top: 10px;
+  color: #4468b0;
+//   border: 2px solid #4468b0;
+  &:hover {
+    color: white;
+    background: #4468b0ef;
+  }
+}
+
+.done {
+    color: white!important;
+    background: #4468b0ef!important;
+    &:hover {
+        color: #4468b0ef!important;
+        background: #ffffffe8!important;
+    }
 }
 
 
 #end-viewall {
-    color:#44b996;
-    &:hover {
-        color: white;
-        background: #44b996;
-    }
-    border: 2px solid #44b996;
+    // color:#44b996;
+    margin-top: 0;
+    // &:hover {
+    //     color: white;
+    //     background: #44b996;
+    // }
+    // border: 2px solid #44b996;
 }
 
-#end-logout {
-    margin-top: 10px;
-    color: $opt-highlight;
-    border: 2px solid $opt-highlight;
-    &:hover {
-      color: white;
-      background: $opt-highlight;
-    }
-}
+// #end-logout {
+//     margin-top: 10px;
+//     color: $opt-highlight;
+//     border: 2px solid $opt-highlight;
+//     &:hover {
+//       color: white;
+//       background: $opt-highlight;
+//     }
+// }
 
-#end-restart {
-    margin-top: 10px;
-    color: #fb4444;
-    border: 2px solid #fb4444;
-    &:hover {
-      color: white;
-      background: #fb4444;
-    }
-}
+// #end-restart {
+//     margin-top: 10px;
+//     color: #fb4444;
+//     border: 2px solid #fb4444;
+//     &:hover {
+//       color: white;
+//       background: #fb4444;
+//     }
+// }

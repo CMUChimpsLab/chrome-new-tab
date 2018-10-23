@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tue Sep 25 2018
+ * Last Modified: Tue Oct 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -21,7 +21,8 @@
 .filter {
     width: 100%;
     margin-bottom: 5vh;
-    // box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px 1px #00000078;
 }
 
 #filter-title, .category {
@@ -33,12 +34,12 @@
 
 #filter-title {
     width: 100%;
-    background-color: #4468b0;
+    background-color: #4468b0ee;
     color: white;
     font-size: 1.6em;
     font-weight: 600;
     border-radius: 10px 10px 0 0;
-    box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+    // box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
 }
 
 
@@ -66,7 +67,9 @@
     
     border: 0;
     background-color: #95A5A6;
-    box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
+    // box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
+    // box-shadow: 0px 3px 5px 1px #00000078;
+
     width: 100%;
     text-align: left;
     padding: 3%;
@@ -88,7 +91,9 @@
     margin-top: 1em;
     border: 0;
     background-color: rgb(68, 107, 122);
-    box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
+    // box-shadow: -3px 3px 0px rgba(206, 223, 239, 0.9);
+    // box-shadow: 0px 3px 5px 1px #00000078;
+
     width: 100%;
     text-align: left;
     padding: 3%;
@@ -110,11 +115,13 @@
     // font-weight: 600;
     height: 30px;
     border-radius: 10px;
-    background: #fff;
+    background: #ffffffcc;
     text-shadow: 0;
     cursor: pointer;
     transition: all 0.25s ease;
-    box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+    // box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.7);
+    // box-shadow: 0px 3px 5px 1px #00000078;
+
     .title {
         margin: auto auto auto 5%;
         font-size: 16px;
@@ -131,34 +138,36 @@
       font-weight: 600;
       &:hover {
           color: white;
-          background: #4468b0;
+          background: #4468b0cc;
       }
-      border: 2px solid #4468b0;
+    //   border: 2px solid #4468b0;
+    box-shadow: 0px 3px 5px 1px #00000078;
+
   }
 
 .categories {
-    border-right: 2px solid #4468b0;
-    border-left: 2px solid #4468b0;
+    // border-right: 2px solid #4468b0;
+    // border-left: 2px solid #4468b0;
     border-top: 1px solid #ddd;
     border-bottom: 0;
     border-radius: 0;
     color:#4468b0;
     &:hover {
         color: white;
-        background: #4468b0;
+        background: #4468b0cc;
     }
 }
 
 .categories-last {
     border-top: 1px solid #ddd;
-    border-right: 2px solid #4468b0;
-    border-left: 2px solid #4468b0;
-    border-bottom: 2px solid #4468b0;
+    // border-right: 2px solid #4468b0;
+    // border-left: 2px solid #4468b0;
+    // border-bottom: 2px solid #4468b0;
     border-radius: 0 0 10px 10px;
     color:#4468b0;
     &:hover {
         color: white;
-        background: #4468b0;
+        background: #4468b0cc;
     }
 }
 
@@ -166,9 +175,11 @@
     font-weight: 600;
     margin-top: 10px;
     color: #4468b0;
-    border: 2px solid #4468b0;
+    box-shadow: 0px 3px 5px 1px #00000078;
+
+    // border: 2px solid #4468b0;
     &:hover {
       color: white;
-      background: #4468b0;
+      background: #4468b0cc;
     }
 }

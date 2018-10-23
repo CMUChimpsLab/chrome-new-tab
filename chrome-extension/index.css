@@ -4,6 +4,10 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+  background: white;
+  /* background-image: url('https://source.unsplash.com/2560x1600/daily?nature,water'); */
+  background-image: url('https://source.unsplash.com/2560x1600/?nature,water');
+  background-size: cover;
 }
 
 button {
@@ -36,9 +40,9 @@ button {
   width: 100vw;
   color: white;
 
-  background: #6190e8; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6190e8, #a7bfe8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: #6190e8; fallback for old browsers */
+  /* background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8);  */
+  /* background: linear-gradient(to right, #6190e8, #a7bfe8);  */
 
   display: flex;
   flex-flow: column nowrap;
@@ -77,9 +81,9 @@ button {
   bottom: 0;
   height: 55px;
   /* background-color: #a7bfe8; */
-  background: #6190e8; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6190e8, #a7bfe8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: #6190e8; fallback for old browsers */
+  /* background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8);  */
+  /* background: linear-gradient(to right, #6190e8, #a7bfe8);  */
 }
 
 .footer p {
@@ -89,12 +93,13 @@ button {
   text-align: center;
   color: white;
   font-size: 13px;
+  text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
 }
 
 #search {
   border-radius: 10px;
   border: 2px white solid;
-  margin: 0 auto 0 auto;
+  margin: 1em auto 0 auto;
   padding: 0.5em;
   font: 17px "Lato", arial, sans-serif;
   transition: all 0.5s;

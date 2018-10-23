@@ -7,7 +7,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Wed Aug 22 2018
+ * Last Modified: Tue Oct 23 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -26,6 +26,7 @@ import Wrapper from '../Components/Wrapper/Wrapper';
 import Users from '../../api/users/users';
 import Menu from './Menu/Menu';
 import Thanks from './Thanks/Thanks';
+import Closed from './Closed/Closed';
 
 export class FacebookApp extends Component {
   static propTypes = {
@@ -60,7 +61,7 @@ export class FacebookApp extends Component {
     super(props);
     // Valid conditions: 2 or 3
     this.condition = 3;
-    this.state = { categoryFilter: null };
+    this.state = { categoryFilter: null, closed: true };
   }
 
   componentDidMount() {
@@ -71,6 +72,7 @@ export class FacebookApp extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.props.user === null) return true;
+    if (this.state.closed !== nextState.closed) return true;
     if (
       this.props.loading !== nextProps.loading ||
       this.props.userExists !== nextProps.userExists
@@ -100,6 +102,9 @@ export class FacebookApp extends Component {
       })
       .then(data => {
         console.log(data);
+        this.setState({
+          closed: false
+        });
       })
       .catch(error => {
         console.log(error);
@@ -130,6 +135,12 @@ export class FacebookApp extends Component {
       .catch(error => {
         console.error(error);
       });
+  };
+
+  toggleClosed = () => {
+    this.setState(prevState => ({
+      closed: !prevState.closed
+    }));
   };
 
   filterByCategory = category => {
@@ -217,34 +228,46 @@ export class FacebookApp extends Component {
     // TODO: used for test only
     // const questionToRender = unansweredQuestions[0];
 
+    const { closed } = this.state;
+
     return (
       <Wrapper>
         {questionToRender ? (
-          <div className="grid-wrapper">
-            <div className="grid-sidebar">
-              <Menu
-                selectedCategory={this.state.categoryFilter}
-                filter={this.filterByCategory}
-                categories={categories}
-                history={this.props.history}
-                logout={this.logoutAndClear}
-              />
+          closed ? (
+            <Thanks
+              handleViewAll={this.handleViewAll}
+              handleRestart={this.toggleClosed}
+              logout={this.logoutAndClear}
+              done={false}
+            />
+          ) : (
+            <div className="grid-wrapper">
+              <div className="grid-sidebar">
+                <Menu
+                  selectedCategory={this.state.categoryFilter}
+                  filter={this.filterByCategory}
+                  categories={categories}
+                  history={this.props.history}
+                  logout={this.logoutAndClear}
+                />
+              </div>
+              <div className="grid-content">
+                <Line
+                  percent={percent}
+                  strokeWidth="2"
+                  strokeColor={barcolor()}
+                />
+                {this.renderQuestion(questionToRender)}
+              </div>
             </div>
-            <div className="grid-content">
-              <Line
-                percent={percent}
-                strokeWidth="2"
-                strokeColor={barcolor()}
-              />
-              {this.renderQuestion(questionToRender)}
-            </div>
-          </div>
+          )
         ) : (
           // TODO: change this to be more useful!
           <Thanks
             handleViewAll={this.handleViewAll}
             handleRestart={this.handleRestart}
             logout={this.logoutAndClear}
+            done
           />
         )}
       </Wrapper>

@@ -1,0 +1,30 @@
+/*
+ * File: Photos.scss
+ * Project: Chrome New Tab
+ * File Created: Monday, 23rd July 2018 11:33:28 am
+ * Description:
+ * Authors: Rosie Sun (rosieswj@gmail.com)
+ *          Gustavo Umbelino (gumbelin@gmail.com)
+ * -----
+ * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ */
+ @import "../../assets/main";
+
+ .photos-body {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    // grid-template-columns: repeat(6, 1fr);
+
+    > div {
+        margin: 0 0.5em 0 0.5em;
+    }
+
+    .photo-item {
+        max-width: 100%;
+        border-radius: 50%;
+        -webkit-filter: sepia(1) hue-rotate(180deg);
+        filter: sepia(1) hue-rotate(180deg);
+    }
+
+ }

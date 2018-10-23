@@ -174,6 +174,10 @@ chrome.runtime.onInstalled.addListener(function() {
         responses: [],
       };
 
+      // chrome.runtime.setUninstallURL(SERVER_URL + '/cleanup/' + guid , () => {
+      //   console.log('All good!');
+      // });
+
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function() {
         if (this.status >= 200 && this.status < 300 && this.readyState === 4) {
