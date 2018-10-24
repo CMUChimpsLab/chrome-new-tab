@@ -51,9 +51,10 @@ button {
 }
 
 .banner h1 {
-  font-size: 4.5em;
+  font-size: 5.5em;
   font-weight: 400;
-  text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
+  /* text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7); */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
 }
 
 .section-row {
@@ -93,7 +94,8 @@ button {
   text-align: center;
   color: white;
   font-size: 13px;
-  text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
+  /* text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7); */
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
 }
 
 #search {
@@ -112,7 +114,8 @@ button {
 
 #search:hover,
 #search:focus {
-  background: #4483FB;
+  /* background: #4483FB; */
+  background: #4468b0;
 }
 
 #search button,

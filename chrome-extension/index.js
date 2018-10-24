@@ -1,5 +1,5 @@
-const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
-// const SERVER_URL = 'http://localhost:3000';
+// const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
+const SERVER_URL = 'http://localhost:3000';
 
 
 function showIframe(iframeElement) {
@@ -37,7 +37,7 @@ function allButtonToggleListener() {
     });
   }
 }
-allButtonToggleListener();
+// allButtonToggleListener();
 
 function compare(a,b) {
   if (a.visitCount < b.visitCount)
@@ -120,36 +120,36 @@ function populateMvs() {
   );
 }
 
-populateMvs();
+// populateMvs();
 
-document.getElementById("doneBtn").addEventListener("click", function(event) {
-    event.preventDefault();
-    const formTitle = document.getElementById("formTitle").value;
-    const formUrl = document.getElementById("formUrl").value;
-    console.log(formTitle, formUrl);
-    chrome.storage.sync.get('userFavs', function(data) {
-      console.log(data);
-      if (Object.keys(data).length === 0) {
-        chrome.storage.sync.set({'userFavs': [{title:formTitle, url:formUrl}]}, function() {
-          console.log('New favs set!');
-          document.getElementById('addbox').close();
-        });
-      } else {
-        const newFavs = data.userFavs;
-        newFavs.push({title:formTitle, url:formUrl});
-        chrome.storage.sync.set({'userFavs': newFavs}, function() {
-          console.log('New favs set!');
-          document.getElementById('addbox').close();
-          populateMvs();
-        });
-      }      
-    });
-});
+// document.getElementById("doneBtn").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     const formTitle = document.getElementById("formTitle").value;
+//     const formUrl = document.getElementById("formUrl").value;
+//     console.log(formTitle, formUrl);
+//     chrome.storage.sync.get('userFavs', function(data) {
+//       console.log(data);
+//       if (Object.keys(data).length === 0) {
+//         chrome.storage.sync.set({'userFavs': [{title:formTitle, url:formUrl}]}, function() {
+//           console.log('New favs set!');
+//           document.getElementById('addbox').close();
+//         });
+//       } else {
+//         const newFavs = data.userFavs;
+//         newFavs.push({title:formTitle, url:formUrl});
+//         chrome.storage.sync.set({'userFavs': newFavs}, function() {
+//           console.log('New favs set!');
+//           document.getElementById('addbox').close();
+//           populateMvs();
+//         });
+//       }      
+//     });
+// });
 
-document.getElementById("cancelBtn").addEventListener("click", function(event) {
-  event.preventDefault();
-  document.getElementById('addbox').close();
-});
+// document.getElementById("cancelBtn").addEventListener("click", function(event) {
+//   event.preventDefault();
+//   document.getElementById('addbox').close();
+// });
 
 // let removes = document.getElementsByClassName("remove");
 
