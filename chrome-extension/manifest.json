@@ -1,7 +1,7 @@
 {
-  "name": "Chrome New Tab",
-  "description": "Chrome New Tab helps you fight evil things on the internet.",
-  "version": "0.9.1",
+  "name": "Safesea",
+  "description": "Safesea helps you judge settings for popular apps based on crowdsourced advice.",
+  "version": "0.9.2",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -24,7 +24,7 @@
     "128": "images/icons/128/128.png"
   },
   "browser_action": {
-    "default_title": "Welcome to SocialSafety!",
+    "default_title": "Welcome to Safesea!",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/icons/16/16.png",

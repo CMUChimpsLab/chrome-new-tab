@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background: white;
   /* background-image: url('https://source.unsplash.com/2560x1600/daily?nature,water'); */
-  background-image: url('https://source.unsplash.com/2560x1600/?nature,water');
+  /* background-image: url('https://source.unsplash.com/2560x1600/?nature,water'); */
   background-size: cover;
 }
 
@@ -38,7 +38,7 @@ button {
 .banner {
   align-items: center;
   width: 100vw;
-  color: white;
+  color: #333;
 
   /* background: #6190e8; fallback for old browsers */
   /* background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8);  */
@@ -54,7 +54,7 @@ button {
   font-size: 5.5em;
   font-weight: 400;
   /* text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7); */
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+  /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); */
 }
 
 .section-row {
@@ -92,15 +92,15 @@ button {
   padding-top: 20px;
   font-weight: 600;
   text-align: center;
-  color: white;
+  color: #333;
   font-size: 13px;
   /* text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7); */
-  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+  /* text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.7); */
 }
 
 #search {
   border-radius: 10px;
-  border: 2px white solid;
+  border: 2px #333 solid;
   margin: 1em auto 0 auto;
   padding: 0.5em;
   font: 17px "Lato", arial, sans-serif;
@@ -115,7 +115,7 @@ button {
 #search:hover,
 #search:focus {
   /* background: #4483FB; */
-  background: #4468b0;
+  background: #cccccc54;
 }
 
 #search button,
@@ -134,16 +134,16 @@ button {
   flex: 1;
 }
 #search input::-webkit-input-placeholder {
-  color: #fff;
+  color: #333;
 }
 #search input:-ms-input-placeholder {
-  color: #fff;
+  color: #333;
 }
 #search input::-ms-input-placeholder {
-  color: #fff;
+  color: #333;
 }
 #search input::placeholder {
-  color: #fff;
+  color: #333;
 }
 
 #search-button {

@@ -90,6 +90,7 @@ function setCookiesPermission() {
 
       // change action in button
       document.getElementById('accept-cookies').innerText = 'Clear cookies';
+      document.getElementById('accept-cookies').classList.add('clearCookies');
       document.getElementById('accept-cookies').removeEventListener('click', setCookiesPermission);
       document.getElementById('accept-cookies').addEventListener('click', clearCookies);
 

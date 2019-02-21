@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Fri Aug 24 2018
+ * Last Modified: Wed Dec 26 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -338,7 +338,7 @@ export class Question extends Component {
             {' '}
             {topOption.title}{' '}
           </span>
-          is the best option
+          is the safest option
           {this.state.showGraph ? (
             <span title="Hide stats" className="total-votes">
               <MaterialIcon icon="close" size={28} />

@@ -4,15 +4,15 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 
-  <title>Home | Chrome New Tab</title>
+  <title>Home | Safesea</title>
   <style>
     body {
       margin: 0px;
       box-sizing: border-box;
       font-family: 'Source Sans Pro', sans-serif;
-      background: #6190e8; /* fallback for old browsers */
-      background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to right, #6190e8, #a7bfe8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      /* background: #6190e8; fallback for old browsers */
+      /* background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8); Chrome 10-25, Safari 5.1-6 */
+      /* background: linear-gradient(to right, #6190e8, #a7bfe8); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
     img {
@@ -21,7 +21,8 @@
 
     .header {
       /* width: 100vw; */
-      color: #fff;
+      /* color: #fff; */
+      color: #333;
    }
 
     .header-text {
@@ -29,61 +30,82 @@
     }
     
     .header-text h1 {
-      font-size: 3.5em;
+      font-size: 5.5em;
       font-weight: 400;
-      text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7);
+      /* text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7); */
       display: inline-block;
-      padding-top: 7vh;
+      /* padding-top: 7vh; */
     }
 
     .fb-login {
       width: 60vw;
       margin: auto;
+      border: 2px #333 solid;
+      border-radius: 10px;
       margin-bottom: 2em;
-      background-color: rgba(58, 83, 155, 0.7);
-      box-shadow: -5px 5px 0px rgba(206, 223, 239, 0.3);
+      /* background-color: rgba(58, 83, 155, 0.7); */
+      /* box-shadow: -5px 5px 0px rgba(206, 223, 239, 0.3); */
       padding: 1% 2%;
       font-size: 1.5em;
       text-align: left;
-      color: white;
-      font-weight: 300;
+      /* color: white; */
+      color: #333;
+      /* font-weight: 300; */
     }
 
     #accept-cookies {
+      outline: none;
       height: 30px;
+      width: 15vw;
+      font-size: 1em;
+      font-weight: 600;
+      min-width: 200px;
       border-radius: 10px;
-      background: #fff;
+      background: #4caf50;
       text-shadow: 0;
-      font-size: 13px;
       cursor: pointer;
-      color: #5791e5;
+      color: #fff;
       border: 0;
       transition: all 0.25s ease;
       box-shadow: 1.5px 1.5px 0px rgba(191, 191, 191, 0.3);
     }
 
     #accept-cookies:hover {
-      background-color: #5791e5;
-      color: white;
+      background-color: #fff;
+      border: 2px #4caf50 solid;
+      color: #4caf50;
+    }
+
+    .clearCookies {
+      background-color: #fff!important;
+      border: 2px #e40000 solid!important;
+      color: #e40000!important;
+    }
+
+    .clearCookies:hover {
+      background-color: #e40000!important;
+      border: 2px #fff solid!important;
+      color: #fff!important;
     }
 
     
-  .footer {
-    width: 100%;
-    /* position: absolute; */
-    left: 0;
-    bottom: 0;
-    height: 80px;
-    background-color: #a7bfe8;
-  }
+    .footer {
+      width: 100%;
+      /* position: absolute; */
+      left: 0;
+      bottom: 0;
+      height: 55px;
+      /* background-color: #a7bfe8; */
+    }
 
   .footer p {
     display: block;
-    padding-top: 10px;
+    padding-top: 20px;
     width: 100%;
+    font-weight: 600;
     text-align: center;
     color: white;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .center {
@@ -93,6 +115,7 @@
 
   .legend {
     font-style: italic;
+    font-weight: 300;
     font-size: 16px;
   }
 
@@ -111,16 +134,16 @@
 <body>
 
   <div class="row header">
-    <div class="header-text"><h1>Getting started with Chrome New Tab</h1></div>
+    <div class="header-text"><h1>Getting started with Safesea</h1></div>
   </div>
   <div class="row">
     <div class="fb-login">
       <div id="subject-id"></div>
-      <h1>Chrome New Tab</h1>
-      <p>Chrome New Tab is a crowdsourcing plugin that helps you manage your privacy online.<br>
-        This plugin overrides your new tab page and gives you access to multiple privacy management applications!<br><br>
+      <h1>Safesea</h1>
+      <p>Safesea is a crowdsourcing plugin that helps you manage your privacy and safety online.<br>
+        This plugin overrides your new tab page and gives you access to multiple privacy and security management applications!<br><br>
         
-        <h1>Facebook Setting Checkup</h1>Facebook Setting Checkup is one of the applications currently running on the Chrome New Tab. In this application you will answer questions regarding you privacy settings on Facebook. You can answer as many questions as you want, the progress bar on top of the question will keep track of your progress.
+        <h1>Facebook Setting Checkup</h1>Facebook Setting Checkup is one of the applications currently running on Safesea. In this application you will answer questions regarding you privacy settings on Facebook. You can answer as many questions as you want, the progress bar on top of the question will keep track of your progress.
         <div class="center space">
           <img src='./images/screenshots/question-bar.png' alt='Question + Progress bar'>
           <div class="legend">Facebook Privacy Question with Progress Bar</div>
@@ -148,7 +171,6 @@
   <div class="footer">
     <p>
       &copy; CHIMPS Lab, Human-Computer Interaction Institute, Carnegie Mellon University
-      <br> Disclaimer: we collected your data only for crowdsourcing to better understand people's preferences.
     </p>
   </div>
 </body>

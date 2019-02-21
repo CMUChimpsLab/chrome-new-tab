@@ -6,7 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Tue Oct 23 2018
+ * Last Modified: Wed Dec 26 2018
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -16,13 +16,14 @@
 
 .sidebar {
     width: 15vw;
+    min-width: 200px;
 }
 
 .filter {
     width: 100%;
     margin-bottom: 5vh;
     border-radius: 10px;
-    box-shadow: 0px 3px 5px 1px #00000078;
+    box-shadow: 0px 2px 4px 0px #00000078;
 }
 
 #filter-title, .category {
@@ -138,10 +139,10 @@
       font-weight: 600;
       &:hover {
           color: white;
-          background: #4468b0cc;
+          background: #4468b0;
       }
     //   border: 2px solid #4468b0;
-    box-shadow: 0px 3px 5px 1px #00000078;
+    box-shadow: 0px 2px 4px 0px #00000078;
 
   }
 
@@ -154,7 +155,7 @@
     color:#4468b0;
     &:hover {
         color: white;
-        background: #4468b0cc;
+        background: #4468b0;
     }
 }
 
@@ -167,7 +168,7 @@
     color:#4468b0;
     &:hover {
         color: white;
-        background: #4468b0cc;
+        background: #4468b0;
     }
 }
 
@@ -175,11 +176,11 @@
     font-weight: 600;
     margin-top: 10px;
     color: #4468b0;
-    box-shadow: 0px 3px 5px 1px #00000078;
+    box-shadow: 0px 2px 4px 0px #00000078;
 
     // border: 2px solid #4468b0;
     &:hover {
       color: white;
-      background: #4468b0cc;
+      background: #4468b0;
     }
 }
