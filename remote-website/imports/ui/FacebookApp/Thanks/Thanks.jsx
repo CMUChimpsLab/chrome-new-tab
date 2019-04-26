@@ -5,6 +5,9 @@
  * Description:
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
+ *          Wanling Ding (wanlingd@andrew.cmu.edu)
+ * -----
+ * Last Modified: Fri Apr 26, 2019
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -23,6 +26,21 @@ const Thanks = props => (
       {/* <Photos amount={5} width={300} height={300} /> */}
       <p>Facebook Privacy Checkup</p>
 
+      
+      <span
+        role="button"
+        id="end-restart"
+        className={props.done ? '' : 'done'}
+        onClick={() => props.handleRestart()}
+      >
+        <div className="title">
+          {props.done ? 'Restart Checkup' : 'Continue Checkup'}
+        </div>
+        <span className="icon">
+          <MaterialIcon icon="settings_backup_restore" size={20} />
+        </span>
+      </span>
+
       <span
         role="button"
         id="end-viewall"
@@ -33,25 +51,17 @@ const Thanks = props => (
           <MaterialIcon icon="view_headline" size={20} />
         </span>
       </span>
+
+
       <span role="button" id="end-logout" onClick={() => props.logout()}>
         <div className="title">Go to Facebook</div>
         <span className="icon">
           <MaterialIcon icon="open_in_new" size={20} />
         </span>
       </span>
-      <span
-        role="button"
-        id="end-restart"
-        className={props.done ? '' : 'done'}
-        onClick={() => props.handleRestart()}
-      >
-        <div className="title">
-          {props.done ? 'Restart Checkup' : 'Resume Checkup'}
-        </div>
-        <span className="icon">
-          <MaterialIcon icon="settings_backup_restore" size={20} />
-        </span>
-      </span>
+
+
+
     </div>
   </div>
 );

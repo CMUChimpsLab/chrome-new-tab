@@ -5,8 +5,9 @@
  * Description:
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
+ *          Wanling Ding (wanlingd@andrew.cmu.edu)
  * -----
- * Last Modified: Fri Sep 21 2018
+ * Last Modified: Fri Apr 26, 2019
  * -----
  * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
  */
@@ -14,6 +15,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Menu.scss';
+
 
 import MaterialIcon from '../../../../node_modules/react-google-material-icons';
 
@@ -35,16 +37,33 @@ export class Menu extends Component {
     selectedCategory: null
   };
 
+  constructor(props) {
+    super(props);
+    // Valid conditions: 2 or 3
+    this.condition = 3;
+    this.state = { categoryFilter: null, closed: true };
+  }
+
   handleShuffle = () => {};
 
   handleViewAll = () => {
     window.open(`${this.props.history.location.pathname}/summary`, '_blank');
   };
 
+  // goHome = () => {
+  //   window.open(`${this.props.history.location.pathname}`);
+  // };
+
+  toggleClosed = () => {
+    this.setState(prevState => ({
+      closed: !prevState.closed
+    }));
+  };
+
   render() {
     return (
       <div className="sidebar">
-        <div className="filter">
+        {/* <div className="filter">
           <span id="filter-title">
             Categories
             {this.props.selectedCategory
@@ -76,7 +95,7 @@ export class Menu extends Component {
                 </span>
               );
             })}
-        </div>
+        </div> */}
         <span role="button" id="view-all" onClick={() => this.handleViewAll()}>
           <div className="title">View all questions</div>
           <span className="icon">
@@ -90,6 +109,14 @@ export class Menu extends Component {
             <MaterialIcon icon="open_in_new" size={20} />
           </span>
         </span>
+
+        {/* <span role="button" id="home" onClick={() => this.toggleClosed()}>
+          <div className="title">Home</div>
+          <span className="icon">
+            <MaterialIcon icon="home" size={20} />
+          </span>
+        </span> */}
+
       </div>
     );
   }

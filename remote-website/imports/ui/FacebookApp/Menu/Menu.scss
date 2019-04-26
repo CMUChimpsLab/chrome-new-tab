@@ -110,7 +110,7 @@
     transition: all 0.4s ease;
 }
 
-#view-all, #goto-fb, .categories, .categories-last {
+#view-all, #goto-fb, #home, .categories, .categories-last {
     display: flex;
     padding: 2px;
     // font-weight: 600;
@@ -172,7 +172,7 @@
     }
 }
 
-  #goto-fb {
+  #goto-fb, #home {
     font-weight: 600;
     margin-top: 10px;
     color: #4468b0;

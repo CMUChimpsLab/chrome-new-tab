@@ -6,7 +6,7 @@
   border-radius: 10px;
   box-sizing: border-box;
   padding: 15px;
-  width: 40vw;
+  width: 100%;
   // width: 100%;
   color: #34495e;
   box-shadow: 0px 2px 4px 0px #00000078;
@@ -187,6 +187,42 @@
   text-align: right;
 }
 
+.back-button, .changefacebook {
+  display: inline;
+}
+
+.fb-title::-webkit-details-marker {
+  display: none
+}
+
+.fb-see-others:hover {
+  background-color: #fafafa;
+  box-shadow: 0px 0px 3px 0px #4468B0;
+}
+
+.fb-see-others {
+  cursor: pointer;
+  display: flex;
+  background-color: white;
+  font-size: 1.6em;
+  color: #4468B0;
+  font-weight: 600;
+  padding: 7px 10px;
+  align-items: baseline;
+  box-shadow: 2px 2px 5px rgba(210, 215, 211, 0.4);
+  border: 2px #4468B0 solid;
+  animation: appear 600ms ease-out forwards;
+  margin-bottom: 20px;
+}
+
+.fb-see-others .see-others-icon {
+    color: #4468B0;
+    display: flex;
+    font-size: 1em;
+    font-weight: normal;
+    margin: auto 0 auto auto;
+}
+
 .action-buttons button {
   font-weight: 600;
   height: 30px;
@@ -207,7 +243,7 @@
   justify-items: center;
 }
 
-#action-next {
+#action-next, #action-back {
   border: 2px solid $opt-highlight;
   color: $opt-highlight;
   &:hover {
@@ -216,7 +252,7 @@
   }
 }
 
-#action-fb {
+#action-fb-alert {
     color: white;
     background: #e40000;
     border: 2px solid #e40000;
@@ -225,6 +261,28 @@
     color: #e40000;
     
   }
+}
+
+#action-fb-warning {
+  color: white;
+  background: #ffbf24;
+  border: 2px solid #ffbf24;
+&:hover {
+  background-color: white;
+  color: #ffbf24;
+  
+}
+}
+
+#action-fb-ok {
+  color: white;
+  background: #0c8e1e;
+  border: 2px solid #0c8e1e;
+&:hover {
+  background-color: white;
+  color: #0c8e1e;
+  
+}
 }
 
 @keyframes appear {

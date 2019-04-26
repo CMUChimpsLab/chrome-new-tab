@@ -35,6 +35,7 @@
     "react-loading": "^2.0.3",
     "react-meteor-data-with-tracker": "^0.1.2",
     "react-router": "^4.3.1",
+    "react-router-dom": "^5.0.0",
     "react-vis": "^1.10.2",
     "scrape-it": "^5.1.4"
   },
