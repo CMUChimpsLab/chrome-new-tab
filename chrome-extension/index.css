@@ -31,7 +31,7 @@ button {
 .section-iframe iframe {
   box-sizing: border-box;
   border: 0px solid #ccc;
-  height: 60vh;
+  height: 100%;
   width: 100%;
 }
 
@@ -51,8 +51,9 @@ button {
 }
 
 .banner h1 {
-  font-size: 5.5em;
-  font-weight: 400;
+  text-align: center;
+  /* font-size: 5.5em;
+  font-weight: 400; */
   /* text-shadow: 2px 2px 3px rgba(34, 167, 240, 0.7); */
   /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); */
 }
@@ -75,19 +76,21 @@ button {
   margin: auto;
 }
 
-.footer {
+footer {
   width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 55px;
+  position: relative;
+  /*left: 0;*/
+  /*bottom: 0;*/
+  /*height: 55px;*/
+  /*margin-top: 100px;*/
+  /*margin-bottom: 0px;*/
   /* background-color: #a7bfe8; */
   /* background: #6190e8; fallback for old browsers */
   /* background: -webkit-linear-gradient(to right, #6190e8, #a7bfe8);  */
   /* background: linear-gradient(to right, #6190e8, #a7bfe8);  */
 }
 
-.footer p {
+footer p {
   display: block;
   padding-top: 20px;
   font-weight: 600;
@@ -100,7 +103,7 @@ button {
 
 #search {
   border-radius: 10px;
-  border: 2px #333 solid;
+  border: 2px #5071b2 solid;
   margin: 1em auto 0 auto;
   padding: 0.5em;
   font: 17px "Lato", arial, sans-serif;
@@ -125,7 +128,7 @@ button {
   appearance: none;
   background: transparent;
   border: 0;
-  color: inherit;
+  color: #5071b2;
   font: inherit;
   outline: 0;
 }
@@ -134,16 +137,16 @@ button {
   flex: 1;
 }
 #search input::-webkit-input-placeholder {
-  color: #333;
+  color: #5071b2;
 }
 #search input:-ms-input-placeholder {
-  color: #333;
+  color: #5071b2;
 }
 #search input::-ms-input-placeholder {
-  color: #333;
+  color: #5071b2;
 }
 #search input::placeholder {
-  color: #333;
+  color: #5071b2;
 }
 
 #search-button {
@@ -329,4 +332,8 @@ button.done {
 .addform {
   display: block;
   margin-bottom: 0;
+}
+
+#facebook-app{
+  overflow-y: visible;
 }
