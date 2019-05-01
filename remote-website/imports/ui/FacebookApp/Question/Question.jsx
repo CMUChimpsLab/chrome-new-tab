@@ -27,9 +27,6 @@ import HBarGraph from './HBarGraph/HBarGraph';
 import './Question.scss';
 import '../../assets/font.css';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
-import { withRouter } from "react-router-dom";
-
 export class Question extends Component {
   static propTypes = {
     condition: PropTypes.number.isRequired,
@@ -65,13 +62,10 @@ export class Question extends Component {
       clickedChange: false,
       showGraph: false,
       status: null
-      
     };
 
-    //this.status = null;
-
+    // this.status = null;
   }
-
 
   componentDidMount = () => {
     this.getCurrentSelectedOption(
@@ -229,11 +223,9 @@ export class Question extends Component {
             </div>
           )}
         </p> */}
-      <div class="action-buttons">
-      {this.renderActionButtons()}
-      <div class="changefacebook">
-      {this.renderChangeFacebook()}
-      </div>
+      <div className="action-buttons">
+        {this.renderActionButtons()}
+        <div className="changefacebook">{this.renderChangeFacebook()}</div>
       </div>
     </div>
   );
@@ -256,31 +248,31 @@ export class Question extends Component {
     // condition 2
     if (condition === 2) {
       if (curr === vote) {
-        this.state.status = "OK";
+        this.state.status = 'OK';
         return this.MatchEnum.OK;
       }
       if (vote === 'Not sure') {
-        this.state.status = "WARNING";
-        return this.MatchEnum.WARNING
-      };
+        this.state.status = 'WARNING';
+        return this.MatchEnum.WARNING;
+      }
     }
 
     // condition 3
     if (condition === 3) {
       if (curr === pop && pop === vote) {
-        this.state.status = "OK";
+        this.state.status = 'OK';
         return this.MatchEnum.OK;
       }
       if (curr === pop && vote === 'Not sure') {
-        this.state.status = "OK";
+        this.state.status = 'OK';
         return this.MatchEnum.OK;
       }
       if (curr === pop || pop === vote || vote === curr) {
-        this.state.status = "WARNING";
+        this.state.status = 'WARNING';
         return this.MatchEnum.WARNING;
       }
     }
-    this.state.status = "ALERT";
+    this.state.status = 'ALERT';
     return this.MatchEnum.ALERT;
   };
 
@@ -353,70 +345,64 @@ export class Question extends Component {
     const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
 
     return (
-
-    <details>
+      <details>
         <summary className="fb-see-others">
-        <div>
-          See what others think
-          </div>
+          <div>See what others think</div>
         </summary>
-
-
-
-      <div>
-        <p
-          role="button"
-          onClick={() => this.showGraph()}
-          onKeyDown={() => {}}
-          className="crowd-choice"
-        >
-          <span className="ans-important percent" id="ans-percent">
-            {percentage}&#37;{' '}
-          </span>{' '}
-          of people think
-          <span className="ans-important option" id="ans-crowd">
-            {' '}
-            {topOption.title}{' '}
-          </span>
-          is the safest option
-          {this.state.showGraph ? (
-            <span title="Hide stats" className="total-votes">
-              <MaterialIcon icon="arrow_drop_up" size={28} />
+        <div>
+          <p
+            // eslint-disable-next-line max-len
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+            role="button"
+            onClick={() => this.showGraph()}
+            onKeyDown={() => {}}
+            className="crowd-choice"
+          >
+            <span className="ans-important percent" id="ans-percent">
+              {percentage}&#37;{' '}
+            </span>{' '}
+            of people think
+            <span className="ans-important option" id="ans-crowd">
+              {' '}
+              {topOption.title}{' '}
             </span>
-          ) : (
-            <span title="Show stats" className="total-votes">
-              <MaterialIcon icon="arrow_drop_down" size={28} />
-            </span>
-          )}
-        </p>
-        {this.state.showGraph && (
-          <p className="graph">
-            <HBarGraph height="20" question={this.props.question} />
+            is the safest option
+            {this.state.showGraph ? (
+              <span title="Hide stats" className="total-votes">
+                <MaterialIcon icon="arrow_drop_up" size={28} />
+              </span>
+            ) : (
+              <span title="Show stats" className="total-votes">
+                <MaterialIcon icon="arrow_drop_down" size={28} />
+              </span>
+            )}
           </p>
-        )}
-      </div>
-
-    </details>
+          {this.state.showGraph && (
+            <p className="graph">
+              <HBarGraph height="20" question={this.props.question} />
+            </p>
+          )}
+        </div>
+      </details>
     );
   };
 
-  
   // goBack = () => {
   //   window.open(`${this.props.history.location}`);
   // };
 
-//   goBack(){
-//     this.props.history.goBack;
-// }
+  //   goBack(){
+  //     this.props.history.goBack;
+  // }
 
   renderActionButtons = () => (
-      <div class="back-button">
+    <div className="back-button">
       {/* <button
         id="action-back"
           onClick={() => this.goBack()
-          
+
         }
-       
+
       >
         Back
       </button> */}
@@ -434,12 +420,10 @@ export class Question extends Component {
       >
         Next
       </button>
-      </div>
-   
+    </div>
   );
 
   renderChangeFacebook = () => {
-
     if (this.state.currentSetting) {
       const match = this.settingsMatch();
       if (match === this.MatchEnum.OK) {
@@ -449,7 +433,7 @@ export class Question extends Component {
               this.setState({ clickedChange: true });
               this.loginAndRedirect(this.props.question.url);
             }}
-            id = "action-fb-ok"
+            id="action-fb-ok"
           >
             Change this setting on Facebook
           </button>
@@ -462,7 +446,7 @@ export class Question extends Component {
               this.setState({ clickedChange: true });
               this.loginAndRedirect(this.props.question.url);
             }}
-            id = "action-fb-warning" 
+            id="action-fb-warning"
           >
             Change this setting on Facebook
           </button>
@@ -470,23 +454,24 @@ export class Question extends Component {
       }
       return (
         <button
-            onClick={() => {
-              this.setState({ clickedChange: true });
-              this.loginAndRedirect(this.props.question.url);
-            }}
-            id = "action-fb-alert" 
-          >
-            Change this setting on Facebook
-          </button>
+          onClick={() => {
+            this.setState({ clickedChange: true });
+            this.loginAndRedirect(this.props.question.url);
+          }}
+          id="action-fb-alert"
+        >
+          Change this setting on Facebook
+        </button>
       );
     }
+    return '';
     // return (
     //   <div className="center">
-    //     <ReactLoading type="bubbles" color="#4468B0" height="7%" width="7%" />
+    //     <ReactLoading type="bubbles" color="#4468B0"
+    // height="7%" width="7%" />
     //   </div>
     // );
   };
-
 
   // renderStats = () => (
   //   <div>
@@ -514,7 +499,7 @@ export class Question extends Component {
 
   renderDescription = () => (
     <div className="fb-description">{this.props.question.description}</div>
-  )
+  );
 
   renderNone = () => {};
 
@@ -523,13 +508,14 @@ export class Question extends Component {
       <div className="fb-question">
         <iframe title="iframe" id="iframe" style={{ display: 'none' }} />
         <details>
-        <summary className="fb-title">
-          {this.props.question.title}&nbsp;
-          {/* <button onClick={() => this.renderDescription()} onKeyDown={() => {}}> */}
-          <MaterialIcon icon="help" size={25} />
-          {/* </button> */}
-        </summary>
-        <p className="fb-description">{this.props.question.description}</p>
+          <summary className="fb-title">
+            {this.props.question.title}&nbsp;
+            {/* <button onClick={() =>
+            this.renderDescription()} onKeyDown={() => {}}> */}
+            <MaterialIcon icon="help" size={25} />
+            {/* </button> */}
+          </summary>
+          <p className="fb-description">{this.props.question.description}</p>
         </details>
         {!this.state.voteSubmitted && (
           <div className="fb-description">
@@ -541,6 +527,5 @@ export class Question extends Component {
     );
   }
 }
-
 
 export default Question;
