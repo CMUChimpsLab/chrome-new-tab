@@ -65,8 +65,8 @@ export class FacebookApp extends Component {
   }
 
   componentDidMount() {
-    Meteor.call('hasCookies', this.props.match.params.guid, results => {
-      console.log(results);
+    Meteor.call('hasCookies', this.props.match.params.guid, (error, result) => {
+      console.log(result);
     });
   }
 
@@ -165,6 +165,8 @@ export class FacebookApp extends Component {
     return <div>Thanks for participating!</div>;
   };
 
+  
+
   render() {
     if (this.props.loading || !this.props.userExists) {
       return '';
@@ -190,8 +192,11 @@ export class FacebookApp extends Component {
       catFilter(q, this.state.categoryFilter)
     );
 
+    // get questions that have NOT been answered
+    const unansweredQuestions = filteredQuestions.filter(q => !contains(q._id));
+
     const percent =
-      (this.props.user.responses.length / this.props.questions.length) * 100;
+      ((this.props.questions.length - unansweredQuestions.length + 1) / this.props.questions.length) * 100;
 
     const barcolor = () => {
       if (percent < 33) {
@@ -201,8 +206,6 @@ export class FacebookApp extends Component {
       }
       return '#589ff4';
     };
-    // get questions that have NOT been answered
-    const unansweredQuestions = filteredQuestions.filter(q => !contains(q._id));
 
     // get userGuid from URL
     this.userGuid = this.props.match.params.guid;
@@ -222,11 +225,10 @@ export class FacebookApp extends Component {
       return '';
     }
 
-    const questionToRender =
-      unansweredQuestions[this.getRandomQuestion(numQuestions)];
+    //const questionToRender = unansweredQuestions[this.getRandomQuestion(numQuestions)];
 
     // TODO: used for test only
-    // const questionToRender = unansweredQuestions[0];
+    const questionToRender = unansweredQuestions[0];
 
     const { closed } = this.state;
 
@@ -235,6 +237,7 @@ export class FacebookApp extends Component {
         {questionToRender ? (
           closed ? (
             <Thanks
+              guid={this.userGuid}
               handleViewAll={this.handleViewAll}
               handleRestart={this.toggleClosed}
               logout={this.logoutAndClear}
@@ -264,6 +267,7 @@ export class FacebookApp extends Component {
         ) : (
           // TODO: change this to be more useful!
           <Thanks
+            guid={this.userGuid}
             handleViewAll={this.handleViewAll}
             handleRestart={this.handleRestart}
             logout={this.logoutAndClear}

@@ -25,12 +25,14 @@
 
 .annotation {
     background-color: $q-bg;
-    width: 90%;
+    width: 90%; 
     box-sizing: border-box;
     margin: 0 auto 3% auto;
-    padding: 10px 0 10px 80px;
-    vertical-align: middle;
+    padding: 10px 0 5px 40px;
+    vertical-align: top;
     font-size: 14px;
+    box-sizing: content-box;
+    font-weight: 600;
 }
 
 .header-q {
@@ -39,7 +41,7 @@
     margin: 5% auto 0 auto;
     font-size: 15px;
     padding-bottom: 0px;
-    padding-top: 30px;
+    padding-top: 5px;
     box-sizing: border-box;
     text-align: left;
     font-weight: 600;
@@ -63,3 +65,9 @@
     display: inline-block;
 }
 
+.footer {
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0 auto 3% auto;
+    padding: 10px 0 10px 80px;
+}

@@ -6,6 +6,7 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  *          Wanling Ding (wanlingd@andrew.cmu.edu)
+ *          Amy Liu (ayl2@andrew.cmu.edu)
  * -----
  * Last Modified: Fri Apr 26, 2019
  * -----
@@ -18,7 +19,6 @@ import ReactLoading from 'react-loading';
 import { Meteor } from 'meteor/meteor';
 // import { BarChart } from 'react-d3-components/lib/';
 // import { BarHorizontalChart } from 'react-d3-basic';
-import cheerio from 'cheerio';
 import MaterialIcon from '../../../../node_modules/react-google-material-icons';
 
 import Option from './Option/Option';
@@ -51,7 +51,7 @@ export class Question extends Component {
 
   constructor(props) {
     super(props);
-    // this.goBack = this.goBack.bind(this);
+    //this.goBack = this.goBack.bind(this);
 
     this.MatchEnum = Object.freeze({ OK: 1, WARNING: 2, ALERT: 3 });
 
@@ -97,94 +97,94 @@ export class Question extends Component {
     ];
   };
 
+
   getCurrentSelectedOption = (url, guid, callback) => {
     Meteor.call('getSetting', url, guid, (error, result) => {
-      const $ = cheerio.load(result.content);
-      const list = [];
+      const cheerio = require('cheerio');
+      console.log(url);
+      console.log(result);
+      if (result === undefined || result === null || 'set-cookie' in result.headers) {
+        callback('');
+      }
+      else {
+        const $ = cheerio.load(result.content);
+        // Scrape instructions for Facebook's "Privacy" questions
+        if (this.props.question.scrapeTag === 0) {
+          const op = $('li[class*=openPanel]')
+                      .find($('div[class="_nlm fwb"]'))
+                      .text();
+          console.log(op);
+          callback(op);
+        } 
+        else if (this.props.question.scrapeTag === 1) {
+          const op = $('div[class="clearfix"]')
+                      .find($('span[class="_55pe"]'))
+                      .text();
+          console.log(op);
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 2) {
+          const op = $('li[class*=openPanel]')
+                      .find($('span[class="fbSettingsListItemContent fcg"]'))
+                      .children()
+                      .first()
+                      .text();
+          console.log(op);
+          callback(op);
+        } 
+        else if (this.props.question.scrapeTag === 3) {
+          const op = $('input[id="search_filter_public"]').prop('checked')
+            ? 'Yes'
+            : 'No';
+          console.log(op);
+          callback(op);
+        } 
+        else if (this.props.question.scrapeTag === 4) {
+          const op = ($('li[class*=openPanel]')
+                      .find($('div[class="_nlm fwb"]'))
+                      .text() === 'On')
+            ? 'Yes'
+            : 'No';
+          console.log(op);
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 5) {
+          const op = ($('div[data-testid="tfs_header_button"]')
+                    .find($('a'))
+                    .text() === "Get Started")
+            ? 'No (Off)'
+            : 'Yes (On)';
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 6) {
+          console.log('Why is this not working');
+          const op = ($('.fbNoTrustedFriends')
+                      .prop('class') === "fcg")
+            ? 'No (Off)'
+            : 'Yes (On)';
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 7) {
+          const op = /*$('div[class="_4p8x _4-u3"]')*/ $('span[class="_y5_"]').text()
+        //   ? 'Yes (On)';
+          //  : 'No (Off)';
+          callback(op);            
+        }
+        else if (this.props.question.scrapeTag === 8) {
+          const op = ($('input[name="storyresharesetting"]')
+                      .prop('value') === "1")
+            ? 'Yes'
+            : 'No';
+          callback(op);
+        }
 
-      // Timeline and Tagging Settings
-      if (this.props.question.scrapeTag === 0) {
-        $('div[class="content"]')
-          .find('div > div > div > div > a > span')
-          .each(function(index, element) {
-            list.push(
-              $(element)
-                .clone() // clone the element
-                .children() // select all the children
-                .remove() // remove all the children
-                .end() // again go back to selected element
-                .text()
-            );
-          });
-        if (list.length > 1) {
-          callback(list[1]);
+        else {
+          console.log('Make sure this question has a valid scrapeTag');
         }
-      } else if (this.props.question.scrapeTag === 1) {
-        $('div[class="clearfix"]')
-          .find('div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 1) {
-          callback(list[1]);
-        }
-      } else if (this.props.question.scrapeTag === 2) {
-        $('form')
-          .find('div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 3) {
-          callback(list[3]);
-        }
-      } else if (this.props.question.scrapeTag === 3) {
-        $('ul')
-          .find('li > div > div > div > a > span')
-          .each(function(index, element) {
-            list.push(
-              $(element)
-                .clone() // clone the element
-                .children() // select all the children
-                .remove() // remove all the children
-                .end() // again go back to selected element
-                .text()
-            );
-          });
-        if (list.length > 1) {
-          callback(list[1]);
-        }
-      } else if (this.props.question.scrapeTag === 4) {
-        const op = $('input[id="search_filter_public"]').prop('checked')
-          ? 'Yes'
-          : 'No';
-        callback(op);
-      } else if (this.props.question.scrapeTag === 5) {
-        $('div[class="content"]')
-          .find('div > div > div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 1) {
-          callback(list[0]);
-        }
-      } else if (this.props.question.scrapeTag === 6) {
-        $('form')
-          .find('div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 0) {
-          if (list[0] === 'Enabled') callback('Yes');
-          else callback('No');
-        }
-      } else if (this.props.question.scrapeTag >= 7) {
-        console.log("Can't scrape ads yet.");
-      } else {
-        console.log('Make sure this question has a valid scrapeTag');
       }
     });
   };
-
+  
   getMaxVote = () => (
     // const { topOption, totalVotes } = this.props.question;
     // const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
@@ -192,7 +192,9 @@ export class Question extends Component {
     <div>
       {this.renderSelected()}
       {this.renderCurrentSetting()}
-      {this.props.condition === 3 && this.renderCrowdChoice()}
+      {this.state.showGraph 
+        ? this.props.condition === 3 && this.renderCrowdChoice()
+        : this.renderSeeOthers()}
 
       {/* <p className="ans">
           Your have selected{' '}
@@ -295,7 +297,7 @@ export class Question extends Component {
 
   renderSelected = () => (
     <p className="selected">
-      You chose <span>{this.state.votedOption.title}</span>
+      You chose&nbsp; <span>{this.state.votedOption.title}</span>
     </p>
   );
 
@@ -340,64 +342,59 @@ export class Question extends Component {
     );
   };
 
+  
+  renderSeeOthers = () => {
+    return (
+      <button className="fb-see-others" onClick={() => this.setState({ showGraph: true })}>
+        <b><MaterialIcon icon="chevron_right" size={20}/></b>
+        See what others think
+      </button>
+    )
+  }
+
   renderCrowdChoice = () => {
     const { topOption, totalVotes } = this.props.question;
     const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
-
     return (
-      <details>
-        <summary className="fb-see-others">
-          <div>See what others think</div>
-        </summary>
-        <div>
-          <p
-            // eslint-disable-next-line max-len
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-            role="button"
-            onClick={() => this.showGraph()}
-            onKeyDown={() => {}}
-            className="crowd-choice"
-          >
-            <span className="ans-important percent" id="ans-percent">
-              {percentage}&#37;{' '}
-            </span>{' '}
-            of people think
-            <span className="ans-important option" id="ans-crowd">
-              {' '}
-              {topOption.title}{' '}
-            </span>
-            is the safest option
-            {this.state.showGraph ? (
-              <span title="Hide stats" className="total-votes">
-                <MaterialIcon icon="arrow_drop_up" size={28} />
-              </span>
-            ) : (
-              <span title="Show stats" className="total-votes">
-                <MaterialIcon icon="arrow_drop_down" size={28} />
-              </span>
-            )}
+      <div>
+        <p
+          // eslint-disable-next-line max-len
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+          //role="button"
+          //onClick={() => this.showGraph()}
+          //onKeyDown={() => {}}
+          className="crowd-choice"
+        >
+          <span className="ans-important percent" id="ans-percent">
+            {percentage}&#37;{' '}
+          </span>{' '}
+          of people think
+          <span className="ans-important option" id="ans-crowd">
+            {' '}
+            {topOption.title}{' '}
+          </span>
+          is the safest option
+        </p>
+        {this.state.showGraph && (
+          <p className="graph">
+            <HBarGraph height="20" question={this.props.question} />
           </p>
-          {this.state.showGraph && (
-            <p className="graph">
-              <HBarGraph height="20" question={this.props.question} />
-            </p>
-          )}
-        </div>
-      </details>
+        )}
+      </div>
     );
   };
+  /*
+  goBack = () => {
+     window.open(`${this.props.history.location}`);
+  };
 
-  // goBack = () => {
-  //   window.open(`${this.props.history.location}`);
-  // };
-
-  //   goBack(){
-  //     this.props.history.goBack;
-  // }
+  goBack(){
+    this.props.history.goBack;
+  }*/
 
   renderActionButtons = () => (
-    <div className="back-button">
-      {/* <button
+   <div className="back-button">
+      {/*<button
         id="action-back"
           onClick={() => this.goBack()
 
@@ -507,19 +504,21 @@ export class Question extends Component {
     return (
       <div className="fb-question">
         <iframe title="iframe" id="iframe" style={{ display: 'none' }} />
+        <div className="fb-title">
+            <b className="fb-category">Category:&nbsp;{this.props.question.category}</b><br />
+            {this.props.question.title}<br />
+        </div>
         <details>
-          <summary className="fb-title">
-            {this.props.question.title}&nbsp;
-            {/* <button onClick={() =>
-            this.renderDescription()} onKeyDown={() => {}}> */}
-            <MaterialIcon icon="help" size={25} />
-            {/* </button> */}
+          <summary className="info-icon">
+            <span className="info-icon">
+              <MaterialIcon icon="info" size={17}/>
+              &nbsp;What does this mean?</span>
           </summary>
-          <p className="fb-description">{this.props.question.description}</p>
+          <div className="fb-description">{this.props.question.description}</div>
         </details>
         {!this.state.voteSubmitted && (
           <div className="fb-description">
-            <b>Please choose an option:</b>
+            <br /><b>Please choose an option:</b>
           </div>
         )}
         {this.state.voteSubmitted ? this.getMaxVote() : this.renderUnvoted()}

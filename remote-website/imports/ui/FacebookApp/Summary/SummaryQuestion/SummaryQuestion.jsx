@@ -5,6 +5,7 @@
  * Description:
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
+ *          Amy Liu (ayl2@andrew.cmu.edu)
  * -----
  * Last Modified: Thu Jul 19 2018
  * -----
@@ -24,6 +25,7 @@ export class SummaryQuestion extends Component {
     question: PropTypes.shape({
       _id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      //original: PropTypes.string.isRequired,
       category: PropTypes.string,
       description: PropTypes.string,
       url: PropTypes.string,
@@ -55,108 +57,87 @@ export class SummaryQuestion extends Component {
 
   getCurrentSelectedOption = (url, guid, callback) => {
     Meteor.call('getSetting', url, guid, (error, result) => {
-      const $ = cheerio.load(result.content);
-      const list = [];
+      const cheerio = require('cheerio');
+      console.log(url);
+      console.log(result);
+      if (result === undefined || result === null || 'set-cookie' in result.headers) {
+        callback('');
+      }
+      else {
+        const $ = cheerio.load(result.content);
+        // Scrape instructions for Facebook's "Privacy" questions
+        if (this.props.question.scrapeTag === 0) {
+          const op = $('li[class*=openPanel]')
+                      .find($('div[class="_nlm fwb"]'))
+                      .text();
+          console.log(op);
+          callback(op);
+        } 
+        else if (this.props.question.scrapeTag === 1) {
+          const op = $('div[class="clearfix"]')
+                      .find($('span[class="_55pe"]'))
+                      .text();
+          console.log(op);
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 2) {
+          const op = $('li[class*=openPanel]')
+                      .find($('span[class="fbSettingsListItemContent fcg"]'))
+                      .children()
+                      .first()
+                      .text();
+          console.log(op);
+          callback(op);
+        } 
+        else if (this.props.question.scrapeTag === 3) {
+          const op = $('input[id="search_filter_public"]').prop('checked')
+            ? 'Yes'
+            : 'No';
+          console.log(op);
+          callback(op);
+        } 
+        else if (this.props.question.scrapeTag === 4) {
+          const op = ($('li[class*=openPanel]')
+                      .find($('div[class="_nlm fwb"]'))
+                      .text() === 'On')
+            ? 'Yes'
+            : 'No';
+          console.log(op);
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 5) {
+          const op = ($('div[data-testid="tfs_header_button"]')
+                    .find($('a'))
+                    .text() === "Get Started")
+            ? 'No (Off)'
+            : 'Yes (On)';
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 6) {
+          console.log('Why is this not working');
+          const op = ($('.fbNoTrustedFriends')
+                      .prop('class') === "fcg")
+            ? 'No (Off)'
+            : 'Yes (On)';
+          callback(op);
+        }
+        else if (this.props.question.scrapeTag === 7) {
+          const op = /*$('div[class="_4p8x _4-u3"]')*/ $('span[class="_y5_"]').text()
+        //   ? 'Yes (On)';
+          //  : 'No (Off)';
+          callback(op);            
+        }
+        else if (this.props.question.scrapeTag === 8) {
+          const op = ($('input[name="storyresharesetting"]')
+                      .prop('value') === "1")
+            ? 'Yes'
+            : 'No';
+          callback(op);
+        }
 
-      // Timeline and Tagging Settings
-      if (this.props.question.scrapeTag === 0) {
-        $('div[class="content"]')
-          .find('div > div > div > div > a > span')
-          .each(function(index, element) {
-            list.push(
-              $(element)
-                .clone() // clone the element
-                .children() // select all the children
-                .remove() // remove all the children
-                .end() // again go back to selected element
-                .text()
-            );
-          });
-        if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option:${list[1]}`;
-          callback(list[1]);
+        else {
+          console.log('Make sure this question has a valid scrapeTag');
         }
-      } else if (this.props.question.scrapeTag === 1) {
-        $('div[class="clearfix"]')
-          .find('div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option:${list[1]}`;
-          callback(list[1]);
-        }
-      } else if (this.props.question.scrapeTag === 2) {
-        $('form')
-          .find('div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 3) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option: ${list[3]}`;
-          callback(list[3]);
-        }
-      } else if (this.props.question.scrapeTag === 3) {
-        $('ul')
-          .find('li > div > div > div > a > span')
-          .each(function(index, element) {
-            list.push(
-              $(element)
-                .clone() // clone the element
-                .children() // select all the children
-                .remove() // remove all the children
-                .end() // again go back to selected element
-                .text()
-            );
-          });
-        if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option: ${list[1]}`;
-          callback(list[1]);
-        }
-      } else if (this.props.question.scrapeTag === 4) {
-        const op = $('input[id="search_filter_public"]').prop('checked')
-          ? 'Yes'
-          : 'No';
-        // document.getElementById(
-        //   'test'
-        // ).innerHTML = `Your current selected option:${op}`;
-        callback(op);
-      } else if (this.props.question.scrapeTag === 5) {
-        $('div[class="content"]')
-          .find('div > div > div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 1) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option: ${list[0]}`;
-          callback(list[0]);
-        }
-      } else if (this.props.question.scrapeTag === 6) {
-        $('form')
-          .find('div > div > a > span')
-          .each(function(index, element) {
-            list.push($(element).text());
-          });
-        if (list.length > 0) {
-          // document.getElementById(
-          //   'test'
-          // ).innerHTML = `Your current selected option:${list[0]}`;
-          callback(list[0]);
-        }
-      } else if (this.props.question.scrapeTag >= 7) {
-        console.log("Can't scrape ads yet.");
-      } else {
-        console.log('Make sure this question has a valid scrapeTag');
       }
     });
   };
@@ -167,7 +148,7 @@ export class SummaryQuestion extends Component {
       currentSetting
     });
   };
-
+  /*
   // login to Facebook, don't require info
   loginAndRedirect = url => {
     Meteor.loginWithFacebook({ requestPermissions: [] }, function(err) {
@@ -177,6 +158,10 @@ export class SummaryQuestion extends Component {
         window.open(url, '_blank');
       }
     });
+  };*/
+
+  loginAndRedirect = url => {
+    window.open(url, '_blank');
   };
 
   renderStatus = () => (
@@ -193,18 +178,50 @@ export class SummaryQuestion extends Component {
     </div>
   );
 
+  /*
   renderCurrentSetting = () => {
     if (this.state.currentSetting) {
       return this.state.currentSetting;
     }
     return <ReactLoading type="balls" color="#e5b540" height="5%" width="5%" />;
   };
+  */
+  renderCurrentSetting = () => {
+    const curr = this.state.currentSetting;
+    const pop = this.props.question.topOption.title;
+
+    if (this.props.answered && 
+        this.state.userOption !== "Not sure") {
+      const vote = this.state.userOption;
+      if (vote === curr && curr === pop) {
+        return <b className="curr-ok">Current Setting:&nbsp;{curr}</b>
+      }
+      else if (vote !== curr && curr !== pop && vote !== pop) {
+        return <b className="curr-alert">Current Setting:&nbsp;{curr}</b>
+      }
+      else {
+        return <b className="curr-warning">Current Setting:&nbsp;{curr}</b>
+      }
+    }
+    else {
+      if (curr === pop) {
+        return <b className="curr-ok">Current Setting:&nbsp;{curr}</b>
+      }
+      else {
+        return <b className="curr-alert">Current Setting:&nbsp;{curr}</b>
+      }
+    }
+  };
+
 
   render() {
     return (
       <div className="summary-q">
         {this.renderStatus()}
-        <div className="sum-title">{this.props.question.title}</div>
+        <div className="sum-title">
+          {this.props.question.title}<br />
+          {this.renderCurrentSetting()}
+        </div>
         <div className="sum-popular">{this.props.question.topOption.title}</div>
         {/* <div className="sum-popular">{this.renderCurrentSetting()}</div> */}
         <div className="sum-user">
@@ -213,7 +230,9 @@ export class SummaryQuestion extends Component {
         <div className="sum-link">
           <button
             className="summary-q-button"
-            onClick={() => this.loginAndRedirect(this.props.question.url)}
+            onClick={() => {
+              this.loginAndRedirect(this.props.question.url);
+            }}
           >
             Change on Facebook
           </button>

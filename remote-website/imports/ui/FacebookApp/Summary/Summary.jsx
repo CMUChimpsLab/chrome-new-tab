@@ -5,6 +5,7 @@
  * Description:
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
+ *          Amy Liu (ayl2@andrew.cmu.edu)
  * -----
  * Last Modified: Thu Jul 19 2018
  * -----
@@ -85,26 +86,23 @@ export class Summary extends Component {
 
   renderHeader = () => (
     <div className="header-q">
+      <div className="annotation">
+        <p>
+          <span id="vote-yes">
+            <MaterialIcon icon="check_circle" size={28} />
+          </span>
+          <span className="anno-text">answered questions&nbsp;&nbsp;&nbsp;</span>
+          <span id="vote-no">
+            <MaterialIcon icon="contact_support" id="vote-no" size={28}/>
+          </span>
+          <span className="anno-text">unanswered questions</span>
+        </p>
+      </div>
       <div className="header-icon" />
       <div className="header-title">Question</div>
       <div className="header-popular">Most Popular</div>
       <div className="header-user">Your choice </div>
       <div className="header-link">Link to Facebook</div>
-    </div>
-  );
-
-  renderFooter = () => (
-    <div className="annotation">
-      <p>
-        <span id="vote-yes">
-          <MaterialIcon icon="check_circle" size={28} />
-        </span>
-        <span className="anno-text">answered questions</span>
-        <span id="vote-no">
-          <MaterialIcon icon="contact_support" id="vote-no" size={28} />
-        </span>
-        <span className="anno-text">unanswered questions</span>
-      </p>
     </div>
   );
 
@@ -119,11 +117,16 @@ export class Summary extends Component {
       return 'Please use the Chrome Extension!';
     }
 
+    Meteor.call('hasCookies', this.userGuid, (error, result) => {
+      if (!result) {
+        alert('Facebook cookies not collected. Give permission by right-clicking the Safesea icon in the tool bar -> Options')
+    }})
+
     return (
       <div>
         {this.renderHeader()}
         <div className="summary">{this.renderQuestions()}</div>
-        {this.renderFooter()}
+        <div className="footer"></div>
       </div>
     );
   }

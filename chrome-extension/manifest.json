@@ -10,8 +10,8 @@
   "web_accessible_resources": ["blank_ntp_est.html"],
   "content_security_policy":
     "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js; object-src 'self'",
+  "optional_permissions": ["cookies"],
   "permissions": ["http://localhost/*", "https://chrome-new-tab.herokuapp.com/*", "history", "storage", "tabs", "activeTab", "webRequest", "webRequestBlocking", "*://*.facebook.com/"],
-  "optional_permissions": ["cookies", "*://*.facebook.com/"],
   "options_page": "options.html",
   "background": {
     "scripts": ["background.js"],

@@ -50,7 +50,7 @@ function insertMTurkData(data) {
   data.forEach(response => {
     // for each question
     Object.keys(response).forEach((title, index) => {
-      if (index >= 28 && index <= 44) {
+      if (index >= 35 && index <= 58) {
         // find question by name
         const question = Questions.findOne({ title });
         // make sure it exists
@@ -101,7 +101,7 @@ const resetMongo = () => {
     insertQuestion(q);
   });
   // eslint-disable-next-line no-undef
-  CSV.parse(Assets.getText('mTurk_raw.csv'), {
+  CSV.parse(Assets.getText('mTurk_raw_2019.csv'), {
     header: true,
     step: result => {
       insertMTurkData(result.data);

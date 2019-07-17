@@ -68,6 +68,10 @@ function clearCookies() {
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(cookieData));
 
+    document.getElementById('accept-cookies').classList.remove('clearCookies');
+    document.getElementById('accept-cookies').removeEventListener('click', clearCookies);
+    document.getElementById('accept-cookies').addEventListener('click', setCookiesPermission);
+    document.getElementById('accept-cookies').innerText = 'Accept and continue';
   });
 
 }
@@ -81,28 +85,45 @@ function setCookiesPermission() {
 
     // The callback argument will be true if the user granted the permissions.
     if (granted) {
+      chrome.permissions.contains({
+        permissions: ['cookies'],
+        origins: ['https://www.facebook.com/']
+      }, function(result) {
+        if (result) {
+          // set up cookie listener
+          setCookieCatcher();
 
-      // set up cookie listener
-      setCookieCatcher();
+          // open facebook
+          window.open('https://facebook.com', '_blank');
 
-      // open facebook
-      window.open('https://facebook.com', '_blank');
-
-      // change action in button
-      document.getElementById('accept-cookies').innerText = 'Clear cookies';
-      document.getElementById('accept-cookies').classList.add('clearCookies');
-      document.getElementById('accept-cookies').removeEventListener('click', setCookiesPermission);
-      document.getElementById('accept-cookies').addEventListener('click', clearCookies);
-
+          // change action in button
+          document.getElementById('accept-cookies').innerText = 'Clear cookies';
+          document.getElementById('accept-cookies').classList.add('clearCookies');
+          document.getElementById('accept-cookies').removeEventListener('click', setCookiesPermission);
+          document.getElementById('accept-cookies').addEventListener('click', clearCookies);
+        } else {
+          console.log('no permission');
+        }
+      });
     } else {
       console.log("Oh No :/")
     }
   });
 }
 
-document.getElementById('accept-cookies').addEventListener('click', setCookiesPermission);
-
-
+chrome.permissions.contains({
+  permissions: ['cookies'],
+  origins: ['https://www.facebook.com/']
+}, function(result) {
+  if (result) {
+    console.log('has permission');
+    document.getElementById('accept-cookies').addEventListener('click', clearCookies);
+    document.getElementById('accept-cookies').classList.add('clearCookies');
+    document.getElementById('accept-cookies').innerText = 'Clear cookies';
+  } else {
+    document.getElementById('accept-cookies').addEventListener('click', setCookiesPermission);
+  }
+});
 
 chrome.storage.sync.get('guid', (store) => {
   document.getElementById('subject-id').innerHTML = "<b>Subject ID</b>: " + store.guid;

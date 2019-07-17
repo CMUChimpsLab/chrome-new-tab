@@ -61,7 +61,7 @@ const HBarGraph = props => {
       })}
 
       <span className="data-source">
-        <b>Source</b>: Amazon Mechanical Turk, August 2018
+        <b>Source</b>: Amazon Mechanical Turk, July 2019
       </span>
     </div>
   );

@@ -14,10 +14,11 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Meteor } from 'meteor/meteor';
 import MaterialIcon from '../../../../node_modules/react-google-material-icons';
 import './Thanks.scss';
 import '../../assets/font.css';
+
 // import Photos from '../Photos/Photos';
 
 const Thanks = props => (
@@ -31,7 +32,10 @@ const Thanks = props => (
         role="button"
         id="end-restart"
         className={props.done ? '' : 'done'}
-        onClick={() => props.handleRestart()}
+        onClick={() => Meteor.call('hasCookies', props.guid, (error, result) => {
+          result ?  props.handleRestart() 
+          : alert('Facebook cookies not collected. Give permission by right-clicking the Safesea icon in the tool bar -> Options')
+        })}
       >
         <div className="title">
           {props.done ? 'Restart Checkup' : 'Continue Checkup'}
@@ -67,6 +71,7 @@ const Thanks = props => (
 );
 
 Thanks.propTypes = {
+  guid: PropTypes.string.isRequired,
   handleViewAll: PropTypes.func.isRequired,
   handleRestart: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
