@@ -25,7 +25,7 @@ const Thanks = props => (
   <div className="circle-body">
     <div className="thanks-body">
       {/* <Photos amount={5} width={300} height={300} /> */}
-      <p>Facebook Privacy Checkup</p>
+      <p>Facebook Privacy &amp; Security Checkup</p>
 
       
       <span
@@ -33,8 +33,8 @@ const Thanks = props => (
         id="end-restart"
         className={props.done ? '' : 'done'}
         onClick={() => Meteor.call('hasCookies', props.guid, (error, result) => {
-          result ?  props.handleRestart() 
-          : alert('Facebook cookies not collected. Give permission by right-clicking the Safesea icon in the tool bar -> Options')
+          result ? props.handleRestart() 
+            : alert('Facebook cookies not collected. Give permission by right-clicking the Safesea icon in the tool bar -> Options')
         })}
       >
         <div className="title">
@@ -48,7 +48,7 @@ const Thanks = props => (
       <span
         role="button"
         id="end-viewall"
-        onClick={() => props.handleViewAll()}
+        onClick={() => { props.handleViewAll() }}
       >
         <div className="title">View all questions</div>
         <span className="icon">

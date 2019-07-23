@@ -20,6 +20,7 @@ import ReactLoading from 'react-loading';
 import './SummaryQuestion.scss';
 import MaterialIcon from '../../../../../node_modules/react-google-material-icons';
 
+
 export class SummaryQuestion extends Component {
   static propTypes = {
     question: PropTypes.shape({
@@ -114,18 +115,10 @@ export class SummaryQuestion extends Component {
           callback(op);
         }
         else if (this.props.question.scrapeTag === 6) {
-          console.log('Why is this not working');
-          const op = ($('.fbNoTrustedFriends')
-                      .prop('class') === "fcg")
-            ? 'No (Off)'
-            : 'Yes (On)';
-          callback(op);
+          callback('currently unavailable (find out through "Change this setting on Facebook")');
         }
         else if (this.props.question.scrapeTag === 7) {
-          const op = /*$('div[class="_4p8x _4-u3"]')*/ $('span[class="_y5_"]').text()
-        //   ? 'Yes (On)';
-          //  : 'No (Off)';
-          callback(op);            
+          callback('currently unavailable (find out through "Change this setting on Facebook")');         
         }
         else if (this.props.question.scrapeTag === 8) {
           const op = ($('input[name="storyresharesetting"]')
@@ -231,6 +224,11 @@ export class SummaryQuestion extends Component {
           <button
             className="summary-q-button"
             onClick={() => {
+              mixpanel.track("Clicked Change in View All", {
+                question: this.props.question.title,
+                current_setting: this.state.currentSetting,
+                most_popular: this.props.question.topOption.title
+              });
               this.loginAndRedirect(this.props.question.url);
             }}
           >

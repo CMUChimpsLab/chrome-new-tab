@@ -61,7 +61,8 @@ export class Question extends Component {
       currentSetting: null,
       clickedChange: false,
       showGraph: false,
-      status: null
+      status: null,
+      prevOthersShown: false
     };
 
     // this.status = null;
@@ -132,7 +133,7 @@ export class Question extends Component {
           console.log(op);
           callback(op);
         } 
-        else if (this.props.question.scrapeTag === 3) {
+        else if (this.props.question.scrapeTag === 3) { // LAST QUESTION
           const op = $('input[id="search_filter_public"]').prop('checked')
             ? 'Yes'
             : 'No';
@@ -157,18 +158,21 @@ export class Question extends Component {
           callback(op);
         }
         else if (this.props.question.scrapeTag === 6) {
+          /*
           console.log('Why is this not working');
           const op = ($('.fbNoTrustedFriends')
                       .prop('class') === "fcg")
             ? 'No (Off)'
             : 'Yes (On)';
-          callback(op);
+          */
+          callback('currently unavailable (find out through "Change this setting on Facebook")');
         }
         else if (this.props.question.scrapeTag === 7) {
-          const op = /*$('div[class="_4p8x _4-u3"]')*/ $('span[class="_y5_"]').text()
-        //   ? 'Yes (On)';
-          //  : 'No (Off)';
-          callback(op);            
+          /*const op = $('div[class="_4p8x _4-u3"]') $('span[class="_y5_"]').text()
+            ? 'Yes (On)';
+            : 'No (Off)';
+          */
+          callback('currently unavailable (find out through "Change this setting on Facebook")');           
         }
         else if (this.props.question.scrapeTag === 8) {
           const op = ($('input[name="storyresharesetting"]')
@@ -288,6 +292,12 @@ export class Question extends Component {
 
   // login to Facebook, don't require info
   loginAndRedirect = url => {
+    mixpanel.track("Clicked Change in Checkup", {
+      question: this.props.question.title,
+      voted: this.state.votedOption.title,
+      current_setting: this.state.currentSetting,
+      most_popular: this.props.question.topOption.title
+    });
     window.open(url, '_blank');
   };
 
@@ -345,7 +355,12 @@ export class Question extends Component {
   
   renderSeeOthers = () => {
     return (
-      <button className="fb-see-others" onClick={() => this.setState({ showGraph: true })}>
+      <button className="fb-see-others" 
+        onClick={() => {
+          mixpanel.time_event("See Others");
+          this.setState({ prevOthersShown: true });
+          this.setState({ showGraph: true });
+        }}>
         <b><MaterialIcon icon="chevron_right" size={20}/></b>
         See what others think
       </button>
@@ -406,13 +421,32 @@ export class Question extends Component {
 
       <button
         id="action-next"
-        onClick={() =>
+        onClick={() => {
+          if (this.state.prevOthersShown) {
+            mixpanel.track("See Others", {
+              question: this.props.question.title,
+              voted: this.state.votedOption.title,
+              current_setting: this.state.currentSetting});
+            if (this.state.votedOption.title.toLowerCase() !== this.props.question.topOption.title.toLowerCase()
+                && !this.state.fbChanged) {
+              mixpanel.track("Disagreement", {
+                question: this.props.question.title,
+                voted: this.state.votedOption.title,
+                most_popular: this.props.question.topOption.title
+              });
+            }
+            this.setState({ prevOthersShown: false });
+          }
+          
+          mixpanel.track("Question Time", {question: this.props.question.title});
           this.props.submitVote(
             this.props.question,
             this.state.votedOption,
             this.state.currentSetting,
-            this.state.clickedChange
+            this.state.clickedChange,
+            (this.props.question.scrapeTag === 3)   // CHECK IF LAST QUESTION
           )
+        }
         }
       >
         Next
@@ -501,6 +535,7 @@ export class Question extends Component {
   renderNone = () => {};
 
   render() {
+    mixpanel.time_event("Question Time");
     return (
       <div className="fb-question">
         <iframe title="iframe" id="iframe" style={{ display: 'none' }} />
@@ -510,7 +545,9 @@ export class Question extends Component {
         </div>
         <details>
           <summary className="info-icon">
-            <span className="info-icon">
+            <span className="info-icon" 
+              onClick={() => mixpanel.track("Description Shown", {question: this.props.question.title})}
+            >
               <MaterialIcon icon="info" size={17}/>
               &nbsp;What does this mean?</span>
           </summary>
