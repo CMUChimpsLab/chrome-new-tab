@@ -47,6 +47,7 @@ export class Menu extends Component {
   handleShuffle = () => {};
 
   handleViewAll = () => {
+    mixpanel.track("Clicked View All");
     window.open(`${this.props.history.location.pathname}/summary`, '_blank');
   };
 
