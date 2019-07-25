@@ -42,6 +42,10 @@ function clearCookies() {
     if (removed) {
       // The permissions have been removed.
       console.log('Permission removed.')
+      document.getElementById('accept-cookies').classList.remove('clearCookies');
+      document.getElementById('accept-cookies').removeEventListener('click', clearCookies);
+      document.getElementById('accept-cookies').addEventListener('click', setCookiesPermission);
+      document.getElementById('accept-cookies').innerText = 'Accept and continue';
     } else {
       // The permissions have not been removed (e.g., you tried to remove
       // required permissions).
@@ -67,11 +71,6 @@ function clearCookies() {
     xhttp.open('POST', SERVER_URL + '/api/v1/cookies/' + store.guid, true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify(cookieData));
-
-    document.getElementById('accept-cookies').classList.remove('clearCookies');
-    document.getElementById('accept-cookies').removeEventListener('click', clearCookies);
-    document.getElementById('accept-cookies').addEventListener('click', setCookiesPermission);
-    document.getElementById('accept-cookies').innerText = 'Accept and continue';
   });
 
 }
