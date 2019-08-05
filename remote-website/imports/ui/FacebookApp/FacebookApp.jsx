@@ -28,6 +28,7 @@ import Menu from './Menu/Menu';
 import Thanks from './Thanks/Thanks';
 import Closed from './Closed/Closed';
 
+//////// function to connect to mixpanel API -- ignore
 (function(c,a) {
   if(!a.__SV) {
     var b=window;
@@ -80,7 +81,7 @@ import Closed from './Closed/Closed';
   })(document,window.mixpanel||[]);
 
   mixpanel.init("19de395ed2da3ff94cdc5525e80ba2f2");
-
+/////////////////////////////////////////////////////////////
 
 export class FacebookApp extends Component {
   static propTypes = {
