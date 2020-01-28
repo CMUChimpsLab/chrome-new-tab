@@ -93,7 +93,7 @@ function clear() {
   Users.update({}, { $set: { responses: [] } });
 }
 
-// populates db
+// populates the database used for "what others think"
 const resetMongo = () => {
   console.log('Resetting Questions database...');
   clear();
