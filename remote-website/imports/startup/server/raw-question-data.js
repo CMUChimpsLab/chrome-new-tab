@@ -18,7 +18,7 @@ const questions = [
 {
   category: 'Login Security',
   title: 'Do you think two-factor authentication is necessary for your account?', // 'Use two-factor authentication'
-  description: 'If you enable this feature then everytime your account is logged into from an \"un-saved device\", the person logging in must also enter a code sent to your mobile device via text or an authentication app of your choice. You can choose to \"save devices\" as you are logging in which won\'t require you to enter the code when you log in with that device in the future.',
+  description: 'If you enable this feature then everytime your account is logged into from an \"un-saved device\", the person logging in must also enter a code sent to your mobile device via text or an authentication app of your choice. You can choose to \"save devices\" as you are logging in which won\'t require you to enter the code when you log in with that device in the future. NOTE: Enabling two-factor authentication via text as opposed to an authenticaiton app can give advertisers access to your phone number. This can also affect the range of configurations available to you for the setting on who can look you up by your phone number.',
   url: 'https://www.facebook.com/security/2fac/settings',
   options: [
     'Yes (On)',
@@ -287,7 +287,7 @@ const questions = [
   title:
     'Who do you think should be able to look you up using the email address you provided?', // 'Who can look you up using the email address you provided?',
   description:
-    "Keep in mind that whoever you give permission to look you up using your email will also be able to see your email on your profile/timeline.",
+    "This controls who will see your profile when they enter the email address associated with your Facebook account in the search bar or the Messenger app. Keep in mind that this is not the same thing as who can see your email address on your profile, that is controlled separately. NOTE: if your email address includes your full name, and someone searches your email address the search results may show your profile.",
   url: 'https://www.facebook.com/settings?tab=privacy&section=findemail&view',
   options: [
     'Friends',
@@ -303,7 +303,7 @@ const questions = [
   title:
     'Who do you think should be able to look you up using the phone number you provided?',
   description:
-    "Keep in mind that whoever you give permission to look you up using your phone number will also be able to see your phone number on your profile/timeline.",
+    "This controls who will see your profile when they enter the phone number associated with your Facebook in the Search bar or the Messenger app. Keep in mind that this is not the same as who can see your phone number on your profile, that is controlled separately. NOTE: If you have two-factor authentication enabled via phone number instead of an authentication app, then you will not be able to configure your setting to \'Only me\'.",
   url: 'https://www.facebook.com/settings?tab=privacy&section=findphone&view',
   options: [
     'Friends',
@@ -319,7 +319,7 @@ const questions = [
   category: 'Connections & Contact',
   title: 'Would you want search engines outside of Facebook to link to your profile?', // 'Do you want search engines outside of Facebook to link to your profile?',
   description:
-    'When this setting is on, search engines may link to your profile in their results. When this setting is off, search engines will stop linking to your profile, but this may take some time. However, information from your profile and some things you share can still appear in search engine results even if you select \"no\". Public information may also still appear in search results. This specifically includes things you share with the audience set to \"public\", in addition to posts and comments on Pages and Public Groups as well as posts in the Community Forum Section of the Help Center on Facebook.',
+    'When this setting is on, search engines may link to your profile in their results. When this setting is off, search engines will stop linking to your profile, but this may take some time. Your profile can still be found if people search your name. IMPORTANT: Turning this off only controls if a search engine will link to your profile in the search engine\'s results. Information from your profile (such as \'public\' information) can still appear in search engine results even if you say \'No\'. This includes things that you share with audiences set to \'Public\', posts and comments on Pages and public groups and posts in the Community Forum section of the Help Center.',
   url: 'https://www.facebook.com/settings?tab=privacy&section=search&view',
   options: [
     'Yes',
