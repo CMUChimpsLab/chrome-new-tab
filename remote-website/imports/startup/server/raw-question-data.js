@@ -5,10 +5,13 @@
  * Description: exports raw question data to be inserted to mongo
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
+ 
+            Isadora Krsek (isadora.krsek@gmail.com)
+            Amy Liu
  * -----
- * Last Modified: Fri Sep 21 2018
+ * Last Modified: Monday Feb 3 2020
  * -----
- * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ * Copyright (c) 2018 - 2020 CHIMPS Lab, HCII CMU
  */
 
 const questions = [
@@ -18,7 +21,7 @@ const questions = [
 {
   category: 'Login Security',
   title: 'Do you think two-factor authentication is necessary for your account?', // 'Use two-factor authentication'
-  description: 'If you enable this feature then everytime your account is logged into from an \"un-saved device\", the person logging in must also enter a code sent to your mobile device via text or an authentication app of your choice. You can choose to \"save devices\" as you are logging in which won\'t require you to enter the code when you log in with that device in the future.',
+  description: 'If you enable this feature then everytime your account is logged into from an \"un-saved device\", the person logging in must also enter a code sent to your mobile device via text or an authentication app of your choice. You can choose to \"save devices\" as you are logging in which won\'t require you to enter the code when you log in with that device in the future. NOTE: Enabling two-factor authentication via text as opposed to an authenticaiton app can give advertisers access to your phone number. This can also affect the range of configurations available to you for the setting on who can look you up by your phone number.',
   url: 'https://www.facebook.com/security/2fac/settings',
   options: [
     'Yes (On)',
@@ -30,7 +33,7 @@ const questions = [
 {
   category: 'Login Security',
   title: 'Would you like to have 3 to 5 friends you would be able to contact whenever you get locked out of your account?', // 'Choose friends to contact if you get locked out'
-  description: 'Facebook users can nominate anywhere from 3-5 people from their friends list as \"trusted contacts\". This ensures that if you ever get locked out of your account, any of the friends you nominate will then recieve a code and a URL to give to you so that you can log back in. Facebook reccomends this to everyone.',
+  description: 'Facebook users can nominate anywhere from 3-5 people from their friends list as \"trusted contacts\". This ensures that if you ever get locked out of your account, any of the friends you nominate will then recieve a code and a URL to share with you to help you log back in. Facebook reccomends this to everyone.',
   url: 'https://www.facebook.com/settings?tab=security&section=trusted_friends&view',
   options: [
     'Yes (On)',
@@ -42,7 +45,7 @@ const questions = [
 {
   category: 'Login Security',
   title: 'Would you want to get alerts about unrecognized logins?', // 'Get alerts about unrecognized logins'
-  description: 'When Facebook notices a login from an unrecognized device (a device you don\'t usually or have never used), you can choose more than one way they will contact you about it. You can choose to recieve a notification through your Facebook account, through Facebook Messenger, and/or through your email.',
+  description: 'When Facebook notices your account login from an unrecognized device (a device you don\'t usually or have never used), you can customize how they will notify you about it. You can choose to recieve a notification through your Facebook account, through Facebook Messenger, and/or through your email address.',
   url: 'https://www.facebook.com/settings?tab=security&section=login_alerts&view',
   options: [
     'Yes (On)',
@@ -73,7 +76,7 @@ const questions = [
   category: 'Your Posts & Stories',
   title: 'Who do you think should be able to comment on your public posts?', // 'Who can comment on your public posts?',
   description:
-    'Decide who is allowed to comment on your posts. Remember though that in addition to who you choose here, anyone tagged in a post and their friends may be able to comment, too.',
+    'Decide who is allowed to comment on your posts. Keep in mind that in addition to who you choose here, anyone tagged in a post and their friends might be able to comment.',
   url: 'https://www.facebook.com/settings?tab=followers&section=comment&view',
   options: [
     'Friends',
@@ -86,7 +89,7 @@ const questions = [
 {
   category: 'Your Posts & Stories',
   title: 'Who would you want to get public post notifications from?', 
-  description: 'You can require that Facebook notifies you whenever people who aren\'t of a specific category start following and share, like, or comment on your public posts. Choose the category below.',
+  description: 'You can require that Facebook notifies you whenever people who aren\'t your friends start following and share, like, or comment on your public posts. You can customize who you get these notifications for.',
   url: 'https://www.facebook.com/settings?tab=followers&section=notifications&view',
   options: [
     'Public',
@@ -99,7 +102,7 @@ const questions = [
 {
   category: 'Your Posts & Stories',
   title: 'Do you think others should be allowed to share your posts to their stories?', // 'Allow others to share your posts to their stories?''
-  description: 'When enabled, if you create a public post, anyone on Facebook can share it to their story. If you tag someone in any post, they can share it to their story. Their story will include your full name, a link to your post, and will be visible for 24 hours. They control who sees it.',
+  description: 'When enabled, if you create a public post, anyone on Facebook can share it to their story. If you tag someone in any post, they can share it to their story and will control who sees it. Their story will include your full name, a link to your post, and will be visible for 24 hours.',
   url: 'https://www.facebook.com/settings?tab=timeline&section=story_reshare&view',
   options: [
     'Yes',
@@ -126,7 +129,7 @@ const questions = [
 {
   category: 'Profile & Timeline',
   title: 'Who do you think should be able to post on your timeline?', // 'Who can post on your timeline?'
-  description: 'Decide who can leave posts on your timeline from the following options. The audience that can see it depends on your timeline settings (who is allowed to view your timeline)',
+  description: 'Only yourself and your friends can post onto your timeline. You can restrict your friends from posting to your timeline by configuring this setting to \'Only me\'. Keep in mind that your friends will still be able to comment on any post that they see.',
   url: 'https://www.facebook.com/settings?tab=timeline&section=posting&view',
   options: [
     'Only me',
@@ -138,7 +141,7 @@ const questions = [
 {
   category: 'Profile & Timeline',
   title: 'Who do you think should be able to see what others post on your timeline?', // 'Who can see what others post on your timeline?''
-  description: 'You can choose to limit who sees what other people post on your timeline, by choosing from one of the options below, or creating a custom list of people who you allow or blacklist from seeing what others post on your timeline.',
+  description: 'You can choose to limit who sees what other people post on your timeline, by choosing from one of the options below, or creating a custom list of people who you allow or blacklist from seeing what others post on your timeline. Keep in mind that your posts may still appear in other places on Facebook, like News Feed and Search, for people who are in the audience that they are shared with.',
   url: 'https://www.facebook.com/settings?tab=timeline&section=others&view',
   options: [
     'Only me',
@@ -153,7 +156,7 @@ const questions = [
 {
   category: 'Profile & Timeline',
   title: 'Who do you think should be able to like and comment on your public profile pictures and other profile information?', // 'Who can like or comment on your public profile pictures and other profile info?',
-  description: 'Decide who can like or comment on the profile information that is always public, including your profile pictures, profile videos, cover photos, featured photos and updates to your short bio.',
+  description: 'Manage who can like or comment on the profile information that is always public, including your profile pictures, profile videos, cover photos, featured photos and updates to your short bio.',
   url: 'https://www.facebook.com/settings?tab=followers&section=public_profile_media&view',
   options: [
     'Friends',
@@ -166,7 +169,7 @@ const questions = [
 {
   category: 'Profile & Timeline',
   title: 'Who do you think should be able to see your friends list?', // 'Who can see your friends list?',
-  description: 'Decide on who can view the list of your friends on Facebook. Strangers will still be able to see any mutual friends they have with you, no matter what the setting is.',
+  description: 'Decide on who can view the list of your friends on Facebook. If you set this to \'Only me\' then only you will be able to see your full friends list on your timeline. Other users will still be able to see any mutual friends they have with you. Keep in mind that your friends also control who can see friendships on their own timelines, and that if people can see your friendship on another timeline, they\'ll be able to see it in News Feed, Search, and other places on Facebook.',
   url: 'https://www.facebook.com/settings?tab=privacy&section=friendlist&view',
   options: [
     'Only me',
@@ -184,7 +187,7 @@ const questions = [
   category: 'Tagging',
   title:
     "Who do you think should be able to see posts that you're tagged in on your timeline?", // "Who can see posts that you're tagged in on your timeline?",
-  description: 'Decide who has access to posts you are tagged in that are on your timeline. Keep in mind that the photos, videos, or posts you\'ve been tagged in on Facebook are still visible to the audience the original poster specified if they\'ve shared that photo in other places on Facebook (such as in the News Feed or in search).', 
+  description: 'Decide who has access to posts you are tagged in that are on your timeline. Keep in mind that the photos, videos, or posts you\'ve been tagged in on Facebook are still visible to the audience that the original poster specified. The photos and posts are also visible the the audience the original poster gave permission in other places on Facebook such as in News Feed, and Search.', 
   url: 'https://www.facebook.com/settings?tab=timeline&section=tagging&view',
   options: [
     'Only me',
@@ -244,7 +247,7 @@ const questions = [
 {
   category: 'Tagging',
   title: 'Would you want Facebook to be able to recognize you in photos and videos?',
-  description: 'When you turn on \"tag suggestions\" or \"face recognition\" Facebook uses a machine learning algorithm to analyze the pixels of the face image and creates a template. When new photos are uploaded Facebook compares the face present in the image to templates of relevant users and will look for matches (which pop up in the form of \"suggested tags\"). You need to check this setting periodically because Facebook automatically enrolls you as \"opting in\" whenever they roll out new features.',
+  description: 'When you turn on \"tag suggestions\" or \"face recognition\" Facebook uses a machine learning algorithm to analyze the pixels of the face image and creates a template. When new photos are uploaded Facebook compares the face present in the image to templates of relevant users and will look for matches (which pop up in the form of \"suggested tags\").',
   url:
     'https://www.facebook.com/settings?tab=facerec&section=face_recognition&view',
   options: [
@@ -287,7 +290,7 @@ const questions = [
   title:
     'Who do you think should be able to look you up using the email address you provided?', // 'Who can look you up using the email address you provided?',
   description:
-    "Keep in mind that whoever you give permission to look you up using your email will also be able to see your email on your profile/timeline.",
+    "This controls who will see your profile when they enter the email address associated with your Facebook account in the search bar or the Messenger app. Keep in mind that this is not the same thing as who can see your email address on your profile, that is controlled separately. NOTE: if your email address includes your full name, and someone searches your email address the search results may show your profile.",
   url: 'https://www.facebook.com/settings?tab=privacy&section=findemail&view',
   options: [
     'Friends',
@@ -303,7 +306,7 @@ const questions = [
   title:
     'Who do you think should be able to look you up using the phone number you provided?',
   description:
-    "Keep in mind that whoever you give permission to look you up using your phone number will also be able to see your phone number on your profile/timeline.",
+    "This controls who will see your profile when they enter the phone number associated with your Facebook in the Search bar or the Messenger app. Keep in mind that this is not the same as who can see your phone number on your profile, that is controlled separately. NOTE: If you have two-factor authentication enabled via phone number instead of an authentication app, then you will not be able to configure your setting to \'Only me\'.",
   url: 'https://www.facebook.com/settings?tab=privacy&section=findphone&view',
   options: [
     'Friends',
@@ -319,7 +322,7 @@ const questions = [
   category: 'Connections & Contact',
   title: 'Would you want search engines outside of Facebook to link to your profile?', // 'Do you want search engines outside of Facebook to link to your profile?',
   description:
-    'When this setting is on, search engines may link to your profile in their results. When this setting is off, search engines will stop linking to your profile, but this may take some time. However, information from your profile and some things you share can still appear in search engine results even if you select \"no\". Public information may also still appear in search results. This specifically includes things you share with the audience set to \"public\", in addition to posts and comments on Pages and Public Groups as well as posts in the Community Forum Section of the Help Center on Facebook.',
+    'When this setting is on, search engines may link to your profile in their results. When this setting is off, search engines will stop linking to your profile, but this may take some time. Your profile can still be found if people search your name. IMPORTANT: Turning this off only controls if a search engine will link to your profile in the search engine\'s results. Information from your profile (such as \'public\' information) can still appear in search engine results even if you say \'No\'. This includes things that you share with audiences set to \'Public\', posts and comments on Pages and public groups and posts in the Community Forum section of the Help Center.',
   url: 'https://www.facebook.com/settings?tab=privacy&section=search&view',
   options: [
     'Yes',

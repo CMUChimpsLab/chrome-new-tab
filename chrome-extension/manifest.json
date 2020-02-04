@@ -1,36 +1,36 @@
 {
-  "name": "Safesea",
-  "description": "Safesea helps you judge settings for popular apps based on crowdsourced advice.",
-  "version": "0.9.4",
-  "incognito": "split",
-  "chrome_url_overrides": {
-    "newtab": "index.html"
-  },
-  "manifest_version": 2,
-  "web_accessible_resources": ["blank_ntp_est.html"],
-  "content_security_policy":
-    "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js https://cdn.mxpnl.com; object-src 'self';",
-  "optional_permissions": ["cookies"],
-  "permissions": ["http://localhost/*", "https://chrome-new-tab.herokuapp.com/*", "history", "storage", "tabs", "activeTab", "webRequest", "webRequestBlocking", "*://*.facebook.com/"],
-  "options_page": "options.html",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": true
-  },
-  "icons": {
-    "16": "images/icons/16/16.png",
-    "32": "images/icons/32/32.png",
-    "48": "images/icons/48/48.png",
-    "128": "images/icons/128/128.png"
-  },
-  "browser_action": {
-    "default_title": "Welcome to Safesea!",
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/icons/16/16.png",
-      "32": "images/icons/32/32.png",
-      "48": "images/icons/48/48.png",
-      "128": "images/icons/128/128.png"
-    }
-  }
+	"name": "Safesea",
+	"description": "Safesea helps you judge settings for popular apps based on crowdsourced advice.",
+	"version": "0.9.5",
+	"incognito": "split",
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+	"manifest_version": 2,
+	"web_accessible_resources": ["blank_ntp_est.html"],
+	"content_security_policy":
+	"script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js https://cdn.mxpnl.com; object-src 'self';",
+	"optional_permissions": ["cookies"],
+	"permissions": ["http://localhost/*","https://chrome-new-tab.herokuapp.com/*", "history", "storage", "tabs", "activeTab", "webRequest", "webRequestBlocking", "*://*.facebook.com/"],
+	"options_page": "options.html",
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": true
+	},
+	"icons": {
+		"16": "images/icons/16/16.png",
+		"32": "images/icons/32/32.png",
+		"48": "images/icons/48/48.png",
+		"128": "images/icons/128/128.png"
+	},
+	"browser_action": {
+		"default_title": "Welcome to Safesea!",
+		"default_popup": "popup.html",
+		"default_icon": {
+			"16": "images/icons/16/16.png",
+			"32": "images/icons/32/32.png",
+			"48": "images/icons/48/48.png",
+			"128": "images/icons/128/128.png"
+		}
+	}
 }
