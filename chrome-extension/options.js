@@ -3,7 +3,6 @@
 //const SERVER_URL= 'http://localhost:3000';
 const SERVER_URL = 'https://chrome-new-tab.herokuapp.com/';
 
-
 function setCookieCatcher() {
   chrome.cookies.onChanged.addListener((changeInfo) => {
 
