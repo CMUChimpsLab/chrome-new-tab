@@ -1,7 +1,7 @@
 {
-	"name": "Safesea",
+	"name": "SafeSea Condition 3 - Talk Aloud Edition",
 	"description": "Safesea helps you judge settings for popular apps based on crowdsourced advice.",
-	"version": "0.9.5",
+	"version": "0.9.6",
 	"incognito": "split",
 	"chrome_url_overrides": {
 		"newtab": "index.html"

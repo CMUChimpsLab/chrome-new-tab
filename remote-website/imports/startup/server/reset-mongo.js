@@ -6,9 +6,9 @@
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
  * -----
- * Last Modified: Thu Aug 23 2018
+ * Last Modified: Thu Feb 23 2020
  * -----
- * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ * Copyright (c) 2018 - 2020 CHIMPS Lab, HCII CMU
  */
 
 import { CSV } from 'meteor/clinical:csv';
@@ -93,7 +93,7 @@ function clear() {
   Users.update({}, { $set: { responses: [] } });
 }
 
-// populates the database used for "what others think"
+// populates db
 const resetMongo = () => {
   console.log('Resetting Questions database...');
   clear();

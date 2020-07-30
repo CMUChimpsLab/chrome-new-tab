@@ -5,10 +5,13 @@
  * Description: exports raw question data to be inserted to mongo
  * Authors: Rosie Sun (rosieswj@gmail.com)
  *          Gustavo Umbelino (gumbelin@gmail.com)
+ 
+            Isadora Krsek (isadora.krsek@gmail.com)
+            Amy Liu
  * -----
- * Last Modified: Fri Sep 21 2018
+ * Last Modified: Monday Feb 3 2020
  * -----
- * Copyright (c) 2018 - 2018 CHIMPS Lab, HCII CMU
+ * Copyright (c) 2018 - 2020 CHIMPS Lab, HCII CMU
  */
 
 const questions = [
@@ -244,7 +247,7 @@ const questions = [
 {
   category: 'Tagging',
   title: 'Would you want Facebook to be able to recognize you in photos and videos?',
-  description: 'When you turn on \"tag suggestions\" or \"face recognition\" Facebook uses a machine learning algorithm to analyze the pixels of the face image and creates a template. When new photos are uploaded Facebook compares the face present in the image to templates of relevant users and will look for matches (which pop up in the form of \"suggested tags\"). You need to check this setting periodically because Facebook automatically enrolls you as \"opting in\" whenever they roll out new features.',
+  description: 'When you turn on \"tag suggestions\" or \"face recognition\" Facebook uses a machine learning algorithm to analyze the pixels of the face image and creates a template. When new photos are uploaded Facebook compares the face present in the image to templates of relevant users and will look for matches (which pop up in the form of \"suggested tags\").',
   url:
     'https://www.facebook.com/settings?tab=facerec&section=face_recognition&view',
   options: [

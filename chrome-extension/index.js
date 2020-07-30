@@ -1,4 +1,4 @@
- const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
+const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
 //const SERVER_URL = 'http://localhost:3000';
 
 

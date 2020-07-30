@@ -3,7 +3,7 @@
 // found in the LICENSE file.
 
 'use strict';
- const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
+const SERVER_URL = 'https://chrome-new-tab.herokuapp.com';
 //const SERVER_URL = 'http://localhost:3000';
 
 const setting_URLS = [
