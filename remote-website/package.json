@@ -22,7 +22,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.19",
     "meteor-node-stubs": "^0.4.1",
-    "papaparse": "^4.5.0",
+    "papaparse": "^5.2.0",
     "rc-progress": "^2.2.5",
     "react": "^16.4.1",
     "react-apollo": "^2.4.1",
