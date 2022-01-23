@@ -116,7 +116,7 @@ export class Question extends Component {
                       .text();
           console.log(op);
           callback(op);
-        } 
+        }
         else if (this.props.question.scrapeTag === 1) {
           const op = $('div[class="clearfix"]')
                       .find($('span[class="_55pe"]'))
@@ -132,14 +132,14 @@ export class Question extends Component {
                       .text();
           console.log(op);
           callback(op);
-        } 
+        }
         else if (this.props.question.scrapeTag === 3) { // LAST QUESTION
           const op = $('input[id="search_filter_public"]').prop('checked')
             ? 'Yes'
             : 'No';
           console.log(op);
           callback(op);
-        } 
+        }
         else if (this.props.question.scrapeTag === 4) {
           const op = ($('li[class*=openPanel]')
                       .find($('div[class="_nlm fwb"]'))
@@ -158,21 +158,20 @@ export class Question extends Component {
           callback(op);
         }
         else if (this.props.question.scrapeTag === 6) {
-          /*
+
           console.log('Why is this not working');
           const op = ($('.fbNoTrustedFriends')
                       .prop('class') === "fcg")
             ? 'No (Off)'
             : 'Yes (On)';
-          */
-          callback('currently unavailable (find out through "Change this setting on Facebook")');
+          callback(op);
         }
         else if (this.props.question.scrapeTag === 7) {
           /*const op = $('div[class="_4p8x _4-u3"]') $('span[class="_y5_"]').text()
             ? 'Yes (On)';
             : 'No (Off)';
           */
-          callback('currently unavailable (find out through "Change this setting on Facebook")');           
+          callback('currently unavailable (find out through "Change this setting on Facebook")');
         }
         else if (this.props.question.scrapeTag === 8) {
           const op = ($('input[name="storyresharesetting"]')
@@ -188,7 +187,7 @@ export class Question extends Component {
       }
     });
   };
-  
+
   getMaxVote = () => (
     // const { topOption, totalVotes } = this.props.question;
     // const percentage = ((topOption.count / totalVotes) * 100).toFixed(0);
@@ -196,7 +195,7 @@ export class Question extends Component {
     <div>
       {this.renderSelected()}
       {this.renderCurrentSetting()}
-      {this.state.showGraph 
+      {this.state.showGraph
         ? this.props.condition === 3 && this.renderCrowdChoice()
         : this.renderSeeOthers()}
 
@@ -352,10 +351,10 @@ export class Question extends Component {
     );
   };
 
-  
+
   renderSeeOthers = () => {
     return (
-      <button className="fb-see-others" 
+      <button className="fb-see-others"
         onClick={() => {
           mixpanel.time_event("See Others");
           this.setState({ prevOthersShown: true });
@@ -437,7 +436,7 @@ export class Question extends Component {
             }
             this.setState({ prevOthersShown: false });
           }
-          
+
           mixpanel.track("Question Time", {question: this.props.question.title});
           this.props.submitVote(
             this.props.question,
@@ -545,7 +544,7 @@ export class Question extends Component {
         </div>
         <details>
           <summary className="info-icon">
-            <span className="info-icon" 
+            <span className="info-icon"
               onClick={() => mixpanel.track("Description Shown", {question: this.props.question.title})}
             >
               <MaterialIcon icon="info" size={17}/>
